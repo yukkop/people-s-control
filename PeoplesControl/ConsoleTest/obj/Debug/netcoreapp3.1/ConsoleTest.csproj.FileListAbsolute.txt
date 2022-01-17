@@ -1,0 +1,16 @@
+C:\Users\Professional\source\repos\PeoplesControl\ConsoleTest\bin\Debug\netcoreapp3.1\ConsoleTest.exe
+C:\Users\Professional\source\repos\PeoplesControl\ConsoleTest\bin\Debug\netcoreapp3.1\ConsoleTest.deps.json
+C:\Users\Professional\source\repos\PeoplesControl\ConsoleTest\bin\Debug\netcoreapp3.1\ConsoleTest.runtimeconfig.json
+C:\Users\Professional\source\repos\PeoplesControl\ConsoleTest\bin\Debug\netcoreapp3.1\ConsoleTest.runtimeconfig.dev.json
+C:\Users\Professional\source\repos\PeoplesControl\ConsoleTest\bin\Debug\netcoreapp3.1\ConsoleTest.dll
+C:\Users\Professional\source\repos\PeoplesControl\ConsoleTest\bin\Debug\netcoreapp3.1\ConsoleTest.pdb
+C:\Users\Professional\source\repos\PeoplesControl\ConsoleTest\bin\Debug\netcoreapp3.1\Logic.dll
+C:\Users\Professional\source\repos\PeoplesControl\ConsoleTest\bin\Debug\netcoreapp3.1\Logic.pdb
+C:\Users\Professional\source\repos\PeoplesControl\ConsoleTest\obj\Debug\netcoreapp3.1\ConsoleTest.csprojAssemblyReference.cache
+C:\Users\Professional\source\repos\PeoplesControl\ConsoleTest\obj\Debug\netcoreapp3.1\ConsoleTest.AssemblyInfoInputs.cache
+C:\Users\Professional\source\repos\PeoplesControl\ConsoleTest\obj\Debug\netcoreapp3.1\ConsoleTest.AssemblyInfo.cs
+C:\Users\Professional\source\repos\PeoplesControl\ConsoleTest\obj\Debug\netcoreapp3.1\ConsoleTest.csproj.CoreCompileInputs.cache
+C:\Users\Professional\source\repos\PeoplesControl\ConsoleTest\obj\Debug\netcoreapp3.1\ConsoleTest.csproj.CopyComplete
+C:\Users\Professional\source\repos\PeoplesControl\ConsoleTest\obj\Debug\netcoreapp3.1\ConsoleTest.dll
+C:\Users\Professional\source\repos\PeoplesControl\ConsoleTest\obj\Debug\netcoreapp3.1\ConsoleTest.pdb
+C:\Users\Professional\source\repos\PeoplesControl\ConsoleTest\obj\Debug\netcoreapp3.1\ConsoleTest.genruntimeconfig.cache
