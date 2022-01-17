@@ -1,0 +1,9 @@
+C:\Users\Professional\source\repos\PeoplesControl\Logic\obj\Debug\netcoreapp3.1\Logic.csprojAssemblyReference.cache
+C:\Users\Professional\source\repos\PeoplesControl\Logic\obj\Debug\netcoreapp3.1\Logic.AssemblyInfoInputs.cache
+C:\Users\Professional\source\repos\PeoplesControl\Logic\obj\Debug\netcoreapp3.1\Logic.AssemblyInfo.cs
+C:\Users\Professional\source\repos\PeoplesControl\Logic\obj\Debug\netcoreapp3.1\Logic.csproj.CoreCompileInputs.cache
+C:\Users\Professional\source\repos\PeoplesControl\Logic\bin\Debug\netcoreapp3.1\Logic.deps.json
+C:\Users\Professional\source\repos\PeoplesControl\Logic\bin\Debug\netcoreapp3.1\Logic.dll
+C:\Users\Professional\source\repos\PeoplesControl\Logic\bin\Debug\netcoreapp3.1\Logic.pdb
+C:\Users\Professional\source\repos\PeoplesControl\Logic\obj\Debug\netcoreapp3.1\Logic.dll
+C:\Users\Professional\source\repos\PeoplesControl\Logic\obj\Debug\netcoreapp3.1\Logic.pdb
