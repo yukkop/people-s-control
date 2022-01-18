@@ -7,7 +7,6 @@ namespace ConsoleTest
         static void Main(string[] args)
         {
             Console.WriteLine(Logic.Auth.SaltHashToString("Max", "N"));
-
         }
     }
 }
