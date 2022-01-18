@@ -4,10 +4,9 @@ using System.Text;
 
 namespace DataBase.Models
 {
-    public class ReportByProblemCategory
+    public class HCSType
     {
         public long Id { get; set; }
-        public Report Report { get; set; }
-        public ProblemCategory CategorieOfProblem { get; set; }
+        public string Name { get; set; }
     }
 }

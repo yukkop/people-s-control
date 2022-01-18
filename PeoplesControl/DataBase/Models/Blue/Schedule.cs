@@ -4,10 +4,12 @@ using System.Text;
 
 namespace DataBase.Models
 {
-    public class ReportByProblemCategory
+    public class Schedule
     {
         public long Id { get; set; }
-        public Report Report { get; set; }
-        public ProblemCategory CategorieOfProblem { get; set; }
+        public DateTime Date { get; set; }
+        public TimeSpan Time { get; set; }
+        public HCS HCS { get; set; }
+
     }
 }

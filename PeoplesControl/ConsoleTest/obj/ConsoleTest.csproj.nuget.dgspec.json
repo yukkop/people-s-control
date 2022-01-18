@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "B:\\Projects\\people-s-control\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj": {}
+    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Projects\\people-s-control\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj": {}
   },
   "projects": {
-    "B:\\Projects\\people-s-control\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj": {
+    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Projects\\people-s-control\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "B:\\Projects\\people-s-control\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj",
+        "projectUniqueName": "D:\\Program Files (x86)\\Microsoft Visual Studio\\Projects\\people-s-control\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj",
         "projectName": "ConsoleTest",
-        "projectPath": "B:\\Projects\\people-s-control\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj",
-        "packagesPath": "C:\\Users\\yukkop\\.nuget\\packages\\",
-        "outputPath": "B:\\Projects\\people-s-control\\PeoplesControl\\ConsoleTest\\obj\\",
+        "projectPath": "D:\\Program Files (x86)\\Microsoft Visual Studio\\Projects\\people-s-control\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj",
+        "packagesPath": "C:\\Users\\ist_7\\.nuget\\packages\\",
+        "outputPath": "D:\\Program Files (x86)\\Microsoft Visual Studio\\Projects\\people-s-control\\PeoplesControl\\ConsoleTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\yukkop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ist_7\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,15 +22,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://packagesource": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "B:\\Projects\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj": {
-                "projectPath": "B:\\Projects\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj"
+              "D:\\Program Files (x86)\\Microsoft Visual Studio\\Projects\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj": {
+                "projectPath": "D:\\Program Files (x86)\\Microsoft Visual Studio\\Projects\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj"
               }
             }
           }
@@ -59,21 +58,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "B:\\Projects\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj": {
+    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Projects\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "B:\\Projects\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj",
+        "projectUniqueName": "D:\\Program Files (x86)\\Microsoft Visual Studio\\Projects\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj",
         "projectName": "Logic",
-        "projectPath": "B:\\Projects\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj",
-        "packagesPath": "C:\\Users\\yukkop\\.nuget\\packages\\",
-        "outputPath": "B:\\Projects\\people-s-control\\PeoplesControl\\Logic\\obj\\",
+        "projectPath": "D:\\Program Files (x86)\\Microsoft Visual Studio\\Projects\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj",
+        "packagesPath": "C:\\Users\\ist_7\\.nuget\\packages\\",
+        "outputPath": "D:\\Program Files (x86)\\Microsoft Visual Studio\\Projects\\people-s-control\\PeoplesControl\\Logic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\yukkop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ist_7\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -81,7 +80,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://packagesource": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -114,7 +112,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     }

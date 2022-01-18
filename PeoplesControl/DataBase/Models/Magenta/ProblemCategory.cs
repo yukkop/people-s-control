@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataBase.Models
 {
-    public class CategorieOfProblem
+    public class ProblemCategory
     {
         public long Id { get; set; }
         public string Name { get; set; }
