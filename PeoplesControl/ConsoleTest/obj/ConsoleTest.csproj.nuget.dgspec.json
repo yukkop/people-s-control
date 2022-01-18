@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Professional\\source\\repos\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj": {}
+    "D:\\Hackathon\\people-s-control\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Professional\\source\\repos\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj": {
+    "D:\\Hackathon\\people-s-control\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Professional\\source\\repos\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj",
+        "projectUniqueName": "D:\\Hackathon\\people-s-control\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj",
         "projectName": "ConsoleTest",
-        "projectPath": "C:\\Users\\Professional\\source\\repos\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj",
+        "projectPath": "D:\\Hackathon\\people-s-control\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj",
         "packagesPath": "C:\\Users\\Professional\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Professional\\source\\repos\\PeoplesControl\\ConsoleTest\\obj\\",
+        "outputPath": "D:\\Hackathon\\people-s-control\\PeoplesControl\\ConsoleTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Professional\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\Professional\\source\\repos\\PeoplesControl\\Logic\\Logic.csproj": {
-                "projectPath": "C:\\Users\\Professional\\source\\repos\\PeoplesControl\\Logic\\Logic.csproj"
+              "D:\\Hackathon\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj": {
+                "projectPath": "D:\\Hackathon\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj"
               }
             }
           }
@@ -62,14 +62,14 @@
         }
       }
     },
-    "C:\\Users\\Professional\\source\\repos\\PeoplesControl\\Logic\\Logic.csproj": {
+    "D:\\Hackathon\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Professional\\source\\repos\\PeoplesControl\\Logic\\Logic.csproj",
+        "projectUniqueName": "D:\\Hackathon\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj",
         "projectName": "Logic",
-        "projectPath": "C:\\Users\\Professional\\source\\repos\\PeoplesControl\\Logic\\Logic.csproj",
+        "projectPath": "D:\\Hackathon\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj",
         "packagesPath": "C:\\Users\\Professional\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Professional\\source\\repos\\PeoplesControl\\Logic\\obj\\",
+        "outputPath": "D:\\Hackathon\\people-s-control\\PeoplesControl\\Logic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Professional\\AppData\\Roaming\\NuGet\\NuGet.Config",

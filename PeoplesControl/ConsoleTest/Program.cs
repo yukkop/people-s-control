@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace ConsoleTest
 {
@@ -6,8 +8,7 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(Logic.Auth.SaltHashToString("Max", "N"));
-
+            Console.WriteLine(Logic.Auth.SaltHashToString("Max", Encoding.UTF8.GetBytes("N")));
         }
     }
 }
