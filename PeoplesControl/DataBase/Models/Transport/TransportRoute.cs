@@ -8,7 +8,7 @@ namespace DataBase.Models
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public int number { get; set; }
+        public string Number { get; set; }
         public ActionMeta Removal { get; set; }
         public ActionMeta LastEditing { get; set; }
         public ActionMeta Creation { get; set; }

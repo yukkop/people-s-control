@@ -132,17 +132,17 @@ namespace DataBase.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<long?>("CategorieOfProblemId")
+                    b.Property<long?>("DraftReportId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("DraftReportId")
+                    b.Property<long?>("ProblemCategoryId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategorieOfProblemId");
-
                     b.HasIndex("DraftReportId");
+
+                    b.HasIndex("ProblemCategoryId");
 
                     b.ToTable("DraftReportsByProblemCategories");
                 });
@@ -283,14 +283,14 @@ namespace DataBase.Migrations
                     b.Property<long?>("HCSId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("MyPropertyId")
+                    b.Property<long?>("ProblemCategoryId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
                     b.HasIndex("HCSId");
 
-                    b.HasIndex("MyPropertyId");
+                    b.HasIndex("ProblemCategoryId");
 
                     b.ToTable("HCSsByProblemCategories");
                 });
@@ -333,6 +333,9 @@ namespace DataBase.Migrations
                     b.Property<long?>("HCSId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("HCSTaskTypeId")
+                        .HasColumnType("bigint");
+
                     b.Property<bool>("IsCompleted")
                         .HasColumnType("boolean");
 
@@ -345,14 +348,13 @@ namespace DataBase.Migrations
                     b.Property<long?>("ReportId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("TaskTypeId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CreationId");
 
                     b.HasIndex("HCSId");
+
+                    b.HasIndex("HCSTaskTypeId");
 
                     b.HasIndex("LastEditingId");
 
@@ -360,9 +362,22 @@ namespace DataBase.Migrations
 
                     b.HasIndex("ReportId");
 
-                    b.HasIndex("TaskTypeId");
-
                     b.ToTable("HCSTasks");
+                });
+
+            modelBuilder.Entity("DataBase.Models.HCSTaskType", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("HCSTaskTypes");
                 });
 
             modelBuilder.Entity("DataBase.Models.HCSType", b =>
@@ -666,7 +681,7 @@ namespace DataBase.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<long?>("CategorieOfProblemId")
+                    b.Property<long?>("ProblemCategoryId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("ReportId")
@@ -674,7 +689,7 @@ namespace DataBase.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategorieOfProblemId");
+                    b.HasIndex("ProblemCategoryId");
 
                     b.HasIndex("ReportId");
 
@@ -843,21 +858,6 @@ namespace DataBase.Migrations
                     b.ToTable("SupportedRegions");
                 });
 
-            modelBuilder.Entity("DataBase.Models.TaskType", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TaskTypes");
-                });
-
             modelBuilder.Entity("DataBase.Models.TransportCompany", b =>
                 {
                     b.Property<long>("Id")
@@ -889,11 +889,11 @@ namespace DataBase.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
+                    b.Property<string>("Number")
+                        .HasColumnType("text");
+
                     b.Property<long?>("RemovalId")
                         .HasColumnType("bigint");
-
-                    b.Property<int>("number")
-                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -922,13 +922,13 @@ namespace DataBase.Migrations
                     b.Property<long?>("LastEditingId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("ManagementCompanieId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
                     b.Property<long?>("RemovalId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("TransportCompanyId")
                         .HasColumnType("bigint");
 
                     b.Property<NpgsqlPoint>("Сoordinates")
@@ -942,9 +942,9 @@ namespace DataBase.Migrations
 
                     b.HasIndex("LastEditingId");
 
-                    b.HasIndex("ManagementCompanieId");
-
                     b.HasIndex("RemovalId");
+
+                    b.HasIndex("TransportCompanyId");
 
                     b.ToTable("TransportStops");
                 });
@@ -1055,13 +1055,13 @@ namespace DataBase.Migrations
 
             modelBuilder.Entity("DataBase.Models.DraftReportByProblemCategory", b =>
                 {
-                    b.HasOne("DataBase.Models.ProblemCategory", "CategorieOfProblem")
-                        .WithMany()
-                        .HasForeignKey("CategorieOfProblemId");
-
                     b.HasOne("DataBase.Models.DraftReport", "DraftReport")
                         .WithMany()
                         .HasForeignKey("DraftReportId");
+
+                    b.HasOne("DataBase.Models.ProblemCategory", "ProblemCategory")
+                        .WithMany()
+                        .HasForeignKey("ProblemCategoryId");
                 });
 
             modelBuilder.Entity("DataBase.Models.Driver", b =>
@@ -1115,9 +1115,9 @@ namespace DataBase.Migrations
                         .WithMany()
                         .HasForeignKey("HCSId");
 
-                    b.HasOne("DataBase.Models.ProblemCategory", "MyProperty")
+                    b.HasOne("DataBase.Models.ProblemCategory", "ProblemCategory")
                         .WithMany()
-                        .HasForeignKey("MyPropertyId");
+                        .HasForeignKey("ProblemCategoryId");
                 });
 
             modelBuilder.Entity("DataBase.Models.HCSByRegion", b =>
@@ -1141,6 +1141,10 @@ namespace DataBase.Migrations
                         .WithMany()
                         .HasForeignKey("HCSId");
 
+                    b.HasOne("DataBase.Models.HCSTaskType", "HCSTaskType")
+                        .WithMany()
+                        .HasForeignKey("HCSTaskTypeId");
+
                     b.HasOne("DataBase.Models.ActionMeta", "LastEditing")
                         .WithMany()
                         .HasForeignKey("LastEditingId");
@@ -1152,10 +1156,6 @@ namespace DataBase.Migrations
                     b.HasOne("DataBase.Models.Report", "Report")
                         .WithMany()
                         .HasForeignKey("ReportId");
-
-                    b.HasOne("DataBase.Models.TaskType", "TaskType")
-                        .WithMany()
-                        .HasForeignKey("TaskTypeId");
                 });
 
             modelBuilder.Entity("DataBase.Models.MailingQueue", b =>
@@ -1259,9 +1259,9 @@ namespace DataBase.Migrations
 
             modelBuilder.Entity("DataBase.Models.ReportByProblemCategory", b =>
                 {
-                    b.HasOne("DataBase.Models.ProblemCategory", "CategorieOfProblem")
+                    b.HasOne("DataBase.Models.ProblemCategory", "ProblemCategory")
                         .WithMany()
-                        .HasForeignKey("CategorieOfProblemId");
+                        .HasForeignKey("ProblemCategoryId");
 
                     b.HasOne("DataBase.Models.Report", "Report")
                         .WithMany()
@@ -1360,13 +1360,13 @@ namespace DataBase.Migrations
                         .WithMany()
                         .HasForeignKey("LastEditingId");
 
-                    b.HasOne("DataBase.Models.TransportCompany", "ManagementCompanie")
-                        .WithMany()
-                        .HasForeignKey("ManagementCompanieId");
-
                     b.HasOne("DataBase.Models.ActionMeta", "Removal")
                         .WithMany()
                         .HasForeignKey("RemovalId");
+
+                    b.HasOne("DataBase.Models.TransportCompany", "TransportCompany")
+                        .WithMany()
+                        .HasForeignKey("TransportCompanyId");
                 });
 
             modelBuilder.Entity("DataBase.Models.TransportStopAction", b =>
