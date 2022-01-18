@@ -15,9 +15,9 @@ namespace DataBase.Models
         public int EmailConfirmationCode { get; set; }
         public DateTime DateSMSConfirmation { get; set; }
         public DateTime DateEmailConfirmation { get; set; }
-        public ActionMeta Removal { get; set; }
+        /*public ActionMeta Removal { get; set; }
         public ActionMeta LastEditing { get; set; }
-        public ActionMeta Creation { get; set; }
+        public ActionMeta Creation { get; set; }*/
 
     }
 }

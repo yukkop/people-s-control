@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataBase.Models
 {
-    public class StopingPlaceOnRoute
+    public class StopOnRoute
     {
         public long Id { get; set; }
         public TransportStop TransportStop { get; set; }

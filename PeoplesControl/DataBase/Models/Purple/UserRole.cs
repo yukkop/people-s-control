@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataBase.Models.Purple
+namespace DataBase.Models
 {
-    public class UsersRole
+    public class UserRole
     {
         public long Id { get; set; }
         public Role Role { get; set; }

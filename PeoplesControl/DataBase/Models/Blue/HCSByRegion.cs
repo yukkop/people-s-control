@@ -4,9 +4,10 @@ using System.Text;
 
 namespace DataBase.Models
 {
-    public class TransportCompanie
-    {   
+    public class HCSByRegion
+    {
         public long Id { get; set; }
-        public string Name { get; set; }
+        public HCS HCS { get; set; }
+        public SupportedRegion SupportedRegion { get; set; }
     }
 }

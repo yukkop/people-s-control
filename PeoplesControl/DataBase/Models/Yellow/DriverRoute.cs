@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataBase.Models
 {
-    public class DriversRoute
+    public class DriverRoute
     {
         public long Id { get; set; }
         public Driver Driver { get; set; }

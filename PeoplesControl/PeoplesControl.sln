@@ -10,7 +10,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTest", "ConsoleTest\
 		{63F1A82C-5799-4781-8405-696D05DED873} = {63F1A82C-5799-4781-8405-696D05DED873}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBase", "DataBase\DataBase.csproj", "{24D6CCDE-8742-4FF5-8212-7A22E3697DE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataBase", "DataBase\DataBase.csproj", "{24D6CCDE-8742-4FF5-8212-7A22E3697DE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{1B86DE30-4007-44D7-9A33-7CAF030E333C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +32,10 @@ Global
 		{24D6CCDE-8742-4FF5-8212-7A22E3697DE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24D6CCDE-8742-4FF5-8212-7A22E3697DE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24D6CCDE-8742-4FF5-8212-7A22E3697DE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B86DE30-4007-44D7-9A33-7CAF030E333C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B86DE30-4007-44D7-9A33-7CAF030E333C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B86DE30-4007-44D7-9A33-7CAF030E333C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B86DE30-4007-44D7-9A33-7CAF030E333C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
