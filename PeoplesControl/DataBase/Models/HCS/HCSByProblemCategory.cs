@@ -8,6 +8,6 @@ namespace DataBase.Models
     {
         public long Id { get; set; }
         public HCS HCS { get; set; }
-        public ProblemCategory MyProperty { get; set; }
+        public ProblemCategory ProblemCategory { get; set; }
     }
 }

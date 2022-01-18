@@ -8,6 +8,6 @@ namespace DataBase.Models
     {
         public long Id { get; set; }
         public DraftReport DraftReport { get; set; }
-        public ProblemCategory CategorieOfProblem { get; set; }
+        public ProblemCategory ProblemCategory { get; set; }
     }
 }

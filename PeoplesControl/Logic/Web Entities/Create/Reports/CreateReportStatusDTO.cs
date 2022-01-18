@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataBase.Models
+namespace Logic.Web_Entities
 {
-    public class TaskType
+    public class CreateReportStatusDTO
     {
-        public long Id { get; set; }
         public string Name { get; set; }
     }
 }

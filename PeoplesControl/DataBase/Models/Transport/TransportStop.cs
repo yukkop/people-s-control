@@ -9,7 +9,7 @@ namespace DataBase.Models
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public TransportCompany ManagementCompanie { get; set; }
+        public TransportCompany TransportCompany { get; set; }
         public NpgsqlPoint Сoordinates { get; set; }
         public City City { get; set; }
         public ActionMeta Removal { get; set; }

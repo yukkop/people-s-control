@@ -9,7 +9,7 @@ namespace DataBase.Models
         public long Id { get; set; }
         public HCS HCS { get; set; }
         public Report Report { get; set; }
-        public TaskType TaskType { get; set; }
+        public HCSTaskType HCSTaskType { get; set; }
         public string Description { get; set; }
         public bool IsCompleted { get; set; }
         public ActionMeta Removal { get; set; }

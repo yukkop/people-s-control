@@ -26,7 +26,7 @@ namespace DataBase
         public DbSet<HCSType> HCSTypes { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<SupportedRegion> SupportedRegions { get; set; }
-        public DbSet<TaskType> TaskTypes { get; set; }
+        public DbSet<HCSTaskType> HCSTaskTypes { get; set; }
 
         //gray
         public DbSet<ActionMeta> ActionsMeta { get; set; }

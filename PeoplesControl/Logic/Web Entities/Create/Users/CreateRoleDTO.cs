@@ -8,8 +8,6 @@ namespace Logic.Web_Entities
     {
         public string Name { get; set; }
         public string MnemonicName { get; set; }
-        public long RemovalId { get; set; }
-        public long LastEditingId { get; set; }
-        public long CreationId { get; set; }
+        public long UserId { get; set; }
     }
 }
