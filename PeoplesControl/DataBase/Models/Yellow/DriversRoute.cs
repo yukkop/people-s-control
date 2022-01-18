@@ -4,10 +4,10 @@ using System.Text;
 
 namespace DataBase.Models
 {
-    public class RoutesDrivers
+    public class DriversRoute
     {
         public long Id { get; set; }
-        public Drivers Drivers { get; set; }
+        public Driver Driver { get; set; }
         public TransportRoute TransportRoute { get; set; }
         public string VehicleNumber { get; set; }
     }

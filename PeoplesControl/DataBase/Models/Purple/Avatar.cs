@@ -4,9 +4,9 @@ using System.Text;
 
 namespace DataBase.Models
 {
-    public class Drivers
+    public class Avatar
     {
         public long Id { get; set; }
-        public User User { get; set; }
+        public string Path { get; set; }
     }
 }
