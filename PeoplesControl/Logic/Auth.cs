@@ -11,21 +11,7 @@ namespace Logic
         {
             using SHA256 sha256Hash = SHA256.Create();
             byte[] byteValue = Encoding.UTF8.GetBytes(value);
-            byte[] byteConcat = new byte[byteValue.Length + salt.Length];
-            for (int i = 0; i < byteValue.Length + salt.Length; i++)
-            {
-                if (i < byteValue.Length)
-                {
-                    byteConcat[i] = byteValue[i];
-
-                }
-                else
-                {
-                    byteConcat[i] = salt[i-byteValue.Length];
-
-                }
-            }
-            return sha256Hash.ComputeHash(byteConcat);
+            return sha256Hash.ComputeHash(byteValue.Concat(salt));
         }
 
         public static string SaltHashToString(string value, byte[] salt)
@@ -43,12 +29,36 @@ namespace Logic
             return sBuilder.ToString();
         }
 
+        
+
         public static byte[] SaltGen()
         {
             RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
             byte[] salt = new byte[32];
             rng.GetBytes(salt);
             return salt;
+        }
+    }
+
+    public static class ByteExtansion
+    {
+        public static byte[] Concat(this byte[] a, byte[] b)
+        {
+            byte[] byteConcat = new byte[a.Length + b.Length];
+            for (int i = 0; i < a.Length + b.Length; i++)
+            {
+                if (i < a.Length)
+                {
+                    byteConcat[i] = a[i];
+
+                }
+                else
+                {
+                    byteConcat[i] = b[i - a.Length];
+
+                }
+            }
+            return byteConcat;
         }
     }
 }
