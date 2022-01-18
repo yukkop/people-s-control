@@ -27,19 +27,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Professional\\.nuget\\packages\\": {}
+    "C:\\Users\\yukkop\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Hackathon\\people-s-control\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj",
+      "projectUniqueName": "B:\\Projects\\people-s-control\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj",
       "projectName": "ConsoleTest",
-      "projectPath": "D:\\Hackathon\\people-s-control\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj",
-      "packagesPath": "C:\\Users\\Professional\\.nuget\\packages\\",
-      "outputPath": "D:\\Hackathon\\people-s-control\\PeoplesControl\\ConsoleTest\\obj\\",
+      "projectPath": "B:\\Projects\\people-s-control\\PeoplesControl\\ConsoleTest\\ConsoleTest.csproj",
+      "packagesPath": "C:\\Users\\yukkop\\.nuget\\packages\\",
+      "outputPath": "B:\\Projects\\people-s-control\\PeoplesControl\\ConsoleTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Professional\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\yukkop\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -47,14 +47,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "http://packagesource": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Hackathon\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj": {
-              "projectPath": "D:\\Hackathon\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj"
+            "B:\\Projects\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj": {
+              "projectPath": "B:\\Projects\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj"
             }
           }
         }
@@ -83,7 +84,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

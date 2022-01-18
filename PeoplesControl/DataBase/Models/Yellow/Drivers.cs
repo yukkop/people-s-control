@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataBase.Models.Purple
+namespace DataBase.Models
 {
-    public class UsersRoles
+    public class Drivers
     {
         public long Id { get; set; }
-        public Role Role { get; set; }
         public User User { get; set; }
     }
 }

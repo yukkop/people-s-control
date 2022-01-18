@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Professional\\.nuget\\packages\\": {}
+    "C:\\Users\\yukkop\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Hackathon\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj",
+      "projectUniqueName": "B:\\Projects\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj",
       "projectName": "Logic",
-      "projectPath": "D:\\Hackathon\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj",
-      "packagesPath": "C:\\Users\\Professional\\.nuget\\packages\\",
-      "outputPath": "D:\\Hackathon\\people-s-control\\PeoplesControl\\Logic\\obj\\",
+      "projectPath": "B:\\Projects\\people-s-control\\PeoplesControl\\Logic\\Logic.csproj",
+      "packagesPath": "C:\\Users\\yukkop\\.nuget\\packages\\",
+      "outputPath": "B:\\Projects\\people-s-control\\PeoplesControl\\Logic\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Professional\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\yukkop\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -28,6 +28,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "http://packagesource": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -60,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataBase.Models
 {
-    class Profile
+    public class Profile
     {
         public long Id { get; set; }
         public string Name { get; set; }
@@ -20,6 +20,8 @@ namespace DataBase.Models
         public ActionMeta Removal { get; set; }
         public ActionMeta LastEditing { get; set; }
         public ActionMeta Creation { get; set; }
+        public bool IsBlock { get; set; }
         public ActionMeta Block { get; set; }
+        public ActionMeta Unblock { get; set; }
     }
 }

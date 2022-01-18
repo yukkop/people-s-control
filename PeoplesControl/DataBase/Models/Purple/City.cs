@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataBase.Models
 {
-    class City
+    public class City
     {
         public long Id { get; set; }
         public string Name { get; set; }

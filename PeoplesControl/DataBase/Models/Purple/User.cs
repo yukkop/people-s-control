@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataBase.Models
 {
-    class User
+    public class User
     {
         public long Id { get; set; }
         public Profile Profile { get; set; }
