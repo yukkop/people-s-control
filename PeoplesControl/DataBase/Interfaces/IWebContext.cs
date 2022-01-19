@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace DataBase
 {
-    interface IWebContext
+    public interface IWebContext
     {
         //blue
         public DbSet<HCS> HCSs { get; set; }
@@ -20,7 +20,7 @@ namespace DataBase
         public DbSet<HCSTaskType> HCSTaskTypes { get; set; }
 
         //gray
-        public DbSet<ActionMeta> ActionsMeta { get; set; }
+        public DbSet<ActionMeta> ActionMeta { get; set; }
         //green
         public DbSet<MailingQueue> MailingQueues { get; set; }
         public DbSet<MailingStatus> MailingStatuses { get; set; }
