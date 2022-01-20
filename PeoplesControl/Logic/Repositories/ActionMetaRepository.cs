@@ -41,5 +41,10 @@ namespace Logic.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public ActionMeta Get(long id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

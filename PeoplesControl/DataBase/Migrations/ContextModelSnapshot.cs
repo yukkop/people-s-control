@@ -67,6 +67,9 @@ namespace DataBase.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Cities");
                 });
 
@@ -534,75 +537,6 @@ namespace DataBase.Migrations
                     b.ToTable("ProblemCategories");
                 });
 
-            modelBuilder.Entity("DataBase.Models.Profile", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<long?>("BlockId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("CreationId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("EmailAdress")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("IsBlock")
-                        .HasColumnType("boolean");
-
-                    b.Property<long?>("LastEditingId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("LocationId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("NotifyByEmail")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("NotifyBySMS")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Patronymic")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("text");
-
-                    b.Property<long?>("RemovalId")
-                        .HasColumnType("bigint");
-
-                    b.Property<bool>("RequestAnonymity")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Sername")
-                        .HasColumnType("text");
-
-                    b.Property<long?>("UnblockId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BlockId");
-
-                    b.HasIndex("CreationId");
-
-                    b.HasIndex("LastEditingId");
-
-                    b.HasIndex("LocationId");
-
-                    b.HasIndex("RemovalId");
-
-                    b.HasIndex("UnblockId");
-
-                    b.ToTable("Profiles");
-                });
-
             modelBuilder.Entity("DataBase.Models.Report", b =>
                 {
                     b.Property<long>("Id")
@@ -991,9 +925,6 @@ namespace DataBase.Migrations
                     b.Property<string>("Login")
                         .HasColumnType("text");
 
-                    b.Property<long?>("ProfileId")
-                        .HasColumnType("bigint");
-
                     b.Property<int>("SMSConfirmationCode")
                         .HasColumnType("integer");
 
@@ -1003,11 +934,83 @@ namespace DataBase.Migrations
                     b.Property<byte[]>("SaltValue")
                         .HasColumnType("bytea");
 
+                    b.Property<long?>("UserProfileId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ProfileId");
+                    b.HasIndex("UserProfileId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("DataBase.Models.UserProfile", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<long?>("BlockId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("CreationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("EmailAdress")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsBlock")
+                        .HasColumnType("boolean");
+
+                    b.Property<long?>("LastEditingId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("LocationId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("NotifyByEmail")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("NotifyBySMS")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Patronymic")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text");
+
+                    b.Property<long?>("RemovalId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("RequestAnonymity")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Sername")
+                        .HasColumnType("text");
+
+                    b.Property<long?>("UnblockId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BlockId");
+
+                    b.HasIndex("CreationId");
+
+                    b.HasIndex("LastEditingId");
+
+                    b.HasIndex("LocationId");
+
+                    b.HasIndex("RemovalId");
+
+                    b.HasIndex("UnblockId");
+
+                    b.ToTable("UsersProfiles");
                 });
 
             modelBuilder.Entity("DataBase.Models.UserRole", b =>
@@ -1211,33 +1214,6 @@ namespace DataBase.Migrations
                         .HasForeignKey("RemovalId");
                 });
 
-            modelBuilder.Entity("DataBase.Models.Profile", b =>
-                {
-                    b.HasOne("DataBase.Models.ActionMeta", "Block")
-                        .WithMany()
-                        .HasForeignKey("BlockId");
-
-                    b.HasOne("DataBase.Models.ActionMeta", "Creation")
-                        .WithMany()
-                        .HasForeignKey("CreationId");
-
-                    b.HasOne("DataBase.Models.ActionMeta", "LastEditing")
-                        .WithMany()
-                        .HasForeignKey("LastEditingId");
-
-                    b.HasOne("DataBase.Models.District", "Location")
-                        .WithMany()
-                        .HasForeignKey("LocationId");
-
-                    b.HasOne("DataBase.Models.ActionMeta", "Removal")
-                        .WithMany()
-                        .HasForeignKey("RemovalId");
-
-                    b.HasOne("DataBase.Models.ActionMeta", "Unblock")
-                        .WithMany()
-                        .HasForeignKey("UnblockId");
-                });
-
             modelBuilder.Entity("DataBase.Models.Report", b =>
                 {
                     b.HasOne("DataBase.Models.User", "Moderator")
@@ -1378,9 +1354,36 @@ namespace DataBase.Migrations
 
             modelBuilder.Entity("DataBase.Models.User", b =>
                 {
-                    b.HasOne("DataBase.Models.Profile", "Profile")
+                    b.HasOne("DataBase.Models.UserProfile", "UserProfile")
                         .WithMany()
-                        .HasForeignKey("ProfileId");
+                        .HasForeignKey("UserProfileId");
+                });
+
+            modelBuilder.Entity("DataBase.Models.UserProfile", b =>
+                {
+                    b.HasOne("DataBase.Models.ActionMeta", "Block")
+                        .WithMany()
+                        .HasForeignKey("BlockId");
+
+                    b.HasOne("DataBase.Models.ActionMeta", "Creation")
+                        .WithMany()
+                        .HasForeignKey("CreationId");
+
+                    b.HasOne("DataBase.Models.ActionMeta", "LastEditing")
+                        .WithMany()
+                        .HasForeignKey("LastEditingId");
+
+                    b.HasOne("DataBase.Models.District", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId");
+
+                    b.HasOne("DataBase.Models.ActionMeta", "Removal")
+                        .WithMany()
+                        .HasForeignKey("RemovalId");
+
+                    b.HasOne("DataBase.Models.ActionMeta", "Unblock")
+                        .WithMany()
+                        .HasForeignKey("UnblockId");
                 });
 
             modelBuilder.Entity("DataBase.Models.UserRole", b =>

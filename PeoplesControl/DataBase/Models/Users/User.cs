@@ -7,7 +7,7 @@ namespace DataBase.Models
     public class User
     {
         public long Id { get; set; }
-        public Profile Profile { get; set; }
+        public UserProfile UserProfile { get; set; }
         public string Login { get; set; }
         public byte[] SaltPassword { get; set; }
         public byte[] SaltValue { get; set; }

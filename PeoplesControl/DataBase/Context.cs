@@ -6,7 +6,7 @@ using DataBase.Models;
 
 namespace DataBase
 {
-    public class Context : DbContext
+    public class Context: DbContext, IWebContext
     {
         string _connectionString;
         public Context(IConfiguration configuration)
@@ -29,7 +29,7 @@ namespace DataBase
         public DbSet<HCSTaskType> HCSTaskTypes { get; set; }
 
         //gray
-        public DbSet<ActionMeta> ActionsMeta { get; set; }
+        public DbSet<ActionMeta> ActionMeta { get; set; }
         //green
         public DbSet<MailingQueue> MailingQueues { get; set; }
         public DbSet<MailingStatus> MailingStatuses { get; set; }
@@ -48,7 +48,7 @@ namespace DataBase
         public DbSet<Avatar> Avatars { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<District> Districts { get; set; }
-        public DbSet<Profile> Profiles { get; set; }
+        public DbSet<UserProfile> UsersProfiles { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UsersRoles { get; set; }
@@ -113,7 +113,10 @@ namespace DataBase
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<City>(entity =>
+            {
+                entity.HasIndex(e => e.Name).IsUnique();
+            });
         }
     }
 }

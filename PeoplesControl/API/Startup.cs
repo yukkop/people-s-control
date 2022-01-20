@@ -12,6 +12,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Logic.Repositories;
+using Logic.Queries;
+using Logic.WriteServices;
+using Logic.ReadServices;
+using DataBase;
 
 namespace API
 {
@@ -28,7 +33,22 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<DataBase.Context>(l => l.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddSwaggerGen();
+
+            services.AddDbContext<Context>(l => l.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddScoped<IWebContext, Context>();
+
+            services.AddScoped<ICityRepository, CityRepository>();
+
+            services.AddScoped<ICityQuery, CityQuery>();
+
+            services.AddScoped<ICityWriteService, CityWriteService>();
+
+            services.AddScoped<ICityReadService, CityReadService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +69,11 @@ namespace API
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => 
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1")
+            );
         }
     }
 }
