@@ -43,12 +43,19 @@ namespace API
             services.AddScoped<IWebContext, Context>();
 
             services.AddScoped<ICityRepository, CityRepository>();
-
             services.AddScoped<ICityQuery, CityQuery>();
-
             services.AddScoped<ICityWriteService, CityWriteService>();
-
             services.AddScoped<ICityReadService, CityReadService>();
+
+            services.AddScoped<IAvatarRepository, AvatarRepository>();
+            services.AddScoped<IAvatarQuery, AvatarQuery>();
+            services.AddScoped<IAvatarWriteService, AvatarWriteService>();
+            services.AddScoped<IAvatarReadService, AvatarReadService>();
+
+            services.AddScoped<IDistrictRepository, DistrictRepository>();
+            services.AddScoped<IDistrictQuery, DistrictQuery>();
+            services.AddScoped<IDistrictWriteService, DistrictWriteService>();
+            services.AddScoped<IDistrictReadService, DistrictReadService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

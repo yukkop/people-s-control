@@ -46,18 +46,18 @@ namespace API.Controllers
             return _cityWriteService.Add(createEntity);
         }
 
-        // PUT api/<CityController>/5
+        // PUT api/<CityController>
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public bool Put([FromBody] UpdateCityDTO updateEntity)
         {
-
+            return _cityWriteService.Update(updateEntity);
         }
 
         // DELETE api/<CityController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(long id)
         {
-
+            _cityWriteService.Delete(id);
         }
     }
 }

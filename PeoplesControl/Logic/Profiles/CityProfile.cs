@@ -9,6 +9,7 @@ namespace Logic.Profiles
         public CityProfile()
         {
             CreateMap<CreateCityDTO, City>();
+            CreateMap<UpdateCityDTO, City>();
             CreateMap<City, GetCityDTO>();
             CreateMap<CityDTO, GetCityDTO>();
         }

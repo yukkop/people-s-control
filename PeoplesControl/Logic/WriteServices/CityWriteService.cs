@@ -28,9 +28,23 @@ namespace Logic.WriteServices
             City entity = _mapper.Map<City>(createEntity);
             entity = _cityRepository.Add(entity);
             GetCityDTO getEntity = _mapper.Map<GetCityDTO>(entity);
+            _cityRepository.SaveChanges();
             return new ActionStatus<GetCityDTO>(getEntity);
         }
 
+        public bool Update(UpdateCityDTO updateEntity)
+        {
+            City entity = _mapper.Map<City>(updateEntity);
+            bool status = _cityRepository.Update(entity);
+            _cityRepository.SaveChanges();
+            return status;
+        }
+        public void Delete(long id)
+        {
+            _cityRepository.Delete(id);
+            _cityRepository.SaveChanges();
+        }
+            
         //public ActionStatus<GetCityDTO> Get(long id)
         //{
         //    City entity = _cityRepository.Get(id);

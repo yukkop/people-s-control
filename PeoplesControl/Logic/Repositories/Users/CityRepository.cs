@@ -29,5 +29,18 @@ namespace Logic.Repositories
         {
             return _context.Cities.ToList();
         }
+
+        public bool Update(City entity)
+        {
+            return _context.Update(entity);
+        }
+        public void Delete(long id)
+        {
+            _context.Cities.Remove(_context.Cities.Where(i => i.Id == id).FirstOrDefault());
+        }
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
+        }
     }
 }

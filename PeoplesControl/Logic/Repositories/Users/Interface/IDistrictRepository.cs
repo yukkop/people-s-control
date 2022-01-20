@@ -10,5 +10,8 @@ namespace Logic.Repositories
         public District Get(long id);
         public List<District> GetAll();
         public District Add(District district);
+        public bool Update(District entity);
+        public void Delete(long id);
+        public void SaveChanges();
     }
 }

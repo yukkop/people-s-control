@@ -10,5 +10,8 @@ namespace Logic.Repositories
         public Avatar Get(long id);
         public List<Avatar> GetAll();
         public Avatar Add(Avatar avatar);
+        bool Update(Avatar entity);
+        void SaveChanges();
+        void Delete(long id);
     }
 }
