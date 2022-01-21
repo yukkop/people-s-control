@@ -2,3 +2,4 @@
 PeoplesControl/Logic/obj
 PeoplesControl/.vs
 Android
+*.cache
