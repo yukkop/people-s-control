@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">AndroidPeoples</string>
+    <!--Main Menu Strings-->
+    <string name="main_menu_button_request_str">Заявки</string>
+    <string name="main_menu_button_profile_str">Профиль</string>
+    <string name="main_menu_button_timetable_str">Расписание транспорта</string>
+    <string name="main_menu_button_faq_str">Вопросы и ответы</string>
+    <string name="main_menu_button_government_str">Органы власти</string>
+    <string name="main_menu_button_stats_str">Статистика</string>
 </resources>
