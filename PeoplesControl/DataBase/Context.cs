@@ -402,8 +402,8 @@ namespace DataBase
                 Id = 1,
                 UserProfileId = 1,
                 Login = "supper",
-                SaltPassword = new byte[0],
-                SaltValue = new byte[0]
+                SaltPassword = Properties.Resources.SaltPassword,
+                SaltValue = Properties.Resources.SaltValue
             };
 
             modelBuilder.Entity<ActionMeta>().HasData(

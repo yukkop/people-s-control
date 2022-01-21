@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Logic
 {
-    public class Auth
+    public class Authorization
     {
         public static byte[] SaltHash(string value, byte[] salt)
         {
@@ -19,7 +19,7 @@ namespace Logic
             return ByteArrToString(SaltHash(value, salt));
         }
 
-        public static string ByteArrToString(byte[] data)
+        private static string ByteArrToString(byte[] data)
         {
             var sBuilder = new StringBuilder();
             for (int i = 0; i < data.Length; i++)
