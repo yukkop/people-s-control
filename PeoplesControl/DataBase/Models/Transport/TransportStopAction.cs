@@ -7,7 +7,8 @@ namespace DataBase.Models
     public class TransportStopAction
     {
         public long Id { get; set; }
-        public StopOnRoute StopingPointOnRoute { get; set; }
+        public long StopOnRouteId { get; set; }
+        public StopOnRoute StopOnRoute { get; set; }
         public TimeSpan ArrivalTime { get; set; }
         public TimeSpan DepartureTime { get; set; }
     }

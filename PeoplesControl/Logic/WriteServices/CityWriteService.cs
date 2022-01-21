@@ -14,12 +14,12 @@ namespace Logic.WriteServices
     public class CityWriteService : ICityWriteService
     {
         ICityRepository _cityRepository;
-        Mapper _mapper;
+        private readonly IMapper _mapper;
 
-        public CityWriteService(ICityRepository cityRepository)
+        public CityWriteService(ICityRepository cityRepository, IMapper mapper)
         {
             _cityRepository = cityRepository;
-            _mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<CityProfile>()));
+            _mapper = mapper;
         }
 
         public ActionStatus<GetCityDTO> Add(CreateCityDTO createEntity)

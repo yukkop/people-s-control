@@ -7,8 +7,11 @@ namespace Logic.Repositories
 {
     public interface IRoleRepository
     {
-        public Role Get(int id);
+        public Role Add(Role entity);
+        public Role Get(long id);
         public List<Role> GetAll();
-        public Role Add(Role role);
+        public bool Update(Role entity);
+        public void Delete(long id);
+        public void SaveChanges();
     }
 }

@@ -10,13 +10,12 @@ namespace Logic.Profiles
 {
     public class DistrictProfile : Profile
     {
-        public DistrictProfile(DistrictRepository districtRepository)
+        public DistrictProfile()
         { 
             CreateMap<CreateDistrictDTO, District>();
-            CreateMap<CreateDistrictDTO, District>().ForMember("City", opt=>opt.MapFrom(c=>districtRepository.Get(c.CityId)));
             CreateMap<UpdateDistrictDTO, District>();
-            CreateMap<District, GetDistrictDTO>();
-            CreateMap<DistrictDTO, GetDistrictDTO>().ForMember("CityName", opt => opt.MapFrom(c => c.City.Name));
+            CreateMap<District, GetDistrictDTO>().ForMember("CityName", opt => opt.MapFrom(c => c.City.Name));
+            CreateMap<DistrictDTO, GetDistrictDTO>();
         }
     }
 }

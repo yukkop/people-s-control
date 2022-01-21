@@ -16,7 +16,7 @@ namespace DataBase
         public DbSet<HCSTask> HCSTasks { get; set; }
         public DbSet<HCSType> HCSTypes { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
-        public DbSet<SupportedRegion> SupportedRegions { get; set; }
+        public DbSet<Region> Regions { get; set; }
         public DbSet<HCSTaskType> HCSTaskTypes { get; set; }
 
         //gray
@@ -45,7 +45,7 @@ namespace DataBase
         public DbSet<UserRole> UsersRoles { get; set; }
         //yellow
         public DbSet<Driver> Drivers { get; set; }
-        public DbSet<DriverRoute> DriversRoutes { get; set; }
+        public DbSet<DriverOnRoute> DriversOnRoutes { get; set; }
         public DbSet<StopOnRoute> StopsOnRoutes { get; set; }
         public DbSet<TransportCompany> TransportCompanies { get; set; }
         public DbSet<TransportRoute> TransportRoutes { get; set; }

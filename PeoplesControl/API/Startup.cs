@@ -17,6 +17,10 @@ using Logic.Queries;
 using Logic.WriteServices;
 using Logic.ReadServices;
 using DataBase;
+using AutoMapper;
+using Logic.Profiles;
+using Logic.WebEntities;
+using DataBase.Models;
 
 namespace API
 {
@@ -42,6 +46,8 @@ namespace API
 
             services.AddScoped<IWebContext, Context>();
 
+            services.AddScoped<IActionMetaRepository, ActionMetaRepository>();
+
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<ICityQuery, CityQuery>();
             services.AddScoped<ICityWriteService, CityWriteService>();
@@ -56,6 +62,24 @@ namespace API
             services.AddScoped<IDistrictQuery, DistrictQuery>();
             services.AddScoped<IDistrictWriteService, DistrictWriteService>();
             services.AddScoped<IDistrictReadService, DistrictReadService>();
+            
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IRoleQuery, RoleQuery>();
+            services.AddScoped<IRoleWriteService, RoleWriteService>();
+            services.AddScoped<IRoleReadService, RoleReadService>();
+
+            AutoMapper.IConfigurationProvider config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<CityProfile>();
+                cfg.AddProfile<DistrictProfile>();
+                cfg.AddProfile<AvatarProfile>();
+                cfg.AddProfile<RoleProfile>();
+                cfg.AddProfile<ActionMetaProfile>();
+            });
+            services.AddSingleton(config);
+            services.AddScoped<IMapper, Mapper>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

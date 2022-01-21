@@ -11,12 +11,12 @@ namespace Logic.ReadServices
 {
     public class AvatarReadService : IAvatarReadService
     {
-        IAvatarQuery _cityQuery;
-        Mapper _mapper;
-        public AvatarReadService(IAvatarQuery cityQuery)
+        IAvatarQuery _cityQuery; 
+        private readonly IMapper _mapper;
+        public AvatarReadService(IAvatarQuery cityQuery, IMapper mapper)
         {
             _cityQuery = cityQuery;
-            _mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<AvatarProfile>()));
+            _mapper = mapper;
         }
 
         public ActionStatus<GetAvatarDTO> Get(long id)

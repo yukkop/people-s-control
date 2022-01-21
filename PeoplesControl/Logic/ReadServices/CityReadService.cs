@@ -12,11 +12,11 @@ namespace Logic.ReadServices
     public class CityReadService: ICityReadService
     {
         ICityQuery _cityQuery;
-        Mapper _mapper;
-        public CityReadService(ICityQuery cityQuery)
+        private readonly IMapper _mapper;
+        public CityReadService(ICityQuery cityQuery, IMapper mapper)
         {
             _cityQuery = cityQuery;
-            _mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<CityProfile>()));
+            _mapper = mapper;
         }
 
         public ActionStatus<GetCityDTO> Get(long id)

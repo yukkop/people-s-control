@@ -30,7 +30,13 @@ namespace Logic.Queries
 
         public List<DistrictDTO> GetAll()
         {
-            string query = $@"SELECT * FROM ""Districts""";
+            string query = $@"SELECT 
+                                    ""Districts"".""Id"", 
+                                    ""Districts"".""Name"", 
+                                    ""Cities"".""Id"" as CityId, 
+                                    ""Cities"".""Name"" as CityName
+                            FROM ""Districts""
+                            JOIN ""Cities"" on ""Cities"".""Id"" = ""Districts"".""CityId""";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {

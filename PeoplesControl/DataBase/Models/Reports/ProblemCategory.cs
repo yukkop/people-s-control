@@ -10,6 +10,7 @@ namespace DataBase.Models
         public string Name { get; set; }
         public string MnemonicName { get; set; }
         public string HashTag { get; set; }
+        public long AvatarId { get; set; }
         public Avatar Avatar { get; set; }
         public bool IsActive { get; set; }
         public bool IsVisible { get; set; }

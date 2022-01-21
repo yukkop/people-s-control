@@ -9,9 +9,12 @@ namespace DataBase.Models
     {
         public long Id { get; set; }
         public string Title { get; set; }
+        public long UserId { get; set; }
         public User User { get; set; }
+        public long RelationReportId { get; set; }
         public Report RelationReport { get; set; }
         public string Adress { get; set; }
+        public long StatusId { get; set; }
         public ReportStatus Status { get; set; }
         public NpgsqlPoint Coordinates { get; set; }
         public DateTime DateConsideration { get; set; }
@@ -19,6 +22,7 @@ namespace DataBase.Models
         public DateTime DateFinishExecution { get; set; }
         public DateTime DateFinalControl { get; set; }
         public bool IsRequestModeration { get; set; }
+        public long ModeratorId { get; set; }
         public User Moderator { get; set; }
         public string ProblemDescription { get; set; }
         public float BaseRate { get; set; }

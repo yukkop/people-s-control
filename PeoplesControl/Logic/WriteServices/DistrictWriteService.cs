@@ -13,23 +13,25 @@ namespace Logic.WriteServices
     public class DistrictWriteService : IDistrictWriteService
     {
         IDistrictRepository _districtRepository;
-        Mapper _mapper;
+        ICityRepository _cityRepository;
+        private readonly IMapper _mapper;
 
-        public DistrictWriteService(IDistrictRepository districtRepository)
+        public DistrictWriteService(IDistrictRepository districtRepository, ICityRepository cityRepository, IMapper mapper)
         {
             _districtRepository = districtRepository;
-            _mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<DistrictProfile>()));
+            _cityRepository = cityRepository;
+            _mapper = mapper;
         }
 
         public ActionStatus<GetDistrictDTO> Add(CreateDistrictDTO createEntity)
         {
             // проверка на уникальность в параметрах полей
             District entity = _mapper.Map<District>(createEntity);
-            entity = _districtRepository.Add(entity);
 
+            entity = _districtRepository.Add(entity);
+            _districtRepository.SaveChanges();
 
             GetDistrictDTO getEntity = _mapper.Map<GetDistrictDTO>(entity);
-            _districtRepository.SaveChanges();
             return new ActionStatus<GetDistrictDTO>(getEntity);
         }
 

@@ -7,8 +7,7 @@ namespace Logic.Repositories
 {
     public interface IActionMetaRepository
     {
-        public ActionMeta Get(long id);
-        public List<ActionMeta> GetAll();
         public ActionMeta Add(ActionMeta actionMeta);
+        public void SaveChanges();
     }
 }

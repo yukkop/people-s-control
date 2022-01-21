@@ -7,6 +7,14 @@
   <ItemGroup>
     <Compile Remove="Migrations\20220120111355_UniqCityName.cs" />
     <Compile Remove="Migrations\20220120111355_UniqCityName.Designer.cs" />
+    <Compile Remove="Migrations\20220121195439_SuperUserAdditionTry1.cs" />
+    <Compile Remove="Migrations\20220121195439_SuperUserAdditionTry1.Designer.cs" />
+    <Compile Remove="Migrations\20220121195514_SuperUserAdditionTry1.cs" />
+    <Compile Remove="Migrations\20220121195514_SuperUserAdditionTry1.Designer.cs" />
+    <Compile Remove="Migrations\20220121200049_SuperUserAdditionTry1.cs" />
+    <Compile Remove="Migrations\20220121200049_SuperUserAdditionTry1.Designer.cs" />
+    <Compile Remove="Migrations\20220121201621_SuperUserAdditionTry1.cs" />
+    <Compile Remove="Migrations\20220121201621_SuperUserAdditionTry1.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

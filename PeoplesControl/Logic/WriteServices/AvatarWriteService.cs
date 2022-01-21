@@ -12,13 +12,13 @@ namespace Logic.WriteServices
 {
     public class AvatarWriteService : IAvatarWriteService
     {
-        IAvatarRepository _cityRepository;
-        Mapper _mapper;
+        IAvatarRepository _cityRepository; 
+        private readonly IMapper _mapper;
 
-        public AvatarWriteService(IAvatarRepository cityRepository)
+        public AvatarWriteService(IAvatarRepository cityRepository, IMapper mapper)
         {
             _cityRepository = cityRepository;
-            _mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<AvatarProfile>()));
+            _mapper = mapper;
         }
 
         public ActionStatus<GetAvatarDTO> Add(CreateAvatarDTO createEntity)

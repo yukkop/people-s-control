@@ -3,6 +3,7 @@ using System;
 using DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using NpgsqlTypes;
@@ -10,9 +11,10 @@ using NpgsqlTypes;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220121185750_ForeignKeysForAllTables")]
+    partial class ForeignKeysForAllTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,7 +32,7 @@ namespace DataBase.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<long?>("UserId")
+                    b.Property<long>("UserId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
@@ -38,13 +40,6 @@ namespace DataBase.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("ActionMeta");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            Date = new DateTime(2022, 1, 21, 23, 20, 6, 830, DateTimeKind.Local).AddTicks(5240)
-                        });
                 });
 
             modelBuilder.Entity("DataBase.Models.Avatar", b =>
@@ -78,18 +73,6 @@ namespace DataBase.Migrations
                         .IsUnique();
 
                     b.ToTable("Cities");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            Name = "Донецк"
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            Name = "Макеевка"
-                        });
                 });
 
             modelBuilder.Entity("DataBase.Models.District", b =>
@@ -110,14 +93,6 @@ namespace DataBase.Migrations
                     b.HasIndex("CityId");
 
                     b.ToTable("Districts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            CityId = 2L,
-                            Name = "Червоногвардейка"
-                        });
                 });
 
             modelBuilder.Entity("DataBase.Models.DraftReport", b =>
@@ -969,20 +944,6 @@ namespace DataBase.Migrations
                     b.HasIndex("UserProfileId");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            DateEmailConfirmation = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateSMSConfirmation = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EmailConfirmationCode = 0,
-                            Login = "supper",
-                            SMSConfirmationCode = 0,
-                            SaltPassword = new byte[] {  },
-                            SaltValue = new byte[] {  },
-                            UserProfileId = 1L
-                        });
                 });
 
             modelBuilder.Entity("DataBase.Models.UserProfile", b =>
@@ -995,7 +956,7 @@ namespace DataBase.Migrations
                     b.Property<long?>("BlockId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("CreationId")
+                    b.Property<long?>("CreationId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("DistrictId")
@@ -1031,7 +992,7 @@ namespace DataBase.Migrations
                     b.Property<bool>("RequestAnonymity")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Surname")
+                    b.Property<string>("Sername")
                         .HasColumnType("text");
 
                     b.Property<long?>("UnblockId")
@@ -1052,20 +1013,6 @@ namespace DataBase.Migrations
                     b.HasIndex("UnblockId");
 
                     b.ToTable("UsersProfiles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            CreationId = 1L,
-                            DistrictId = 1L,
-                            IsBlock = false,
-                            Name = "Supper",
-                            NotifyByEmail = false,
-                            NotifyBySMS = false,
-                            RequestAnonymity = false,
-                            Surname = "Account"
-                        });
                 });
 
             modelBuilder.Entity("DataBase.Models.UserRole", b =>
@@ -1094,7 +1041,9 @@ namespace DataBase.Migrations
                 {
                     b.HasOne("DataBase.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DataBase.Models.District", b =>
@@ -1494,9 +1443,7 @@ namespace DataBase.Migrations
 
                     b.HasOne("DataBase.Models.ActionMeta", "Creation")
                         .WithMany()
-                        .HasForeignKey("CreationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CreationId");
 
                     b.HasOne("DataBase.Models.District", "District")
                         .WithMany()
