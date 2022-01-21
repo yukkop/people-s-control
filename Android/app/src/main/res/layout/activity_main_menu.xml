@@ -21,88 +21,39 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/mainMenuButtonReq"
-            android:layout_width="280dp"
-            android:layout_height="60dp"
-            android:backgroundTint="@color/secondary"
-            android:fontFamily="@font/oswald"
             android:text="@string/main_menu_button_request_str"
-            app:cornerRadius="20dp"
-            app:strokeColor="@color/white"
-            app:strokeWidth="1dp"
             app:icon="@drawable/request_icon"
-            app:iconSize="35dp"
-            android:paddingEnd="60dp"/>
+            style="@style/Widget.MaterialComponents.Button.MainMenuButton"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/mainMenuButtonProfile"
-            android:layout_width="280dp"
-            android:layout_height="60dp"
-            app:cornerRadius="20dp"
-            android:fontFamily="@font/oswald"
             android:text="@string/main_menu_button_profile_str"
-            android:backgroundTint="@color/secondary"
-            app:strokeColor="@color/white"
-            app:strokeWidth="1dp"
             app:icon="@drawable/profile_icon"
-            app:iconSize="35dp"
-            android:paddingEnd="60dp"
-
+            style="@style/Widget.MaterialComponents.Button.MainMenuButton"
             />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/mainMenuButtonProfileTimetable"
-            android:layout_width="280dp"
-            android:layout_height="60dp"
-            app:cornerRadius="20dp"
-            android:fontFamily="@font/oswald"
             android:text="@string/main_menu_button_timetable_str"
-            android:backgroundTint="@color/secondary"
-            app:strokeColor="@color/white"
-            app:strokeWidth="1dp"
             app:icon="@drawable/transport_icon"
-            app:iconSize="35dp"
-            android:paddingEnd="60dp"
+            style="@style/Widget.MaterialComponents.Button.MainMenuButton"
             />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/mainMenuButtonFaq"
-            android:layout_width="280dp"
-            android:layout_height="60dp"
-            app:cornerRadius="20dp"
-            android:fontFamily="@font/oswald"
             android:text="@string/main_menu_button_faq_str"
-            android:backgroundTint="@color/secondary"
-            app:strokeColor="@color/white"
-            app:strokeWidth="1dp"
             app:icon="@drawable/faq_icon"
-            app:iconSize="35dp"
-            android:paddingEnd="60dp"
+            style="@style/Widget.MaterialComponents.Button.MainMenuButton"
             />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/mainMenuButtonGovernment"
-            android:layout_width="280dp"
-            android:layout_height="60dp"
-            app:cornerRadius="20dp"
-            android:fontFamily="@font/oswald"
             android:text="@string/main_menu_button_government_str"
-            android:backgroundTint="@color/secondary"
-            app:strokeColor="@color/white"
-            app:strokeWidth="1dp"
             app:icon="@drawable/government_icon"
-            app:iconSize="35dp"
-            android:paddingEnd="60dp"
+            style="@style/Widget.MaterialComponents.Button.MainMenuButton"
             />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/mainMenuButtonStats"
-            android:layout_width="280dp"
-            android:layout_height="60dp"
-            app:cornerRadius="20dp"
-            android:fontFamily="@font/oswald"
             android:text="@string/main_menu_button_stats_str"
-            android:backgroundTint="@color/secondary"
-            app:strokeColor="@color/white"
-            app:strokeWidth="1dp"
             app:icon="@drawable/stats_icon"
-            app:iconSize="35dp"
-            android:paddingEnd="60dp"
+            style="@style/Widget.MaterialComponents.Button.MainMenuButton"
             />
     </LinearLayout>
 
