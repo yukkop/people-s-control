@@ -9,10 +9,21 @@
         <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/drawable/button_resting.xml" value="0.39692307692307693" />
         <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/drawable/button_ripple.xml" value="0.23489583333333333" />
         <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/drawable/ic_launcher_background.xml" value="0.23489583333333333" />
+        <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2869791666666667" />
+        <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/drawable/input_text_background.xml" value="0.2869791666666667" />
+        <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/drawable/input_text_font.xml" value="0.2869791666666667" />
+        <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/font-v26/lato.xml" value="0.24895833333333334" />
         <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/font-v26/oswald.xml" value="0.40185185185185185" />
+        <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/font/lato.xml" value="0.24479166666666666" />
         <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/font/oswald.xml" value="0.4107692307692308" />
         <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/font/oswald_regular.xml" value="0.24895833333333334" />
-        <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout/activity_main_menu.xml" value="0.22" />
+        <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout-v28/fragment_login.xml" value="0.21875" />
+        <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout/activity_main.xml" value="0.21875" />
+        <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout/activity_main_menu.xml" value="0.12" />
+        <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout/fragment_login.xml" value="0.22" />
+        <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout/fragment_main_menu.xml" value="0.29270833333333335" />
+        <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout/toolbar.xml" value="0.25" />
       </map>
     </option>
   </component>

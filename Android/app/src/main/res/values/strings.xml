@@ -7,4 +7,16 @@
     <string name="main_menu_button_faq_str">Вопросы и ответы</string>
     <string name="main_menu_button_government_str">Органы власти</string>
     <string name="main_menu_button_stats_str">Статистика</string>
+    <!--Login Menu Strings-->
+    <string name="login_title">Вход в систему</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="input_pass_login_hint">password</string>
+    <string name="input_email_login_hint">e-mail</string>
+    <string name="forget_pass_login"><u>Забыл пароль</u></string>
+    <string name="enter_button_text">Вход</string>
+    <string name="have_profile_quathion">У вас еще нет профиля?</string>
+    <string name="registration"><u>Регистрация</u></string>
+    <string name="or">или</string>
+    <string name="skip"><u>Пропустить</u></string>
+    <string name="confidence"><u>Правила и соглашение</u> на использование персональных данных</string>
 </resources>
