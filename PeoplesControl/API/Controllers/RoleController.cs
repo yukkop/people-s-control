@@ -18,11 +18,13 @@ namespace API.Controllers
     {
         IRoleReadService _readService;
         IRoleWriteService _writeService;
+        IAuthenticationService _authentication;
 
-        public RoleController(IRoleReadService readService, IRoleWriteService writeService)        
+        public RoleController(IRoleReadService readService, IRoleWriteService writeService, IAuthenticationService authentication)        
         {
             _readService = readService;
             _writeService = writeService;
+            _authentication = authentication;
         }
 
         // GET: api/<RoleController>
@@ -41,8 +43,9 @@ namespace API.Controllers
 
         // POST api/<RoleController>
         [HttpPost]
-        public ActionStatus<GetRoleDTO> Post([FromHeader] HttpHeadAttribute autorisation, [FromBody] CreateRoleDTO entity)
+        public ActionStatus<GetRoleDTO> Post([FromHeader] string Authorization, [FromBody] CreateRoleDTO entity)
         {
+            _authentication.Authentication(Authorization);
             return _writeService.Add(entity);
         }
 

@@ -63,9 +63,9 @@ namespace DataBase.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
-        internal static byte[] SaltPassword {
+        internal static byte[] GuestSaltPassword {
             get {
-                object obj = ResourceManager.GetObject("SaltPassword", resourceCulture);
+                object obj = ResourceManager.GetObject("GuestSaltPassword", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -73,9 +73,29 @@ namespace DataBase.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
-        internal static byte[] SaltValue {
+        internal static byte[] GuestSaltValue {
             get {
-                object obj = ResourceManager.GetObject("SaltValue", resourceCulture);
+                object obj = ResourceManager.GetObject("GuestSaltValue", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] SupperSaltPassword {
+            get {
+                object obj = ResourceManager.GetObject("SupperSaltPassword", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Byte[].
+        /// </summary>
+        internal static byte[] SupperSaltValue {
+            get {
+                object obj = ResourceManager.GetObject("SupperSaltValue", resourceCulture);
                 return ((byte[])(obj));
             }
         }

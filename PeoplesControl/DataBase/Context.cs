@@ -375,11 +375,34 @@ namespace DataBase
                     }
             );
 
+            modelBuilder.Entity<Role>().HasData(
+                    
+                new Role[] {
+                    new Role()
+                    {
+                        Id = 1,
+                        Name = "Админ"
+                    },
+                    new Role()
+                    {
+                        Id = 2,
+                        Name = "Гость"
+                    }
+                }
+            );
+
             // Создание Супер Аккаунта
 
             ActionMeta SupperCreation = new ActionMeta()
             {
                 Id = 1,
+                UserId = null,
+                Date = DateTime.Now
+            };
+
+            ActionMeta GuestCreation = new ActionMeta()
+            {
+                Id = 2,
                 UserId = null,
                 Date = DateTime.Now
             };
@@ -397,25 +420,50 @@ namespace DataBase
                 DistrictId = 1
             };
 
+            UserProfile GuestProfile = new UserProfile()
+            {
+                Id = 2,
+                Name = "Guest",
+                Surname = "Account",
+                CreationId = 2,
+                IsBlock = false,
+                NotifyByEmail = false,
+                NotifyBySMS = false,
+                RequestAnonymity = true,
+                DistrictId = 1
+            };
+
+            User GuestUser = new User()
+            {
+                Id = 2,
+                UserProfileId = 2,
+                Login = "guest",
+                SaltPassword = Properties.Resources.GuestSaltPassword,
+                SaltValue = Properties.Resources.GuestSaltValue
+            };
+
             User SupperUser = new User()
             {
                 Id = 1,
                 UserProfileId = 1,
                 Login = "supper",
-                SaltPassword = Properties.Resources.SaltPassword,
-                SaltValue = Properties.Resources.SaltValue
+                SaltPassword = Properties.Resources.SupperSaltPassword,
+                SaltValue = Properties.Resources.SupperSaltValue
             };
 
             modelBuilder.Entity<ActionMeta>().HasData(
-                SupperCreation
+                SupperCreation,
+                GuestCreation
             );
 
             modelBuilder.Entity<UserProfile>().HasData(
-                SupperProfile
+                SupperProfile,
+                GuestProfile
             );
 
             modelBuilder.Entity<User>().HasData(
-                SupperUser
+                SupperUser,
+                GuestUser
             );
         }
     }
