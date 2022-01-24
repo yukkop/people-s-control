@@ -3,6 +3,7 @@ using System;
 using DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using NpgsqlTypes;
@@ -10,9 +11,10 @@ using NpgsqlTypes;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220122141432_ChengeAdressToAddressBooooooooy")]
+    partial class ChengeAdressToAddressBooooooooy
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,12 +45,7 @@ namespace DataBase.Migrations
                         new
                         {
                             Id = 1L,
-                            Date = new DateTime(2022, 1, 24, 12, 41, 25, 924, DateTimeKind.Local).AddTicks(8202)
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            Date = new DateTime(2022, 1, 24, 12, 41, 25, 925, DateTimeKind.Local).AddTicks(8543)
+                            Date = new DateTime(2022, 1, 22, 17, 14, 31, 672, DateTimeKind.Local).AddTicks(4453)
                         });
                 });
 
@@ -768,18 +765,6 @@ namespace DataBase.Migrations
                     b.HasIndex("RemovalId");
 
                     b.ToTable("Roles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            Name = "Admin"
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            Name = "Guest"
-                        });
                 });
 
             modelBuilder.Entity("DataBase.Models.Schedule", b =>
@@ -995,14 +980,6 @@ namespace DataBase.Migrations
                             SaltPassword = new byte[] { 179, 116, 232, 248, 45, 66, 50, 216, 71, 167, 174, 126, 161, 156, 7, 15, 1, 180, 238, 187, 20, 54, 156, 229, 208, 213, 38, 9, 101, 129, 20, 29 },
                             SaltValue = new byte[] { 242, 3, 62, 221, 169, 59, 244, 197, 207, 234, 53, 50, 77, 20, 139, 149, 229, 94, 234, 17, 19, 5, 169, 55, 184, 124, 139, 169, 205, 6, 47, 224 },
                             UserProfileId = 1L
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            Login = "guest",
-                            SaltPassword = new byte[] { 179, 116, 232, 248, 45, 66, 50, 216, 71, 167, 174, 126, 161, 156, 7, 15, 1, 180, 238, 187, 20, 54, 156, 229, 208, 213, 38, 9, 101, 129, 20, 29 },
-                            SaltValue = new byte[] { 242, 3, 62, 221, 169, 59, 244, 197, 207, 234, 53, 50, 77, 20, 139, 149, 229, 94, 234, 17, 19, 5, 169, 55, 184, 124, 139, 169, 205, 6, 47, 224 },
-                            UserProfileId = 2L
                         });
                 });
 
@@ -1086,18 +1063,6 @@ namespace DataBase.Migrations
                             NotifyBySMS = false,
                             RequestAnonymity = false,
                             Surname = "Account"
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            CreationId = 2L,
-                            DistrictId = 1L,
-                            IsBlock = false,
-                            Name = "Guest",
-                            NotifyByEmail = false,
-                            NotifyBySMS = false,
-                            RequestAnonymity = true,
-                            Surname = "Account"
                         });
                 });
 
@@ -1121,20 +1086,6 @@ namespace DataBase.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UsersRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            RoleId = 1L,
-                            UserId = 1L
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            RoleId = 2L,
-                            UserId = 2L
-                        });
                 });
 
             modelBuilder.Entity("DataBase.Models.ActionMeta", b =>

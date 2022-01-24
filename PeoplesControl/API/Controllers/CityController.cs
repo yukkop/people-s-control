@@ -7,6 +7,8 @@ using Logic.ReadServices;
 using Logic.WriteServices;
 using Logic.WebEntities;
 using Logic.Helpers;
+using Microsoft.Extensions.Configuration;
+using DataBase.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,18 +20,28 @@ namespace API.Controllers
     {
         ICityWriteService _cityWriteService;
         ICityReadService _cityReadService;
+        IAuthorizationService _authorizationService;
+        IConfiguration _configuration;
 
-        public CityController(ICityReadService cityReadService, ICityWriteService cityWriteService)
+        public CityController(ICityReadService cityReadService, ICityWriteService cityWriteService, IAuthorizationService authorizationService, IConfiguration configuration)
         {
             _cityReadService = cityReadService;
             _cityWriteService = cityWriteService;
+            _authorizationService = authorizationService;
+            _configuration = configuration;
         }
 
         // GET: api/<CityController>
         [HttpGet]
-        public ActionStatus<List<GetCityDTO>> Get()
+        public ActionStatus<List<GetCityDTO>> Get([FromHeader] string Authorization)
         {
-            return _cityReadService.GetAll();
+            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Get"])) {
+                return _cityReadService.GetAll();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         // GET api/<CityController>/5

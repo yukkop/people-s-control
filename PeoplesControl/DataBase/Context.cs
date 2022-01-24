@@ -9,14 +9,17 @@ namespace DataBase
     public class Context: DbContext, IWebContext
     {
         string _connectionString;
+        string _roles;
         public Context(IConfiguration configuration)
         {
             _connectionString = configuration["ConnectionStrings:DefaultConnection"];
+            _roles = configuration["Roles"];
         }
 
         public Context(DbContextOptions options, IConfiguration configuration) : base(options)
         {
             _connectionString = configuration["ConnectionStrings:DefaultConnection"];
+            _roles = configuration["Roles"];
         }
         //blue
         public DbSet<HCS> HCSs { get; set; }
@@ -376,10 +379,26 @@ namespace DataBase
             );
 
             // Создание Супер Аккаунта
+            string[] rolesNames = _roles.Split(",");
+            Role[] roles = new Role[rolesNames.Length];
+            for (int i = 1; i < rolesNames.Length + 1; i++) {
+                roles[i-1] = new Role()
+                {
+                    Id = i,
+                    Name = rolesNames[i-1]
+                };
+            }
 
             ActionMeta SupperCreation = new ActionMeta()
             {
                 Id = 1,
+                UserId = null,
+                Date = DateTime.Now
+            };
+
+            ActionMeta GuestCreation = new ActionMeta()
+            {
+                Id = 2,
                 UserId = null,
                 Date = DateTime.Now
             };
@@ -397,25 +416,72 @@ namespace DataBase
                 DistrictId = 1
             };
 
+            UserProfile GuestProfile = new UserProfile()
+            {
+                Id = 2,
+                Name = "Guest",
+                Surname = "Account",
+                CreationId = 2,
+                IsBlock = false,
+                NotifyByEmail = false,
+                NotifyBySMS = false,
+                RequestAnonymity = true,
+                DistrictId = 1
+            };
+
+            User GuestUser = new User()
+            {
+                Id = 2,
+                UserProfileId = 2,
+                Login = "guest",
+                SaltPassword = Properties.Resources.GuestSaltPassword,
+                SaltValue = Properties.Resources.GuestSaltValue
+            };
+
             User SupperUser = new User()
             {
                 Id = 1,
                 UserProfileId = 1,
                 Login = "supper",
-                SaltPassword = new byte[0],
-                SaltValue = new byte[0]
+                SaltPassword = Properties.Resources.SupperSaltPassword,
+                SaltValue = Properties.Resources.SupperSaltValue
             };
 
+            modelBuilder.Entity<UserRole>().HasData(
+                new UserRole[]
+                {
+                    new UserRole()
+                    {
+                        Id = 1,
+                        UserId = 1, // Supper-User Id
+                        RoleId = 1 // Sepper-Role Id
+                    },
+                    new UserRole()
+                    {
+                        Id = 2,
+                        UserId = 2, // Guest-User Id
+                        RoleId = 2 // Guest-Role Id
+                    }
+                }
+            );
+
+            modelBuilder.Entity<Role>().HasData(
+                roles
+            );
+
             modelBuilder.Entity<ActionMeta>().HasData(
-                SupperCreation
+                SupperCreation,
+                GuestCreation
             );
 
             modelBuilder.Entity<UserProfile>().HasData(
-                SupperProfile
+                SupperProfile,
+                GuestProfile
             );
 
             modelBuilder.Entity<User>().HasData(
-                SupperUser
+                SupperUser,
+                GuestUser
             );
         }
     }

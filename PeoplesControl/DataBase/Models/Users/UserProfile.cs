@@ -11,7 +11,7 @@ namespace DataBase.Models
         public string Surname { get; set; }
         public string Patronymic { get; set; }
         public string PhoneNumber { get; set; }
-        public string EmailAdress { get; set; }
+        public string EmailAddress { get; set; }
         public long DistrictId { get; set; }
         public District District { get; set; }
         public bool NotifyByEmail { get; set; }

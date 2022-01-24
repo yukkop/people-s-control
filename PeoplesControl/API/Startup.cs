@@ -20,6 +20,7 @@ using DataBase;
 using AutoMapper;
 using Logic.Profiles;
 using Logic.WebEntities;
+using Logic.Helpers;
 using DataBase.Models;
 
 namespace API
@@ -48,6 +49,9 @@ namespace API
 
             services.AddScoped<IActionMetaRepository, ActionMetaRepository>();
 
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IAuthorizationService, AuthorizationService>();
+
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<ICityQuery, CityQuery>();
             services.AddScoped<ICityWriteService, CityWriteService>();
@@ -67,6 +71,10 @@ namespace API
             services.AddScoped<IRoleQuery, RoleQuery>();
             services.AddScoped<IRoleWriteService, RoleWriteService>();
             services.AddScoped<IRoleReadService, RoleReadService>();
+
+            services.AddScoped<IUserQuery, UserQuery>();
+
+            services.AddScoped<IUserRoleQuery, UserRoleQuery>();
 
             AutoMapper.IConfigurationProvider config = new MapperConfiguration(cfg =>
             {

@@ -3,6 +3,7 @@ using System;
 using DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using NpgsqlTypes;
@@ -10,9 +11,10 @@ using NpgsqlTypes;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220123110022_AddedGuestAccount")]
+    partial class AddedGuestAccount
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,12 +45,12 @@ namespace DataBase.Migrations
                         new
                         {
                             Id = 1L,
-                            Date = new DateTime(2022, 1, 24, 12, 41, 25, 924, DateTimeKind.Local).AddTicks(8202)
+                            Date = new DateTime(2022, 1, 23, 14, 0, 21, 591, DateTimeKind.Local).AddTicks(8548)
                         },
                         new
                         {
                             Id = 2L,
-                            Date = new DateTime(2022, 1, 24, 12, 41, 25, 925, DateTimeKind.Local).AddTicks(8543)
+                            Date = new DateTime(2022, 1, 23, 14, 0, 21, 592, DateTimeKind.Local).AddTicks(6222)
                         });
                 });
 
@@ -773,12 +775,12 @@ namespace DataBase.Migrations
                         new
                         {
                             Id = 1L,
-                            Name = "Admin"
+                            Name = "Админ"
                         },
                         new
                         {
                             Id = 2L,
-                            Name = "Guest"
+                            Name = "Гость"
                         });
                 });
 
@@ -1121,20 +1123,6 @@ namespace DataBase.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UsersRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            RoleId = 1L,
-                            UserId = 1L
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            RoleId = 2L,
-                            UserId = 2L
-                        });
                 });
 
             modelBuilder.Entity("DataBase.Models.ActionMeta", b =>
