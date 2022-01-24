@@ -18,11 +18,13 @@ namespace API.Controllers
     {
         IAvatarWriteService _avatarWriteService;
         IAvatarReadService _avatarReadService;
+        IAuthorizationService _authorizationService;
 
-        public AvatarController(IAvatarReadService avatarReadService, IAvatarWriteService avatarWriteService)
+        public AvatarController(IAvatarReadService avatarReadService, IAvatarWriteService avatarWriteService, IAuthorizationService authorizationService)
         {
             _avatarReadService = avatarReadService;
             _avatarWriteService = avatarWriteService;
+            _authorizationService = authorizationService;
         }
 
         // GET: api/<AvatarController>

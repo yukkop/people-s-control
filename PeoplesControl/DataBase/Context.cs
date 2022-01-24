@@ -9,14 +9,17 @@ namespace DataBase
     public class Context: DbContext, IWebContext
     {
         string _connectionString;
+        string _roles;
         public Context(IConfiguration configuration)
         {
             _connectionString = configuration["ConnectionStrings:DefaultConnection"];
+            _roles = configuration["Roles"];
         }
 
         public Context(DbContextOptions options, IConfiguration configuration) : base(options)
         {
             _connectionString = configuration["ConnectionStrings:DefaultConnection"];
+            _roles = configuration["Roles"];
         }
         //blue
         public DbSet<HCS> HCSs { get; set; }
@@ -375,23 +378,16 @@ namespace DataBase
                     }
             );
 
-            modelBuilder.Entity<Role>().HasData(
-                    
-                new Role[] {
-                    new Role()
-                    {
-                        Id = 1,
-                        Name = "Админ"
-                    },
-                    new Role()
-                    {
-                        Id = 2,
-                        Name = "Гость"
-                    }
-                }
-            );
-
             // Создание Супер Аккаунта
+            string[] rolesNames = _roles.Split(",");
+            Role[] roles = new Role[rolesNames.Length];
+            for (int i = 1; i < rolesNames.Length + 1; i++) {
+                roles[i-1] = new Role()
+                {
+                    Id = i,
+                    Name = rolesNames[i-1]
+                };
+            }
 
             ActionMeta SupperCreation = new ActionMeta()
             {
@@ -450,6 +446,28 @@ namespace DataBase
                 SaltPassword = Properties.Resources.SupperSaltPassword,
                 SaltValue = Properties.Resources.SupperSaltValue
             };
+
+            modelBuilder.Entity<UserRole>().HasData(
+                new UserRole[]
+                {
+                    new UserRole()
+                    {
+                        Id = 1,
+                        UserId = 1, // Supper-User Id
+                        RoleId = 1 // Sepper-Role Id
+                    },
+                    new UserRole()
+                    {
+                        Id = 2,
+                        UserId = 2, // Guest-User Id
+                        RoleId = 2 // Guest-Role Id
+                    }
+                }
+            );
+
+            modelBuilder.Entity<Role>().HasData(
+                roles
+            );
 
             modelBuilder.Entity<ActionMeta>().HasData(
                 SupperCreation,

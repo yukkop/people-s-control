@@ -18,11 +18,13 @@ namespace API.Controllers
     {
         IDistrictWriteService _districtWriteService;
         IDistrictReadService _districtReadService;
+        IAuthorizationService _authorizationService;
 
-        public DistrictController(IDistrictReadService districtReadService, IDistrictWriteService districtWriteService)
+        public DistrictController(IDistrictReadService districtReadService, IDistrictWriteService districtWriteService, IAuthorizationService authorizationService)
         {
             _districtReadService = districtReadService;
             _districtWriteService = districtWriteService;
+            _authorizationService = authorizationService;
         }
 
         // GET: api/<DistrictController>

@@ -50,7 +50,7 @@ namespace API
             services.AddScoped<IActionMetaRepository, ActionMetaRepository>();
 
             services.AddScoped<IAuthenticationService, AuthenticationService>();
-            services.AddScoped<IAuthenticationQuery, AuthenticationQuery>();
+            services.AddScoped<IAuthorizationService, AuthorizationService>();
 
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<ICityQuery, CityQuery>();
@@ -73,6 +73,8 @@ namespace API
             services.AddScoped<IRoleReadService, RoleReadService>();
 
             services.AddScoped<IUserQuery, UserQuery>();
+
+            services.AddScoped<IUserRoleQuery, UserRoleQuery>();
 
             AutoMapper.IConfigurationProvider config = new MapperConfiguration(cfg =>
             {
