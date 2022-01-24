@@ -5,10 +5,13 @@ using System.Text;
 
 namespace Logic.Repositories
 {
-    public interface IProfileRepository
+    public interface IUserProfileRepository
     {
-        public UserProfile Get(int id);
+        public UserProfile Get(long id);
         public List<UserProfile> GetAll();
         public UserProfile Add(UserProfile userProfile);
+        bool Update(UserProfile entity);
+        void SaveChanges();
+        void Delete(long id);
     }
 }

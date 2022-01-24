@@ -22,6 +22,7 @@ namespace Logic.Helpers
         public bool Authorization(string token, string rolesString)
         {
             long userId = _authenticationService.Authentication(token);
+                       
             if (userId != 0)
             {
                 if (rolesString == _configuration["Roles"].Split(",")[1])

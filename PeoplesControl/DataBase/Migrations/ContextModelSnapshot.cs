@@ -43,12 +43,12 @@ namespace DataBase.Migrations
                         new
                         {
                             Id = 1L,
-                            Date = new DateTime(2022, 1, 24, 12, 41, 25, 924, DateTimeKind.Local).AddTicks(8202)
+                            Date = new DateTime(2022, 1, 24, 18, 23, 19, 590, DateTimeKind.Local).AddTicks(7354)
                         },
                         new
                         {
                             Id = 2L,
-                            Date = new DateTime(2022, 1, 24, 12, 41, 25, 925, DateTimeKind.Local).AddTicks(8543)
+                            Date = new DateTime(2022, 1, 24, 18, 23, 19, 591, DateTimeKind.Local).AddTicks(4819)
                         });
                 });
 
@@ -858,6 +858,9 @@ namespace DataBase.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<long>("CityId")
+                        .HasColumnType("bigint");
+
                     b.Property<long?>("CreationId")
                         .HasColumnType("bigint");
 
@@ -874,6 +877,8 @@ namespace DataBase.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CityId");
 
                     b.HasIndex("CreationId");
 
@@ -1000,8 +1005,8 @@ namespace DataBase.Migrations
                         {
                             Id = 2L,
                             Login = "guest",
-                            SaltPassword = new byte[] { 179, 116, 232, 248, 45, 66, 50, 216, 71, 167, 174, 126, 161, 156, 7, 15, 1, 180, 238, 187, 20, 54, 156, 229, 208, 213, 38, 9, 101, 129, 20, 29 },
-                            SaltValue = new byte[] { 242, 3, 62, 221, 169, 59, 244, 197, 207, 234, 53, 50, 77, 20, 139, 149, 229, 94, 234, 17, 19, 5, 169, 55, 184, 124, 139, 169, 205, 6, 47, 224 },
+                            SaltPassword = new byte[] { 133, 17, 106, 142, 11, 55, 24, 255, 120, 66, 77, 48, 20, 232, 1, 81, 30, 78, 164, 83, 42, 224, 147, 224, 37, 147, 105, 53, 170, 172, 249, 108 },
+                            SaltValue = new byte[] { 97, 234, 60, 207, 110, 168, 164, 13, 64, 190, 70, 8, 4, 203, 74, 107, 187, 80, 160, 123, 226, 30, 50, 33, 205, 18, 67, 199, 224, 246, 35, 107 },
                             UserProfileId = 2L
                         });
                 });
@@ -1012,6 +1017,9 @@ namespace DataBase.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<long?>("AvatarId")
+                        .HasColumnType("bigint");
 
                     b.Property<long?>("BlockId")
                         .HasColumnType("bigint");
@@ -1059,6 +1067,8 @@ namespace DataBase.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AvatarId");
 
                     b.HasIndex("BlockId");
 
@@ -1475,6 +1485,12 @@ namespace DataBase.Migrations
 
             modelBuilder.Entity("DataBase.Models.TransportRoute", b =>
                 {
+                    b.HasOne("DataBase.Models.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DataBase.Models.ActionMeta", "Creation")
                         .WithMany()
                         .HasForeignKey("CreationId");
@@ -1535,6 +1551,10 @@ namespace DataBase.Migrations
 
             modelBuilder.Entity("DataBase.Models.UserProfile", b =>
                 {
+                    b.HasOne("DataBase.Models.Avatar", "Avatar")
+                        .WithMany()
+                        .HasForeignKey("AvatarId");
+
                     b.HasOne("DataBase.Models.ActionMeta", "Block")
                         .WithMany()
                         .HasForeignKey("BlockId");

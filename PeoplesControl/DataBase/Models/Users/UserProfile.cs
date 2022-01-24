@@ -25,5 +25,6 @@ namespace DataBase.Models
         public bool IsBlock { get; set; }
         public ActionMeta Block { get; set; }
         public ActionMeta Unblock { get; set; }
+        public Avatar Avatar { get; set; }
     }
 }

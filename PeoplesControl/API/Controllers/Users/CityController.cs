@@ -46,30 +46,54 @@ namespace API.Controllers
 
         // GET api/<CityController>/5
         [HttpGet("{id}")]
-        public ActionStatus<GetCityDTO> Get(long id)
+        public ActionStatus<GetCityDTO> Get([FromHeader] string Authorization, long id)
         {
-            return _cityReadService.Get(id);
+            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Get"]))
+            {
+                return _cityReadService.Get(id);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         // POST api/<CityController>
         [HttpPost]
-        public ActionStatus<GetCityDTO> Post([FromBody] CreateCityDTO createEntity)
+        public ActionStatus<GetCityDTO> Post([FromHeader] string Authorization, [FromBody] CreateCityDTO createEntity)
         {
-            return _cityWriteService.Add(createEntity);
+            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Add"]))
+            {
+                return _cityWriteService.Add(createEntity);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         // PUT api/<CityController>
         [HttpPut("{id}")]
-        public bool Put([FromBody] UpdateCityDTO updateEntity)
+        public bool Put([FromHeader] string Authorization, [FromBody] UpdateCityDTO updateEntity)
         {
-            return _cityWriteService.Update(updateEntity);
+            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Update"]))
+            {
+                return _cityWriteService.Update(updateEntity);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         // DELETE api/<CityController>/5
         [HttpDelete("{id}")]
-        public void Delete(long id)
+        public void Delete([FromHeader] string Authorization, long id)
         {
-            _cityWriteService.Delete(id);
+            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Delete"]))
+            {
+                _cityWriteService.Delete(id);
+            }
         }
     }
 }

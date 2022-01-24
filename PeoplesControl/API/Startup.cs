@@ -66,23 +66,48 @@ namespace API
             services.AddScoped<IDistrictQuery, DistrictQuery>();
             services.AddScoped<IDistrictWriteService, DistrictWriteService>();
             services.AddScoped<IDistrictReadService, DistrictReadService>();
-            
+
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<IRoleQuery, RoleQuery>();
             services.AddScoped<IRoleWriteService, RoleWriteService>();
             services.AddScoped<IRoleReadService, RoleReadService>();
 
+
+            services.AddScoped<IUserProfileRepository, UserProfileRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserProfileQuery, UserProfileQuery>();
+            services.AddScoped<IUserProfileWriteService, UserProfileWriteService>();
+            services.AddScoped<IUserProfileReadService, UserProfileReadService>();
+
             services.AddScoped<IUserQuery, UserQuery>();
 
             services.AddScoped<IUserRoleQuery, UserRoleQuery>();
 
+            //reports
+            services.AddScoped<IReportStatusRepository, ReportStatusRepository>();
+            services.AddScoped<IReportStatusQuery, ReportStatusQuery>();
+            services.AddScoped<IReportStatusWriteService, ReportStatusWriteService>();
+            services.AddScoped<IReportStatusReadService, ReportStatusReadService>();
+
+            services.AddScoped<IMediaDataTypeRepository, MediaDataTypeRepository>();
+            services.AddScoped<IMediaDataTypeQuery, MediaDataTypeQuery>();
+            services.AddScoped<IMediaDataTypeWriteService, MediaDataTypeWriteService>();
+            services.AddScoped<IMediaDataTypeReadService, MediaDataTypeReadService>();
+
+
             AutoMapper.IConfigurationProvider config = new MapperConfiguration(cfg =>
             {
+                cfg.AddProfile<ActionMetaProfile>();
+
                 cfg.AddProfile<CityProfile>();
                 cfg.AddProfile<DistrictProfile>();
                 cfg.AddProfile<AvatarProfile>();
                 cfg.AddProfile<RoleProfile>();
-                cfg.AddProfile<ActionMetaProfile>();
+                cfg.AddProfile<UserProfileProfile>();
+
+                cfg.AddProfile<ReportStatusProfile>();
+                cfg.AddProfile<MediaDataTypeProfile>();
+
             });
             services.AddSingleton(config);
             services.AddScoped<IMapper, Mapper>();

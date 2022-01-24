@@ -7,8 +7,11 @@ namespace Logic.Repositories
 {
     public interface IUserRepository
     {
-        public User Get(int id);
+        public User Get(long id);
         public List<User> GetAll();
         public User Add(User user);
+        bool Update(User entity);
+        void SaveChanges();
+        void Delete(long id);
     }
 }

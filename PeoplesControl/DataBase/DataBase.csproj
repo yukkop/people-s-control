@@ -15,6 +15,8 @@
     <Compile Remove="Migrations\20220121200049_SuperUserAdditionTry1.Designer.cs" />
     <Compile Remove="Migrations\20220121201621_SuperUserAdditionTry1.cs" />
     <Compile Remove="Migrations\20220121201621_SuperUserAdditionTry1.Designer.cs" />
+    <Compile Remove="Migrations\20220124151945_AddedAvatarToUserProfile.cs" />
+    <Compile Remove="Migrations\20220124151945_AddedAvatarToUserProfile.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

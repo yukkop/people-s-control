@@ -44,7 +44,7 @@ Where ""Users"".""Id"" = 1";
 ""Users"".""SaltValue""
 From ""Users""
 Left Join ""UsersProfiles"" on ""Users"".""UserProfileId"" = ""UsersProfiles"".""Id""
-Where ""Users"".""Login"" = 'supper' or ""UsersProfiles"".""EmailAddress"" = 'supper' or ""UsersProfiles"".""PhoneNumber"" = 'supper'";
+Where ""Users"".""Login"" = '{login}' or ""UsersProfiles"".""EmailAddress"" = '{login}' or ""UsersProfiles"".""PhoneNumber"" = '{login}'";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {

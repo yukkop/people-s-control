@@ -7,8 +7,11 @@ namespace Logic.Repositories
 {
     public interface IReportStatusRepository
     {
-        public ReportStatus Get(int id);
+        public ReportStatus Get(long id);
         public List<ReportStatus> GetAll();
-        public ReportStatus Add(ReportStatus reportStatus);
+        public ReportStatus Add(ReportStatus entity);
+        bool Update(ReportStatus entity);
+        void SaveChanges();
+        void Delete(long id);
     }
 }
