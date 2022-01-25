@@ -89,11 +89,23 @@ namespace API
             services.AddScoped<IReportStatusWriteService, ReportStatusWriteService>();
             services.AddScoped<IReportStatusReadService, ReportStatusReadService>();
 
+            services.AddScoped<IReportRepository, ReportRepository>();
+            services.AddScoped<IReportQuery, ReportQuery>();
+            services.AddScoped<IReportWriteService, ReportWriteService>();
+            services.AddScoped<IReportReadService, ReportReadService>();
+
+            services.AddScoped<IReportViewRepository, ReportViewRepository>();
+            services.AddScoped<IReportViewWriteService, ReportViewWriteService>();
+
             services.AddScoped<IMediaDataTypeRepository, MediaDataTypeRepository>();
             services.AddScoped<IMediaDataTypeQuery, MediaDataTypeQuery>();
             services.AddScoped<IMediaDataTypeWriteService, MediaDataTypeWriteService>();
             services.AddScoped<IMediaDataTypeReadService, MediaDataTypeReadService>();
 
+            services.AddScoped<IProblemCategoryRepository, ProblemCategoryRepository>();
+            services.AddScoped<IProblemCategoryQuery, ProblemCategoryQuery>();
+            services.AddScoped<IProblemCategoryWriteService, ProblemCategoryWriteService>();
+            services.AddScoped<IProblemCategoryReadService, ProblemCategoryReadService>();
 
             AutoMapper.IConfigurationProvider config = new MapperConfiguration(cfg =>
             {
@@ -106,7 +118,9 @@ namespace API
                 cfg.AddProfile<UserProfileProfile>();
 
                 cfg.AddProfile<ReportStatusProfile>();
+                cfg.AddProfile<ReportProfile>();
                 cfg.AddProfile<MediaDataTypeProfile>();
+                cfg.AddProfile<ProblemCategoryProfile>();
 
             });
             services.AddSingleton(config);

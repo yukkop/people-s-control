@@ -7,8 +7,7 @@ namespace Logic.Repositories
 {
     public interface IReportViewRepository
     {
-        public ReportView Get(int id);
-        public List<ReportView> GetAll();
         public ReportView Add(ReportView reportView);
+        public void SaveChanges();
     }
 }

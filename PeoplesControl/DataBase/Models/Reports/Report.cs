@@ -11,9 +11,9 @@ namespace DataBase.Models
         public string Title { get; set; }
         public long UserId { get; set; }
         public User User { get; set; }
-        public long RelationReportId { get; set; }
-        public Report RelationReport { get; set; }
-        public string Adress { get; set; }
+        public long? RelationReportId { get; set; }
+        public Report? RelationReport { get; set; }
+        public string Address { get; set; }
         public long StatusId { get; set; }
         public ReportStatus Status { get; set; }
         public NpgsqlPoint Coordinates { get; set; }
@@ -22,13 +22,15 @@ namespace DataBase.Models
         public DateTime DateFinishExecution { get; set; }
         public DateTime DateFinalControl { get; set; }
         public bool IsRequestModeration { get; set; }
-        public long ModeratorId { get; set; }
-        public User Moderator { get; set; }
+        public long? ModeratorId { get; set; }
+        public User? Moderator { get; set; }
         public string ProblemDescription { get; set; }
         public float BaseRate { get; set; }
-        public DateTime DateRemoval { get; set; }
-        public DateTime DateLastEditing { get; set; }
-        public DateTime DateCreation { get; set; } 
+        public DateTime? DateRemoval { get; set; }
+        public DateTime? DateLastEditing { get; set; }
+        public DateTime? DateCreation { get; set; }
+        public bool IsDeleted { get; set; }
+        public bool IsAnonymously { get; set; }
 
         // Рейтинг реализовать запросами
         // Тоже самео с просмотрами
