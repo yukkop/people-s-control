@@ -5,10 +5,13 @@ using System.Text;
 
 namespace Logic.Repositories
 {
-    interface IReportRepository
+    public interface IReportRepository
     {
-        public Report Get(int id);
+        public Report Get(long id);
         public List<Report> GetAll();
         public Report Add(Report report);
+        public bool Update(Report report);
+        public void Delete(long id);
+        public void SaveChanges();
     }
 }

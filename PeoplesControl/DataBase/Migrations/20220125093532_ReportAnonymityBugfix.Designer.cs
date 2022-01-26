@@ -3,6 +3,7 @@ using System;
 using DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using NpgsqlTypes;
@@ -10,9 +11,10 @@ using NpgsqlTypes;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220125093532_ReportAnonymityBugfix")]
+    partial class ReportAnonymityBugfix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,12 +45,12 @@ namespace DataBase.Migrations
                         new
                         {
                             Id = 1L,
-                            Date = new DateTime(2022, 1, 25, 19, 24, 5, 254, DateTimeKind.Local).AddTicks(3106)
+                            Date = new DateTime(2022, 1, 25, 12, 35, 31, 397, DateTimeKind.Local).AddTicks(3530)
                         },
                         new
                         {
                             Id = 2L,
-                            Date = new DateTime(2022, 1, 25, 19, 24, 5, 255, DateTimeKind.Local).AddTicks(611)
+                            Date = new DateTime(2022, 1, 25, 12, 35, 31, 398, DateTimeKind.Local).AddTicks(1064)
                         });
                 });
 
@@ -529,7 +531,7 @@ namespace DataBase.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<long?>("AvatarId")
+                    b.Property<long>("AvatarId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("CreationId")
@@ -626,7 +628,7 @@ namespace DataBase.Migrations
                     b.Property<DateTime>("DateConsideration")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("DateCreation")
+                    b.Property<DateTime>("DateCreation")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("DateFinalControl")
@@ -635,10 +637,10 @@ namespace DataBase.Migrations
                     b.Property<DateTime>("DateFinishExecution")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("DateLastEditing")
+                    b.Property<DateTime>("DateLastEditing")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<DateTime?>("DateRemoval")
+                    b.Property<DateTime>("DateRemoval")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("DateStartExecution")
@@ -647,19 +649,16 @@ namespace DataBase.Migrations
                     b.Property<bool>("IsAnonymously")
                         .HasColumnType("boolean");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
                     b.Property<bool>("IsRequestModeration")
                         .HasColumnType("boolean");
 
-                    b.Property<long?>("ModeratorId")
+                    b.Property<long>("ModeratorId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("ProblemDescription")
                         .HasColumnType("text");
 
-                    b.Property<long?>("RelationReportId")
+                    b.Property<long>("RelationReportId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("StatusId")
@@ -1357,7 +1356,9 @@ namespace DataBase.Migrations
                 {
                     b.HasOne("DataBase.Models.Avatar", "Avatar")
                         .WithMany()
-                        .HasForeignKey("AvatarId");
+                        .HasForeignKey("AvatarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DataBase.Models.ActionMeta", "Creation")
                         .WithMany()
@@ -1397,11 +1398,15 @@ namespace DataBase.Migrations
                 {
                     b.HasOne("DataBase.Models.User", "Moderator")
                         .WithMany()
-                        .HasForeignKey("ModeratorId");
+                        .HasForeignKey("ModeratorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DataBase.Models.Report", "RelationReport")
                         .WithMany()
-                        .HasForeignKey("RelationReportId");
+                        .HasForeignKey("RelationReportId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DataBase.Models.ReportStatus", "Status")
                         .WithMany()

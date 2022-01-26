@@ -3,6 +3,7 @@ using System;
 using DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using NpgsqlTypes;
@@ -10,9 +11,10 @@ using NpgsqlTypes;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220125141119_Reports-IsDeletedadded")]
+    partial class ReportsIsDeletedadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,12 +45,12 @@ namespace DataBase.Migrations
                         new
                         {
                             Id = 1L,
-                            Date = new DateTime(2022, 1, 25, 19, 24, 5, 254, DateTimeKind.Local).AddTicks(3106)
+                            Date = new DateTime(2022, 1, 25, 17, 11, 19, 187, DateTimeKind.Local).AddTicks(2445)
                         },
                         new
                         {
                             Id = 2L,
-                            Date = new DateTime(2022, 1, 25, 19, 24, 5, 255, DateTimeKind.Local).AddTicks(611)
+                            Date = new DateTime(2022, 1, 25, 17, 11, 19, 188, DateTimeKind.Local).AddTicks(65)
                         });
                 });
 
@@ -529,7 +531,7 @@ namespace DataBase.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<long?>("AvatarId")
+                    b.Property<long>("AvatarId")
                         .HasColumnType("bigint");
 
                     b.Property<long?>("CreationId")
@@ -1357,7 +1359,9 @@ namespace DataBase.Migrations
                 {
                     b.HasOne("DataBase.Models.Avatar", "Avatar")
                         .WithMany()
-                        .HasForeignKey("AvatarId");
+                        .HasForeignKey("AvatarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DataBase.Models.ActionMeta", "Creation")
                         .WithMany()

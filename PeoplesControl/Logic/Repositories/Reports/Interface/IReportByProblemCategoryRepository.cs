@@ -5,10 +5,10 @@ using System.Text;
 
 namespace Logic.Repositories
 {
-    public interface IReportByProblemCategotyRepository
+    public interface IReportByProblemCategoryRepository
     {
-        public ReportByProblemCategory Get(int id);
-        public List<ReportByProblemCategory> GetAll();
         public ReportByProblemCategory Add(ReportByProblemCategory reportByProblemCategory);
+        void SaveChanges();
+        public void Delete(ReportByProblemCategory entity);
     }
 }
