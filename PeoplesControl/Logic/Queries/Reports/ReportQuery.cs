@@ -20,7 +20,6 @@ namespace Logic.Queries
         public ReportDTO Get(long id)
         {
             string query = $@"SELECT ""Reports"".""Id"", ""Reports"".""UserId"", ""Reports"".""Title"", 
-
         ""Reports"".""RelationReportId"", ""Reports"".""Address"", ""Reports"".""StatusId"",
 		""ReportStatuses"".""Name"" AS ""StatusName"", ""Reports"".""Coordinates"", 
 		""Reports"".""DateConsideration"", ""Reports"".""DateStartExecution"", 
@@ -28,15 +27,18 @@ namespace Logic.Queries
 		""Reports"".""IsRequestModeration"", ""Reports"".""ModeratorId"",
 		""Reports"".""ProblemDescription"", ""Reports"".""BaseRate"",
 		""Reports"".""IsAnonymously"",
-        count(""ReportsViews"".""UserId"") AS ""ViewsCount""
-                            FROM ""Reports""
-                            LEFT JOIN ""ReportStatuses"" ON ""ReportStatuses"".""Id"" = ""Reports"".""StatusId""
-                            LEFT JOIN ""ReportsViews"" ON ""ReportsViews"".""ReportId"" = ""Reports"".""Id""
+        count(""ReportsViews"".""UserId"") AS ""ViewsCount"",
+		array_agg(DISTINCT ""ProblemCategories"".""Id"") AS ""ProblemCategoriesIds"",
+		array_agg(DISTINCT ""ProblemCategories"".""Name"") AS ""ProblemCategoriesNames""
 
-                            WHERE ""Reports"".""IsDeleted"" = false AND ""Reports"".""Id"" = {id}
+                    FROM ""Reports""
+                    LEFT JOIN ""ReportStatuses"" ON ""ReportStatuses"".""Id"" = ""Reports"".""StatusId""
+                    LEFT JOIN ""ReportsViews"" ON ""ReportsViews"".""ReportId"" = ""Reports"".""Id""
+                    LEFT JOIN ""ReportsByProblemCategories"" ON ""ReportsByProblemCategories"".""ReportId"" = ""Reports"".""Id""
+                    LEFT JOIN ""ProblemCategories"" ON  ""ProblemCategories"".""Id"" = ""ReportsByProblemCategories"".""ProblemCategoryId""
 
-
-                            GROUP BY ""Reports"".""Id"", ""Reports"".""UserId"", ""Reports"".""Title"", 
+                    WHERE ""Reports"".""IsDeleted"" = false AND ""Reports"".""Id"" = {id}
+GROUP BY ""Reports"".""Id"", ""Reports"".""UserId"", ""Reports"".""Title"", 
 
         ""Reports"".""RelationReportId"", ""Reports"".""Address"", ""Reports"".""StatusId"",
 		""StatusName"",
@@ -50,9 +52,11 @@ namespace Logic.Queries
             {
                 return db.Query<ReportDTO>(query).FirstOrDefault();
             }
-        }
+        
+        
+    }
 
-        public List<ReportDTO> GetPage(RequestReportsPageDTO pageSettings)
+    public List<ReportDTO> GetPage(RequestReportsPageDTO pageSettings)
         {
             string query = $@"SELECT ""Reports"".""Id"", ""Reports"".""UserId"", ""Reports"".""Title"", 
         ""Reports"".""RelationReportId"", ""Reports"".""Address"", ""Reports"".""StatusId"",
@@ -62,11 +66,18 @@ namespace Logic.Queries
 		""Reports"".""IsRequestModeration"", ""Reports"".""ModeratorId"",
 		""Reports"".""ProblemDescription"", ""Reports"".""BaseRate"",
 		""Reports"".""IsAnonymously"",
-        count(""ReportsViews"".""UserId"") AS ""ViewsCount""
+        count(""ReportsViews"".""UserId"") AS ""ViewsCount"",
+		array_agg(DISTINCT ""ProblemCategories"".""Id"") AS ""ProblemCategoriesIds"",
+		array_agg(DISTINCT ""ProblemCategories"".""Name"") AS ""ProblemCategoriesNames""
+
                     FROM ""Reports""
                     LEFT JOIN ""ReportStatuses"" ON ""ReportStatuses"".""Id"" = ""Reports"".""StatusId""
                     LEFT JOIN ""ReportsViews"" ON ""ReportsViews"".""ReportId"" = ""Reports"".""Id""
+                    LEFT JOIN ""ReportsByProblemCategories"" ON ""ReportsByProblemCategories"".""ReportId"" = ""Reports"".""Id""
+                    LEFT JOIN ""ProblemCategories"" ON  ""ProblemCategories"".""Id"" = ""ReportsByProblemCategories"".""ProblemCategoryId""
+
                     WHERE ""Reports"".""IsDeleted"" = false
+
 GROUP BY ""Reports"".""Id"", ""Reports"".""UserId"", ""Reports"".""Title"", 
 
         ""Reports"".""RelationReportId"", ""Reports"".""Address"", ""Reports"".""StatusId"",

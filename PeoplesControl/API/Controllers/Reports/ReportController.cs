@@ -22,13 +22,17 @@ namespace API.Controllers
         IReportReadService _reportReadService;
         IAuthorizationService _authorizationService;
         IReportViewWriteService _reportViewWriteService;
+        IReportByProblemCategoryWriteService _reportByProblemCategoryWriteService;
         IConfiguration _configuration;
 
-        public ReportController(IReportReadService reportReadService, IReportWriteService reportWriteService, IReportViewWriteService reportViewWriteService, IAuthorizationService authorizationService, IConfiguration configuration)
+        public ReportController(IReportReadService reportReadService, IReportWriteService reportWriteService, 
+                                IReportViewWriteService reportViewWriteService, IReportByProblemCategoryWriteService reportByProblemCategoryWriteService, 
+                                IAuthorizationService authorizationService, IConfiguration configuration)
         {
             _reportReadService = reportReadService;
             _reportWriteService = reportWriteService;
             _reportViewWriteService = reportViewWriteService;
+            _reportByProblemCategoryWriteService = reportByProblemCategoryWriteService;
             _authorizationService = authorizationService;
             _configuration = configuration;
         }
@@ -88,7 +92,27 @@ namespace API.Controllers
                 return null;
             }
         }
-
+        // POST api/<ReportController>
+        [HttpPost("addCategory")]
+        public ActionStatus<ReportByProblemCategory> PostProblemCategory([FromHeader] string Authorization, [FromBody] ReportByProblemCategory reportByProblemCategory)
+        {
+            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportByProblemCategory:Add"]))
+            {
+                return _reportByProblemCategoryWriteService.Add(reportByProblemCategory);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        [HttpPost("deleteCategory")]
+        public void DeleteProblemCategory([FromHeader] string Authorization, [FromBody] ReportByProblemCategory reportByProblemCategory)
+        {
+            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportByProblemCategory:Delete"]))
+            {
+                _reportByProblemCategoryWriteService.Delete(reportByProblemCategory);
+            }
+        }
         // PUT api/<ReportController>
         [HttpPut("{id}")]
         public bool Put([FromHeader] string Authorization, [FromBody] UpdateReportDTO updateEntity)

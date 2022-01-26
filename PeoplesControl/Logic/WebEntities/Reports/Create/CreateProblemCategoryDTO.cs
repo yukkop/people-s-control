@@ -9,7 +9,7 @@ namespace Logic.WebEntities
         public string Name { get; set; }
         public string MnemonicName { get; set; }
         public string HashTag { get; set; }
-        public byte[] Avatar { get; set; }
+        public byte[]? Avatar { get; set; }
         //public bool IsActive { get; set; }
         //public bool IsVisible { get; set; }
         public long UserId { get; set; }

@@ -97,6 +97,10 @@ namespace API
             services.AddScoped<IReportViewRepository, ReportViewRepository>();
             services.AddScoped<IReportViewWriteService, ReportViewWriteService>();
 
+            services.AddScoped<IReportByProblemCategoryRepository, ReportByProblemCategoryRepository>();
+            services.AddScoped<IReportByProblemCategoryWriteService, ReportByProblemCategoryWriteService>();
+
+
             services.AddScoped<IMediaDataTypeRepository, MediaDataTypeRepository>();
             services.AddScoped<IMediaDataTypeQuery, MediaDataTypeQuery>();
             services.AddScoped<IMediaDataTypeWriteService, MediaDataTypeWriteService>();

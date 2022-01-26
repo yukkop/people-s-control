@@ -25,5 +25,7 @@ namespace Logic.WebEntities
         public float BaseRate { get; set; }
         public bool IsAnonymously { get; set; }
         public long ViewsCount { get; set; }
+        public long[] ProblemCategoriesIds { get; set; }
+        public string[] ProblemCategoriesNames { get; set; }
     }
 }

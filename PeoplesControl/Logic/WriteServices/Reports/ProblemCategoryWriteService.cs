@@ -35,6 +35,7 @@ namespace Logic.WriteServices
             _actionMetaRepository.SaveChanges();
             entity.Creation = creation;
             entity.IsActive = true;
+            entity.IsVisible = true;
 
             //_avatarWriteService.Add()     //FIXME аватарка проблемной категории
 

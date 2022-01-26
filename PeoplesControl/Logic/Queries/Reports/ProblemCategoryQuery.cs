@@ -38,7 +38,7 @@ AND""ProblemCategories"".""Id""={id}";
                                 ""ProblemCategories"".""HashTag"",""ProblemCategories"".""AvatarId"",
                 ""ProblemCategories"".""IsActive"",""ProblemCategories"".""IsVisible""
                 FROM ""ProblemCategories""
-                WHERE ""ProblemCategories"".""IsVisible""=true AND ""ProblemCategories"".""IsActive""=true";
+                WHERE ""ProblemCategories"".""IsActive""=true";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
