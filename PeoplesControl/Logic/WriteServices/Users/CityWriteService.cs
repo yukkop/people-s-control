@@ -39,31 +39,11 @@ namespace Logic.WriteServices
             _cityRepository.SaveChanges();
             return status;
         }
+
         public void Delete(long id)
         {
             _cityRepository.Delete(id);
             _cityRepository.SaveChanges();
         }
-            
-        //public ActionStatus<GetCityDTO> Get(long id)
-        //{
-        //    City entity = _cityRepository.Get(id);
-        //    GetCityDTO getEntity = _mapper.Map<GetCityDTO>(entity);
-        //    return new ActionStatus<GetCityDTO>(getEntity);
-        //}
-
-        //public ActionStatus<List<GetCityDTO>> Get()
-        //{
-        //    List<GetCityDTO> getEntities = new List<GetCityDTO>();
-        //    List<City> entities = _cityRepository.GetAll();
-
-        //    entities.ForEach(entity => 
-        //        {
-        //            getEntities.Add(_mapper.Map<GetCityDTO>(entity));
-        //        }
-        //    );
-
-        //    return new ActionStatus<List<GetCityDTO>>(getEntities);
-        //}
     }
 }

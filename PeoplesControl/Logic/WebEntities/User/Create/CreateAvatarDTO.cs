@@ -6,6 +6,7 @@ namespace Logic.WebEntities
 {
     public class CreateAvatarDTO
     {
-        public string Path { get; set; }
+        public byte[] Image { get; set; }
+        public string Format { get; set; }
     }
 }

@@ -101,7 +101,6 @@ namespace API
 
                 cfg.AddProfile<CityProfile>();
                 cfg.AddProfile<DistrictProfile>();
-                cfg.AddProfile<AvatarProfile>();
                 cfg.AddProfile<RoleProfile>();
                 cfg.AddProfile<UserProfileProfile>();
 

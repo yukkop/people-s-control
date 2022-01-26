@@ -77,7 +77,7 @@ namespace API.Controllers
         
         // POST api/<UserProfileController>
         [HttpPost]
-        public ActionStatus<GetUserProfileDTO> Post([FromBody] RegistrationDTO registration)
+        public bool Registration([FromBody] RegistrationDTO registration)
         {
             return _userProfileWriteService.Add(registration);
         }

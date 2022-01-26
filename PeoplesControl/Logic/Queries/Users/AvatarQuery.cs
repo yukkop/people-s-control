@@ -37,5 +37,15 @@ namespace Logic.Queries
                 return db.Query<AvatarDTO>(query).ToList();
             }
         }
+
+        public long LastId()
+        {
+            string query = $@"SELECT ""Avatars"".""Id"" FROM ""Avatars"" ORDER BY ""Id"" DESC LIMIT 1";
+
+            using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
+            {
+                return db.Query<long>(query).FirstOrDefault();
+            }
+        }
     }
 }

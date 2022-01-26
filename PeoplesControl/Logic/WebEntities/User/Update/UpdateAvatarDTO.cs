@@ -7,6 +7,7 @@ namespace Logic.WebEntities
     public class UpdateAvatarDTO
     {
         public long Id { get; set; }
-        public string Path { get; set; }
+        public byte[] Image { get; set; }
+        public string Format { get; set; }
     }
 }

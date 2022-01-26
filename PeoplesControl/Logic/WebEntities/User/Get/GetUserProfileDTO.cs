@@ -15,7 +15,6 @@ namespace Logic.WebEntities
         public string DistrictName { get; set; }
         public bool NotifyByEmail { get; set; }
         public bool NotifyBySMS { get; set; }
-        public bool RequestAnonymity { get; set; }
         public byte[] Avatar { get; set; }
     }
 }

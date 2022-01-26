@@ -9,5 +9,6 @@ namespace Logic.Queries
     {
         public AvatarDTO Get(long id);
         public List<AvatarDTO> GetAll();
+        public long LastId();
     }
 }
