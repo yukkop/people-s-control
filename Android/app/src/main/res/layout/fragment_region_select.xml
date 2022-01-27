@@ -47,6 +47,6 @@
         android:text="@string/region_select_page_select_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/region_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
