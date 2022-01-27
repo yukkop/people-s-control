@@ -8,7 +8,7 @@ namespace Logic.WriteServices
 {
     public interface IUserProfileWriteService
     {
-        public ActionStatus<GetUserProfileDTO> Add(RegistrationDTO createEntity);
+        public GetUserProfileDTO Add(RegistrationDTO createEntity);
         public bool UpdatePrivateInfo(UpdateUserProfileDTO updateEntity);
         public void Delete(long id);
     }

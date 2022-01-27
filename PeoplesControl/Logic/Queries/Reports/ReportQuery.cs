@@ -38,7 +38,7 @@ namespace Logic.Queries
                     LEFT JOIN ""ProblemCategories"" ON  ""ProblemCategories"".""Id"" = ""ReportsByProblemCategories"".""ProblemCategoryId""
 
                     WHERE ""Reports"".""IsDeleted"" = false AND ""Reports"".""Id"" = {id}
-GROUP BY ""Reports"".""Id"", ""Reports"".""UserId"", ""Reports"".""Title"", 
+        GROUP BY ""Reports"".""Id"", ""Reports"".""UserId"", ""Reports"".""Title"", 
 
         ""Reports"".""RelationReportId"", ""Reports"".""Address"", ""Reports"".""StatusId"",
 		""StatusName"",
@@ -54,9 +54,9 @@ GROUP BY ""Reports"".""Id"", ""Reports"".""UserId"", ""Reports"".""Title"",
             }
         
         
-    }
+        }
 
-    public List<ReportDTO> GetPage(RequestReportsPageDTO pageSettings)
+        public List<ReportDTO> GetPage(RequestReportsPageDTO pageSettings)
         {
             string query = $@"SELECT ""Reports"".""Id"", ""Reports"".""UserId"", ""Reports"".""Title"", 
         ""Reports"".""RelationReportId"", ""Reports"".""Address"", ""Reports"".""StatusId"",
@@ -88,7 +88,7 @@ GROUP BY ""Reports"".""Id"", ""Reports"".""UserId"", ""Reports"".""Title"",
 		""Reports"".""ProblemDescription"", ""Reports"".""BaseRate"",
 		""Reports"".""IsAnonymously""
                     ORDER BY ""{pageSettings.OrderRule}""
-                    LIMIT {pageSettings.PageSize} OFFSET {pageSettings.PageSize*(pageSettings.PageNum-1)}";
+                    LIMIT {pageSettings.PageSize} OFFSET {pageSettings.PageSize * (pageSettings.PageNum - 1)}";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {

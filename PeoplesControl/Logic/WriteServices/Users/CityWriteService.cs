@@ -22,14 +22,14 @@ namespace Logic.WriteServices
             _mapper = mapper;
         }
 
-        public ActionStatus<GetCityDTO> Add(CreateCityDTO createEntity)
+        public GetCityDTO Add(CreateCityDTO createEntity)
         {
             // проверка на уникальность в параметрах полей
             City entity = _mapper.Map<City>(createEntity);
             entity = _cityRepository.Add(entity);
             GetCityDTO getEntity = _mapper.Map<GetCityDTO>(entity);
             _cityRepository.SaveChanges();
-            return new ActionStatus<GetCityDTO>(getEntity);
+            return getEntity;
         }
 
         public bool Update(UpdateCityDTO updateEntity)

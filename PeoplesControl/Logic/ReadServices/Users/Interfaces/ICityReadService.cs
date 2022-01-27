@@ -8,7 +8,7 @@ namespace Logic.ReadServices
 {
     public interface ICityReadService
     {
-        public ActionStatus<GetCityDTO> Get(long id);
-        public ActionStatus<List<GetCityDTO>> GetAll();
+        public GetCityDTO Get(long id);
+        public List<GetCityDTO> GetAll();
     }
 }

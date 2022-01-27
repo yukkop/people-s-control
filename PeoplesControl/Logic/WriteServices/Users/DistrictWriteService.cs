@@ -23,7 +23,7 @@ namespace Logic.WriteServices
             _mapper = mapper;
         }
 
-        public ActionStatus<GetDistrictDTO> Add(CreateDistrictDTO createEntity)
+        public GetDistrictDTO Add(CreateDistrictDTO createEntity)
         {
             // проверка на уникальность в параметрах полей
             District entity = _mapper.Map<District>(createEntity);
@@ -32,7 +32,7 @@ namespace Logic.WriteServices
             _districtRepository.SaveChanges();
 
             GetDistrictDTO getEntity = _mapper.Map<GetDistrictDTO>(entity);
-            return new ActionStatus<GetDistrictDTO>(getEntity);
+            return getEntity;
         }
 
         public bool Update(UpdateDistrictDTO updateEntity)

@@ -32,7 +32,7 @@ namespace API.Controllers
 
         // GET: api/<DistrictController>
         [HttpGet]
-        public ActionStatus<List<GetDistrictDTO>> Get([FromHeader] string Authorization)
+        public List<GetDistrictDTO> Get([FromHeader] string Authorization)
         {
             if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Get"]))
             {
@@ -46,7 +46,7 @@ namespace API.Controllers
 
         // GET api/<DistrictController>/5
         [HttpGet("{id}")]
-        public ActionStatus<GetDistrictDTO> Get([FromHeader] string Authorization, long id)
+        public GetDistrictDTO Get([FromHeader] string Authorization, long id)
         {
             if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Get"]))
             {
@@ -60,7 +60,7 @@ namespace API.Controllers
 
         // POST api/<DistrictController>
         [HttpPost]
-        public ActionStatus<GetDistrictDTO> Post([FromHeader] string Authorization, [FromBody] CreateDistrictDTO createEntity)
+        public GetDistrictDTO Post([FromHeader] string Authorization, [FromBody] CreateDistrictDTO createEntity)
         {
             if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Add"]))
             {
@@ -88,11 +88,16 @@ namespace API.Controllers
 
         // DELETE api/<DistrictController>/5
         [HttpDelete("{id}")]
-        public void Delete([FromHeader] string Authorization, long id)
+        public bool Delete([FromHeader] string Authorization, long id)
         {
             if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Delete"]))
             {
                 _districtWriteService.Delete(id);
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

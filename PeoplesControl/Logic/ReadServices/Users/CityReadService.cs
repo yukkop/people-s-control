@@ -19,12 +19,12 @@ namespace Logic.ReadServices
             _mapper = mapper;
         }
 
-        public ActionStatus<GetCityDTO> Get(long id)
+        public GetCityDTO Get(long id)
         {
             CityDTO entity = _cityQuery.Get(id);
-            return new ActionStatus<GetCityDTO>(_mapper.Map<GetCityDTO>(entity));
+            return _mapper.Map<GetCityDTO>(entity);
         }
-        public ActionStatus<List<GetCityDTO>> GetAll()
+        public List<GetCityDTO> GetAll()
         {
             List<CityDTO> entities = _cityQuery.GetAll();
             List<GetCityDTO> getEntities = new List<GetCityDTO>();
@@ -34,7 +34,7 @@ namespace Logic.ReadServices
                 getEntities.Add(_mapper.Map<GetCityDTO>(entity));
             }
 
-            return new ActionStatus<List<GetCityDTO>>(getEntities);
+            return getEntities;
         }
     }
 }

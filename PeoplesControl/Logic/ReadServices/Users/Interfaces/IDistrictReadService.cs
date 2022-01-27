@@ -8,8 +8,8 @@ namespace Logic.ReadServices
 {
     public interface IDistrictReadService
     {
-        public ActionStatus<GetDistrictDTO> Get(long id);
-        public ActionStatus<List<GetDistrictDTO>> GetAll();
-        public ActionStatus<List<GetDistrictDTO>> GetByCityName(string cityName);
+        public GetDistrictDTO Get(long id);
+        public List<GetDistrictDTO> GetAll();
+        public List<GetDistrictDTO> GetByCityName(string cityName);
     }
 }

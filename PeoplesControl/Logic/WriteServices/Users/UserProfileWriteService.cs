@@ -23,7 +23,7 @@ namespace Logic.WriteServices
             _mapper = mapper;
         }
 
-        public ActionStatus<GetUserProfileDTO> Add(RegistrationDTO registrationEntity)
+        public GetUserProfileDTO Add(RegistrationDTO registrationEntity)
         {
             UserProfile userProfileEntity = _mapper.Map<UserProfile>(registrationEntity);
 

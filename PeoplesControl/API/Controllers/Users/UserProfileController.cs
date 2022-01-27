@@ -29,6 +29,7 @@ namespace API.Controllers
             _authorizationService = authorizationService;
             _configuration = configuration;
         }
+        
         /*[HttpGet("{id}")]
         public string Get()
         {
@@ -61,25 +62,32 @@ namespace API.Controllers
             }
         }
         */
-        // GET api/<UserProfileController>/5
-        [HttpGet("{id}")]
-        public ActionStatus<GetUserProfileDTO> Get([FromHeader] string Authorization, long id)
+
+        [HttpGet("Authorization")]
+        public bool Authorization([FromHeader] string Authorization)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Get"]))
+            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Authorization"]))
             {
-                return _userProfileReadService.Get(id);
+                return true;
             }
             else
             {
-                return null;
+                return false;
             }
         }
         
-        // POST api/<UserProfileController>
         [HttpPost]
-        public bool Registration([FromBody] RegistrationDTO registration)
+        public bool Registration([FromHeader] string Authorization, [FromBody] RegistrationDTO registration)
         {
-            return _userProfileWriteService.Add(registration);
+            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Registration"]))
+            {
+                _userProfileWriteService.Add(registration);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 /*
         // PUT api/<UserProfileController>

@@ -33,7 +33,7 @@ namespace API.Controllers
 
         // GET: api/<CityController>
         [HttpGet]
-        public ActionStatus<List<GetCityDTO>> Get([FromHeader] string Authorization)
+        public List<GetCityDTO> Get([FromHeader] string Authorization)
         {
             if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Get"])) {
                 return _cityReadService.GetAll();
@@ -46,7 +46,7 @@ namespace API.Controllers
 
         // GET api/<CityController>/5
         [HttpGet("{id}")]
-        public ActionStatus<GetCityDTO> Get([FromHeader] string Authorization, long id)
+        public GetCityDTO Get([FromHeader] string Authorization, long id)
         {
             if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Get"]))
             {
@@ -60,15 +60,16 @@ namespace API.Controllers
 
         // POST api/<CityController>
         [HttpPost]
-        public ActionStatus<GetCityDTO> Post([FromHeader] string Authorization, [FromBody] CreateCityDTO createEntity)
+        public bool Post([FromHeader] string Authorization, [FromBody] CreateCityDTO createEntity)
         {
             if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Add"]))
             {
-                return _cityWriteService.Add(createEntity);
+                _cityWriteService.Add(createEntity);
+                return true;
             }
             else
             {
-                return null;
+                return false;
             }
         }
 
@@ -88,11 +89,16 @@ namespace API.Controllers
 
         // DELETE api/<CityController>/5
         [HttpDelete("{id}")]
-        public void Delete([FromHeader] string Authorization, long id)
+        public bool Delete([FromHeader] string Authorization, long id)
         {
             if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Delete"]))
             {
                 _cityWriteService.Delete(id);
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

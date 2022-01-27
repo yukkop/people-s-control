@@ -14,7 +14,5 @@ namespace DataBase.Models
         public ActionMeta Removal { get; set; }
         public ActionMeta LastEditing { get; set; }
         public ActionMeta Creation { get; set; }
-
-
     }
 }
