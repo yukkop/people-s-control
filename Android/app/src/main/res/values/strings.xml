@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">AndroidPeoples</string>
+    <string name="develop_by">Разработано в рамках проекта “Хакатон-Кибердонбасс”</string>
     <!--Main Menu Strings-->
     <string name="main_menu_button_request_str">Заявки</string>
     <string name="main_menu_button_profile_str">Профиль</string>
@@ -7,16 +8,31 @@
     <string name="main_menu_button_faq_str">Вопросы и ответы</string>
     <string name="main_menu_button_government_str">Органы власти</string>
     <string name="main_menu_button_stats_str">Статистика</string>
+    <!--Hints-->
+    <string name="input_pass_hint">Пароль</string>
+    <string name="input_email_hint">E-mail</string>
+    <string name="input_phone_hint">Телефон</string>
+    <string name="input_name_hint">Имя</string>
+    <string name="input_surname_hint">Фамилия</string>
+    <string name="input_patronimic_hint">Отчество</string>
     <!--Login Menu Strings-->
-    <string name="login_title">Вход в систему</string>
+    <string name="login_page_title">Вход в систему</string>
+    <string name="login_page_forget_pass"><u>Забыл пароль</u></string>
+    <string name="login_page_enter_button_text">Вход</string>
+    <string name="login_page_have_profile_quathion">У вас еще нет профиля?</string>
+    <string name="login_page_registration"><u>Регистрация</u></string>
+    <string name="login_page_or">или</string>
+    <string name="login_page_skip"><u>Пропустить</u></string>
+    <string name="login_page_confidence"><u>Правила и соглашение</u> на использование персональных данных</string>
+    <!--Registration Menu Strings-->
+    <string name="registration_page_title">Регистрация</string>
+    <string name="registration_page_continue_button">Продолжить</string>
+    <string name="registration_page_cancel_button">Отмена</string>
+    <!--Region Select Strings-->
+    <string name="region_select_page_title">Выбор региона</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="input_pass_login_hint">password</string>
-    <string name="input_email_login_hint">e-mail</string>
-    <string name="forget_pass_login"><u>Забыл пароль</u></string>
-    <string name="enter_button_text">Вход</string>
-    <string name="have_profile_quathion">У вас еще нет профиля?</string>
-    <string name="registration"><u>Регистрация</u></string>
-    <string name="or">или</string>
-    <string name="skip"><u>Пропустить</u></string>
-    <string name="confidence"><u>Правила и соглашение</u> на использование персональных данных</string>
+    <string name="region_select_page_select_button">Выбрать</string>
+
 </resources>

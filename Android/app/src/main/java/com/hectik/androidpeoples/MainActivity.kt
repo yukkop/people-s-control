@@ -1,5 +1,7 @@
 package com.hectik.androidpeoples
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 

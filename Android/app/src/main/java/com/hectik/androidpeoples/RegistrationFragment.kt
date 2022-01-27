@@ -8,17 +8,11 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import com.google.android.material.button.MaterialButton
-import org.w3c.dom.Text
 
-/**
- * A simple [Fragment] subclass.
- * Use the [LoginFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class LoginFragment : Fragment()
+
+class RegistrationFragment : Fragment()
 {
+
     private var loginToggle = LoginType.E_MAIL
     private lateinit var loginToggleEmailView: TextView
     private lateinit var loginTogglePhoneView: TextView
@@ -35,15 +29,15 @@ class LoginFragment : Fragment()
     ): View?
     {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        return inflater.inflate(R.layout.fragment_registration, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
-        loginToggleEmailView = view.findViewById(R.id.emailToggleButtonOnLoginPage)
-        loginTogglePhoneView = view.findViewById(R.id.phoneToggleButtonOnLoginPage)
-        loginInputView = view.findViewById(R.id.inputLoginOnLoginPage)
+        loginToggleEmailView = view.findViewById(R.id.emailToggleButtonOnRegistrationPage)
+        loginTogglePhoneView = view.findViewById(R.id.phoneToggleButtonOnRegistrationPage)
+        loginInputView = view.findViewById(R.id.inputLoginOnRegistrationPage)
         loginToggleEmailView.setOnClickListener {
             loginToggle = LoginType.E_MAIL
             toggleStyleSet()
@@ -51,9 +45,6 @@ class LoginFragment : Fragment()
         loginTogglePhoneView.setOnClickListener {
             loginToggle = LoginType.PHONE
             toggleStyleSet()
-        }
-        view.findViewById<TextView>(R.id.LoginPageRegistrationTextButton).setOnClickListener {
-            it.findNavController().navigate(R.id.action_loginFragment_to_registration)
         }
     }
 
