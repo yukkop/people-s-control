@@ -13,7 +13,7 @@ namespace Logic.Repositories
 
         public ActionMetaRepository(IWebContext context)
         {
-            context = _context;
+            _context = context;
         }
 
         public ActionMeta Add(ActionMeta entity)
@@ -21,25 +21,9 @@ namespace Logic.Repositories
             return _context.ActionMeta.Add(entity).Entity;
         }
 
-        public ActionMeta Update(long id, ActionMeta newEntity)
-        {
-            ActionMeta oldEntity = _context.ActionMeta.Where(item => item.Id == id).FirstOrDefault();
-            return oldEntity;
-        }
-
         public void SaveChanges()
         {
             _context.SaveChanges();
-        }
-
-        public ActionMeta Get(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<ActionMeta> GetAll()
-        {
-            throw new NotImplementedException();
         }
     }
 }

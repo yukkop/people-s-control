@@ -1,12 +1,42 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20220120111355_UniqCityName.cs" />
+    <Compile Remove="Migrations\20220120111355_UniqCityName.Designer.cs" />
+    <Compile Remove="Migrations\20220121195439_SuperUserAdditionTry1.cs" />
+    <Compile Remove="Migrations\20220121195439_SuperUserAdditionTry1.Designer.cs" />
+    <Compile Remove="Migrations\20220121195514_SuperUserAdditionTry1.cs" />
+    <Compile Remove="Migrations\20220121195514_SuperUserAdditionTry1.Designer.cs" />
+    <Compile Remove="Migrations\20220121200049_SuperUserAdditionTry1.cs" />
+    <Compile Remove="Migrations\20220121200049_SuperUserAdditionTry1.Designer.cs" />
+    <Compile Remove="Migrations\20220121201621_SuperUserAdditionTry1.cs" />
+    <Compile Remove="Migrations\20220121201621_SuperUserAdditionTry1.Designer.cs" />
+    <Compile Remove="Migrations\20220124151945_AddedAvatarToUserProfile.cs" />
+    <Compile Remove="Migrations\20220124151945_AddedAvatarToUserProfile.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.22" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.18" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

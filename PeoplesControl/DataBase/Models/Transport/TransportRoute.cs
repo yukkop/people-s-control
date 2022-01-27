@@ -9,6 +9,9 @@ namespace DataBase.Models
         public long Id { get; set; }
         public string Name { get; set; }
         public string Number { get; set; }
+
+        public long CityId { get; set; }
+        public City City { get; set; }
         public ActionMeta Removal { get; set; }
         public ActionMeta LastEditing { get; set; }
         public ActionMeta Creation { get; set; }
