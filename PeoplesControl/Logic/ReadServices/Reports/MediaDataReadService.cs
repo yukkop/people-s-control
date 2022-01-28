@@ -19,12 +19,12 @@ namespace Logic.ReadServices
             _mapper = mapper;
         }
 
-        public ActionStatus<GetMediaDataTypeDTO> Get(long id)
+        public RequestStatus<GetMediaDataTypeDTO> Get(long id)
         {
             MediaDataTypeDTO entity = _mediaDataTypeQuery.Get(id);
-            return new ActionStatus<GetMediaDataTypeDTO>(_mapper.Map<GetMediaDataTypeDTO>(entity));
+            return new RequestStatus<GetMediaDataTypeDTO>(_mapper.Map<GetMediaDataTypeDTO>(entity));
         }
-        public ActionStatus<List<GetMediaDataTypeDTO>> GetAll()
+        public RequestStatus<List<GetMediaDataTypeDTO>> GetAll()
         {
             List<MediaDataTypeDTO> entities = _mediaDataTypeQuery.GetAll();
             List<GetMediaDataTypeDTO> getEntities = new List<GetMediaDataTypeDTO>();
@@ -34,7 +34,7 @@ namespace Logic.ReadServices
                 getEntities.Add(_mapper.Map<GetMediaDataTypeDTO>(entity));
             }
 
-            return new ActionStatus<List<GetMediaDataTypeDTO>>(getEntities);
+            return new RequestStatus<List<GetMediaDataTypeDTO>>(getEntities);
         }
     }
 }

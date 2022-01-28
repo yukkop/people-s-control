@@ -19,23 +19,18 @@ namespace Logic.Helpers
             _configuration = configuration;
         }
 
-        public bool Authorization(string token, string rolesString)
+        public (bool, long) Authorization(string token, string rolesString)
         {
             long userId = _authenticationService.Authentication(token);
-                       
-            if (userId != 0)
+
+
+            if (rolesString == _configuration["Roles"].Split(",")[1] && userId != 0)
             {
-                if (rolesString == _configuration["Roles"].Split(",")[1])
-                {
-                    return true;
-                }
-                string[] roles = rolesString.Split(",");
-                return _roleUserQuery.CheckUserPermissions(userId, roles);
+                    return (true, userId);
             }
-            else
-            {
-                return false;
-            }
+
+            string[] roles = rolesString.Split(",");
+            return (_roleUserQuery.CheckUserPermissions(userId, roles), userId);
         }
     }
 }

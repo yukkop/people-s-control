@@ -16,9 +16,9 @@ namespace Logic.WriteServices
             _reportViewRepository = reportViewRepository;
         }
 
-        public ActionStatus<ReportView> Add(ReportView createEntity)
+        public RequestStatus<ReportView> Add(ReportView createEntity)
         {
-            ActionStatus<ReportView> actionStatus =  new ActionStatus<ReportView>(_reportViewRepository.Add(createEntity));
+            RequestStatus<ReportView> actionStatus =  new RequestStatus<ReportView>(_reportViewRepository.Add(createEntity));
             _reportViewRepository.SaveChanges();
             return actionStatus;
         }

@@ -52,7 +52,7 @@ namespace DataBase
         public DbSet<TransportStop> TransportStops { get; set; }
         public DbSet<TransportStopAction> TransportStopActions { get; set; }
         public System.Threading.Tasks.Task<bool> SaveChangesAsync(CancellationToken cancellationToken = default);
-        public bool SaveChanges();
+        public Exception SaveChanges();
         public bool Update<TEntity>(TEntity entity);
 
     }

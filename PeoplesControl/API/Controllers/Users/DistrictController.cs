@@ -31,49 +31,51 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public List<GetDistrictDTO> Get([FromHeader] string Authorization)
+        public RequestStatus<List<GetDistrictDTO>> Get([FromHeader] string Authorization)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Get"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Get"]);
+            if (isAuthenticated){
                 return _districtReadService.GetAll();
             }
             else
             {
-                return null;
+                return RequestStatus<List<GetDistrictDTO>>.AuthFailed();
             }
         }
 
         [HttpGet("{id}")]
-        public GetDistrictDTO Get([FromHeader] string Authorization, long id)
+        public RequestStatus<GetDistrictDTO> Get([FromHeader] string Authorization, long id)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Get"]))
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Get"]);
+            if (isAuthenticated)
             {
                 return _districtReadService.Get(id);
             }
             else
             {
-                return null;
+                return RequestStatus<GetDistrictDTO>.AuthFailed();
             }
         }
 
         [HttpGet("ByCity/{name}")]
-        public List<GetDistrictDTO> GetByCityName([FromHeader] string Authorization, string name)
+        public RequestStatus< List<GetDistrictDTO> >GetByCityName([FromHeader] string Authorization, string name)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Get"]))
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Get"]);
+            if (isAuthenticated)
             {
                 return _districtReadService.GetByCityName(name);
             }
             else
             {
-                return null;
+                return RequestStatus<List<GetDistrictDTO>>.AuthFailed();
             }
         }
 
         [HttpPost]
         public GetDistrictDTO Post([FromHeader] string Authorization, [FromBody] CreateDistrictDTO createEntity)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Add"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Add"]);
+            if (isAuthenticated){
                 return _districtWriteService.Add(createEntity);
             }
             else
@@ -85,8 +87,8 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public bool Put([FromHeader] string Authorization, [FromBody] UpdateDistrictDTO updateEntity)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Update"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Update"]);
+            if (isAuthenticated){
                 return _districtWriteService.Update(updateEntity);
             }
             else
@@ -98,8 +100,8 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public bool Delete([FromHeader] string Authorization, long id)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Delete"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Delete"]);
+            if (isAuthenticated){
                 _districtWriteService.Delete(id);
                 return true;
             }

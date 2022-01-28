@@ -11,8 +11,8 @@ namespace Logic.Repositories
         public List<City> GetAll();
         public City Add(City entity);
         public bool Update(City entity);
-        public void SaveChanges();
-        public void Delete(long id);
+        public Exception SaveChanges();
+        public Exception Delete(long id);
 
     }
 }

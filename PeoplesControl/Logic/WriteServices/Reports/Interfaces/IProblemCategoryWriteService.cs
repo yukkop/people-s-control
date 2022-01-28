@@ -8,7 +8,7 @@ namespace Logic.WriteServices
 {
     public interface IProblemCategoryWriteService
     {
-        public ActionStatus<GetProblemCategoryDTO> Add(CreateProblemCategoryDTO createEntity);
+        public RequestStatus<GetProblemCategoryDTO> Add(CreateProblemCategoryDTO createEntity);
         public bool Update(UpdateProblemCategoryDTO updateEntity);
         public void Delete(long id, long userId);
     }

@@ -8,7 +8,7 @@ namespace Logic.ReadServices
 {
     public interface IMediaDataTypeReadService
     {
-        public ActionStatus<GetMediaDataTypeDTO> Get(long id);
-        public ActionStatus<List<GetMediaDataTypeDTO>> GetAll();
+        public RequestStatus<GetMediaDataTypeDTO> Get(long id);
+        public RequestStatus<List<GetMediaDataTypeDTO>> GetAll();
     }
 }

@@ -22,6 +22,8 @@ namespace Logic.Helpers
         /// <returns></returns>
         public long Authentication(string authorizationBase64String)
         {
+            if (authorizationBase64String == null)
+                return 0;
             var (login, password) = Base64Decode(authorizationBase64String);
             UserPasswordDTO user = _userQuery.FindUserByLogin(login);
             byte[] saltPasword = SaltHash(password, user.SaltValue);

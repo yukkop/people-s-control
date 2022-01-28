@@ -8,6 +8,6 @@ namespace Logic.WriteServices
 {
     public interface IReportViewWriteService
     {
-        public ActionStatus<ReportView> Add(ReportView createEntity);
+        public RequestStatus<ReportView> Add(ReportView createEntity);
     }
 }

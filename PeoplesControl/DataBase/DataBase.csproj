@@ -17,6 +17,14 @@
     <Compile Remove="Migrations\20220121201621_SuperUserAdditionTry1.Designer.cs" />
     <Compile Remove="Migrations\20220124151945_AddedAvatarToUserProfile.cs" />
     <Compile Remove="Migrations\20220124151945_AddedAvatarToUserProfile.Designer.cs" />
+    <Compile Remove="Migrations\20220128153236_ActrionMetaPKExperiment.cs" />
+    <Compile Remove="Migrations\20220128153236_ActrionMetaPKExperiment.Designer.cs" />
+    <Compile Remove="Migrations\20220128153932_ActrionMetaPKExperiment1.cs" />
+    <Compile Remove="Migrations\20220128153932_ActrionMetaPKExperiment1.Designer.cs" />
+    <Compile Remove="Migrations\20220128155431_experiment.cs" />
+    <Compile Remove="Migrations\20220128155431_experiment.Designer.cs" />
+    <Compile Remove="Migrations\20220128160831_experiment1.cs" />
+    <Compile Remove="Migrations\20220128160831_experiment1.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

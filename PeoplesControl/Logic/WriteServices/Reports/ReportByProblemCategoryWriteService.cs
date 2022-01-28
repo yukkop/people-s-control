@@ -16,9 +16,9 @@ namespace Logic.WriteServices
             _reportByProblemCategoryRepository = reportByProblemCategoryRepository;
         }
 
-        public ActionStatus<ReportByProblemCategory> Add(ReportByProblemCategory createEntity)
+        public RequestStatus<ReportByProblemCategory> Add(ReportByProblemCategory createEntity)
         {
-            ActionStatus<ReportByProblemCategory> actionStatus = new ActionStatus<ReportByProblemCategory>(_reportByProblemCategoryRepository.Add(createEntity));
+            RequestStatus<ReportByProblemCategory> actionStatus = new RequestStatus<ReportByProblemCategory>(_reportByProblemCategoryRepository.Add(createEntity));
             _reportByProblemCategoryRepository.SaveChanges();
             return actionStatus;
         }

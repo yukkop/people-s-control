@@ -32,10 +32,10 @@ namespace API.Controllers
 
         // GET: api/<ReportStatusController>
         [HttpGet]
-        public ActionStatus<List<GetReportStatusDTO>> Get([FromHeader] string Authorization)
+        public RequestStatus<List<GetReportStatusDTO>> Get([FromHeader] string Authorization)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportStatus:Get"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportStatus:Get"]);
+           if (isAuthenticated) {
                 return _reportStatusReadService.GetAll();
             }
             else
@@ -46,10 +46,10 @@ namespace API.Controllers
 
         // GET api/<ReportStatusController>/5
         [HttpGet("{id}")]
-        public ActionStatus<GetReportStatusDTO> Get([FromHeader] string Authorization, long id)
+        public RequestStatus<GetReportStatusDTO> Get([FromHeader] string Authorization, long id)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportStatus:Get"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportStatus:Get"]);
+            if (isAuthenticated){
                 return _reportStatusReadService.Get(id);
             }
             else
@@ -60,10 +60,10 @@ namespace API.Controllers
 
         // POST api/<ReportStatusController>
         [HttpPost]
-        public ActionStatus<GetReportStatusDTO> Post([FromHeader] string Authorization, [FromBody] CreateReportStatusDTO createEntity)
+        public RequestStatus<GetReportStatusDTO> Post([FromHeader] string Authorization, [FromBody] CreateReportStatusDTO createEntity)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportStatus:Add"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportStatus:Add"]);
+            if (isAuthenticated){                                                                                                                
                 return _reportStatusWriteService.Add(createEntity);
             }
             else
@@ -76,8 +76,8 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public bool Put([FromHeader] string Authorization, [FromBody] UpdateReportStatusDTO updateEntity)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportStatus:Update"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportStatus:Update"]);
+            if (isAuthenticated){
                 return _reportStatusWriteService.Update(updateEntity);
             }
             else
@@ -90,8 +90,8 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public void Delete([FromHeader] string Authorization, long id)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportStatus:Delete"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportStatus:Delete"]);
+            if (isAuthenticated){
                 _reportStatusWriteService.Delete(id);
             }
         }

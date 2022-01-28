@@ -8,6 +8,6 @@ namespace Logic.ReadServices
 {
     public interface IUserProfileReadService
     {
-        public ActionStatus<GetUserProfileDTO> Get(long id);
+        public RequestStatus<GetUserProfileDTO> Get(long id);
     }
 }
