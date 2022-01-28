@@ -111,6 +111,10 @@ namespace API
             services.AddScoped<IProblemCategoryWriteService, ProblemCategoryWriteService>();
             services.AddScoped<IProblemCategoryReadService, ProblemCategoryReadService>();
 
+            services.AddScoped<IRegionRepository, RegionRepository>();
+            services.AddScoped<IRegionQuery, RegionQuery>();
+            services.AddScoped<IRegionReadService, RegionReadService>();
+
             AutoMapper.IConfigurationProvider config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<ActionMetaProfile>();

@@ -6,6 +6,8 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://kotlin.bintray.com/kotlinx" }
+
     }
     dependencies {
         def nav_version = "2.3.5"

@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import com.hectik.androidpeoples.services.RegionService
 import io.ktor.client.*
 import io.ktor.client.features.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import java.util.*
 
 /**
@@ -23,6 +23,7 @@ import java.util.*
 class RegionSelectFragment : Fragment()
 {
     val client = HttpClient()
+    val regionService = RegionService()
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -39,30 +40,13 @@ class RegionSelectFragment : Fragment()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?): Unit = runBlocking {
+
         super.onViewCreated(view, savedInstanceState)
-        val region_list = view.findViewById<LinearLayout>(R.id.region_list)
-        val cityRequest = client.request<String> {
-            url("http://localhost:5000/api/City")
-            method = HttpMethod.Get
-            headers {
-                append("Authorization", "Basic "+Base64.getEncoder().encodeToString("guest:".toByteArray()))
+        GlobalScope.launch(Dispatchers.IO) {
+            val region_list = async {
+                regionService.getSupportedRegion()
             }
         }
-        print(cityRequest)
-
-    }
-
-    suspend fun getRegionList()
-    {
-        client
-        val cityRequest = client.request<String> {
-            url("http://localhost:5000/api/City")
-            method = HttpMethod.Get
-            headers {
-                append("Authorization", Base64.getEncoder().encodeToString("guest:".toByteArray()))
-            }
-        }
-        print(cityRequest.toString())
     }
 
 }

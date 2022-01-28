@@ -31,7 +31,6 @@ namespace API.Controllers
             _configuration = configuration;
         }
 
-        // GET: api/<CityController>
         [HttpGet]
         public List<GetCityDTO> Get([FromHeader] string Authorization)
         {
@@ -43,8 +42,7 @@ namespace API.Controllers
                 return null;
             }
         }
-
-        // GET api/<CityController>/5
+        
         [HttpGet("{id}")]
         public GetCityDTO Get([FromHeader] string Authorization, long id)
         {
@@ -52,13 +50,12 @@ namespace API.Controllers
             {
                 return _cityReadService.Get(id);
             }
-            else
+            else 
             {
                 return null;
             }
         }
 
-        // POST api/<CityController>
         [HttpPost]
         public bool Post([FromHeader] string Authorization, [FromBody] CreateCityDTO createEntity)
         {
@@ -73,7 +70,6 @@ namespace API.Controllers
             }
         }
 
-        // PUT api/<CityController>
         [HttpPut("{id}")]
         public bool Put([FromHeader] string Authorization, [FromBody] UpdateCityDTO updateEntity)
         {
@@ -87,7 +83,6 @@ namespace API.Controllers
             }
         }
 
-        // DELETE api/<CityController>/5
         [HttpDelete("{id}")]
         public bool Delete([FromHeader] string Authorization, long id)
         {
