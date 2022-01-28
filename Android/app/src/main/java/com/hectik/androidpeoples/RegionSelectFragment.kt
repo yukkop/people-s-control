@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.hectik.androidpeoples.models.RegionDTO
 import com.hectik.androidpeoples.services.RegionService
 import io.ktor.client.*
 import io.ktor.client.features.*
@@ -24,6 +27,7 @@ class RegionSelectFragment : Fragment()
 {
     val client = HttpClient()
     val regionService = RegionService()
+    lateinit var regionListView: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -42,11 +46,24 @@ class RegionSelectFragment : Fragment()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?): Unit = runBlocking {
 
         super.onViewCreated(view, savedInstanceState)
-        GlobalScope.launch(Dispatchers.IO) {
-            val region_list = async {
+        regionListView = view.findViewById(R.id.region_list)
+        MainScope().launch {
+            kotlin.runCatching {
                 regionService.getSupportedRegion()
+            }.onSuccess {
+                for (curRegion in it)
+                {
+                    val regionView = TextView(view.context)
+                    regionView.text = curRegion.name
+                    regionListView.addView(regionView)
+                }
+            }.onFailure {
+                val regionView = TextView(view.context)
+                regionView.text = it.localizedMessage
+                regionListView.addView(regionView)
             }
         }
+
     }
 
 }
