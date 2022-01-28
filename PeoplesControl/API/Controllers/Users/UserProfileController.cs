@@ -76,13 +76,27 @@ namespace API.Controllers
             }
         }
         
-        [HttpPost]
+        [HttpPost("registrationByEmail")]
         public bool Registration([FromHeader] string Authorization, [FromBody] RegistrationDTO registration)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Registration"]);
             if (isAuthenticated)
             {
-                _userProfileWriteService.Registration(registration);
+                _userProfileWriteService.RegistrationByEmail(registration);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        [HttpPost("confirmEmail/{confirmationCode}")]
+        public bool ConfirmEmail([FromHeader] string Authorization, int confirmationCode)
+        {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Registration"]);
+            if (isAuthenticated)
+            {
+                _userProfileWriteService.ConfirmEmail(userId, confirmationCode);
                 return true;
             }
             else

@@ -3,6 +3,7 @@ using System;
 using DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using NpgsqlTypes;
@@ -10,9 +11,10 @@ using NpgsqlTypes;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220128155431_experiment")]
+    partial class experiment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,6 +40,23 @@ namespace DataBase.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("ActionMeta");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Date = new DateTime(2022, 1, 28, 18, 54, 30, 792, DateTimeKind.Local).AddTicks(8587)
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Date = new DateTime(2022, 1, 28, 18, 54, 30, 793, DateTimeKind.Local).AddTicks(8790)
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Date = new DateTime(2022, 1, 28, 18, 54, 30, 793, DateTimeKind.Local).AddTicks(8818)
+                        });
                 });
 
             modelBuilder.Entity("DataBase.Models.Avatar", b =>
@@ -71,6 +90,28 @@ namespace DataBase.Migrations
                         .IsUnique();
 
                     b.ToTable("Cities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Name = "Донецк"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Name = "Макеевка"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Name = "Харцызск"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            Name = "Ясиноватая"
+                        });
                 });
 
             modelBuilder.Entity("DataBase.Models.District", b =>
@@ -91,6 +132,26 @@ namespace DataBase.Migrations
                     b.HasIndex("CityId");
 
                     b.ToTable("Districts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CityId = 2L,
+                            Name = "Червоногвардейка"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CityId = 2L,
+                            Name = "Центральногородской"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CityId = 2L,
+                            Name = "Горняцкий"
+                        });
                 });
 
             modelBuilder.Entity("DataBase.Models.DraftReport", b =>
@@ -570,6 +631,32 @@ namespace DataBase.Migrations
                     b.HasIndex("RemovalId");
 
                     b.ToTable("Regions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CityId = 1L,
+                            IsRegionSupported = true
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CityId = 2L,
+                            IsRegionSupported = true
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CityId = 3L,
+                            IsRegionSupported = false
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CityId = 4L,
+                            IsRegionSupported = false
+                        });
                 });
 
             modelBuilder.Entity("DataBase.Models.Report", b =>
@@ -739,6 +826,23 @@ namespace DataBase.Migrations
                     b.HasIndex("RemovalId");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Name = "Guest"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Name = " User"
+                        });
                 });
 
             modelBuilder.Entity("DataBase.Models.Schedule", b =>
@@ -953,6 +1057,24 @@ namespace DataBase.Migrations
                     b.HasIndex("UserProfileId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Login = "supper",
+                            SaltPassword = new byte[] { 179, 116, 232, 248, 45, 66, 50, 216, 71, 167, 174, 126, 161, 156, 7, 15, 1, 180, 238, 187, 20, 54, 156, 229, 208, 213, 38, 9, 101, 129, 20, 29 },
+                            SaltValue = new byte[] { 242, 3, 62, 221, 169, 59, 244, 197, 207, 234, 53, 50, 77, 20, 139, 149, 229, 94, 234, 17, 19, 5, 169, 55, 184, 124, 139, 169, 205, 6, 47, 224 },
+                            UserProfileId = 1L
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Login = "guest",
+                            SaltPassword = new byte[] { 133, 17, 106, 142, 11, 55, 24, 255, 120, 66, 77, 48, 20, 232, 1, 81, 30, 78, 164, 83, 42, 224, 147, 224, 37, 147, 105, 53, 170, 172, 249, 108 },
+                            SaltValue = new byte[] { 97, 234, 60, 207, 110, 168, 164, 13, 64, 190, 70, 8, 4, 203, 74, 107, 187, 80, 160, 123, 226, 30, 50, 33, 205, 18, 67, 199, 224, 246, 35, 107 },
+                            UserProfileId = 2L
+                        });
                 });
 
             modelBuilder.Entity("DataBase.Models.UserProfile", b =>
@@ -1033,6 +1155,32 @@ namespace DataBase.Migrations
                     b.HasIndex("UnblockId");
 
                     b.ToTable("UsersProfiles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreationId = 1L,
+                            DistrictId = 1L,
+                            IsBlock = false,
+                            Name = "Supper",
+                            NotifyByEmail = false,
+                            NotifyBySMS = false,
+                            RequestAnonymity = false,
+                            Surname = "Account"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreationId = 2L,
+                            DistrictId = 1L,
+                            IsBlock = false,
+                            Name = "Guest",
+                            NotifyByEmail = false,
+                            NotifyBySMS = false,
+                            RequestAnonymity = true,
+                            Surname = "Account"
+                        });
                 });
 
             modelBuilder.Entity("DataBase.Models.UserRole", b =>
@@ -1055,6 +1203,20 @@ namespace DataBase.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UsersRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            RoleId = 1L,
+                            UserId = 1L
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            RoleId = 2L,
+                            UserId = 2L
+                        });
                 });
 
             modelBuilder.Entity("DataBase.Models.ActionMeta", b =>

@@ -338,6 +338,14 @@ namespace DataBase
                 entity.HasOne(d => d.Creation)
                     .WithMany()
                     .HasForeignKey(d => d.CreationId);
+
+                entity.HasIndex(d => d.EmailAddress)
+                    .IsUnique();
+
+                entity.HasIndex(d => d.PhoneNumber)
+                    .IsUnique();
+
+
             });
 
             modelBuilder.Entity<ActionMeta>(entity =>
@@ -345,6 +353,8 @@ namespace DataBase
                 entity.HasOne(d => d.User)
                     .WithMany()
                     .HasForeignKey(d => d.UserId);
+
+                entity.HasKey(d => d.Id);
             });
 
             modelBuilder.Entity<User>(entity =>
@@ -352,28 +362,34 @@ namespace DataBase
                 entity.HasOne(d => d.UserProfile)
                     .WithMany()
                     .HasForeignKey(d => d.UserProfileId);
-            });
 
+
+                entity.HasIndex(d => d.Login)
+                    .IsUnique();
+
+                entity.HasKey(d => d.Id);
+            });
+            /*
             modelBuilder.Entity<City>().HasData(
                 new City[] {
                     new City() 
                     {
-                        Id = 1, 
+                       // Id = 1, 
                         Name = "Донецк" 
                     },
                     new City() 
                     { 
-                        Id = 2, 
+                       // Id = 2, 
                         Name = "Макеевка" 
                     },
                     new City() 
                     { 
-                        Id = 3, 
+                       // Id = 3, 
                         Name = "Харцызск" 
                     },
                     new City() 
                     { 
-                        Id = 4, 
+                       // Id = 4, 
                         Name = "Ясиноватая" 
                     }
                 }
@@ -382,19 +398,19 @@ namespace DataBase
             modelBuilder.Entity<District>().HasData(
                     new District() 
                     { 
-                        Id = 1, 
+                       // Id = 1, 
                         Name = "Червоногвардейка",
                         CityId = 2
                     },
                     new District() 
                     { 
-                        Id = 2, 
+                       // Id = 2, 
                         Name = "Центральногородской",
                         CityId = 2
                     },
                     new District() 
                     { 
-                        Id = 3, 
+                       // Id = 3, 
                         Name = "Горняцкий",
                         CityId = 2
                     }
@@ -402,7 +418,7 @@ namespace DataBase
 
             ActionMeta RegionsCreation = new ActionMeta()
             {
-                Id = 1,
+               // Id = 1,
                 UserId = null,
                 Date = DateTime.Now
             };
@@ -412,25 +428,25 @@ namespace DataBase
                 {                 
                     new Region()
                     {
-                        Id = 1,
+                       // Id = 1,
                         CityId = 1,
                         IsRegionSupported = true
                     },
                     new Region()
                     {
-                        Id = 2,
+                       // Id = 2,
                         CityId = 2,
                         IsRegionSupported = true
                     },
                     new Region()
                     {
-                        Id = 3,
+                       // Id = 3,
                         CityId = 3,
                         IsRegionSupported = false
                     },
                     new Region()
                     {
-                        Id = 4,
+                       // Id = 4,
                         CityId = 4,
                         IsRegionSupported = false
                     }
@@ -443,28 +459,28 @@ namespace DataBase
             for (int i = 1; i < rolesNames.Length + 1; i++) {
                 roles[i-1] = new Role()
                 {
-                    Id = i,
+                   // Id = i,
                     Name = rolesNames[i-1]
                 };
             }
 
             ActionMeta SupperCreation = new ActionMeta()
             {
-                Id = 2,
+               // Id = 2,
                 UserId = null,
                 Date = DateTime.Now
             };
 
             ActionMeta GuestCreation = new ActionMeta()
             {
-                Id = 3,
+               // Id = 3,
                 UserId = null,
                 Date = DateTime.Now
             };
 
             UserProfile SupperProfile = new UserProfile()
             {
-                Id = 1,
+               // Id = 1,
                 Name = "Supper",
                 Surname = "Account",
                 CreationId = 1,
@@ -474,10 +490,10 @@ namespace DataBase
                 RequestAnonymity = false,
                 DistrictId = 1
             };
-
+            
             UserProfile GuestProfile = new UserProfile()
             {
-                Id = 2,
+               // Id = 2,
                 Name = "Guest",
                 Surname = "Account",
                 CreationId = 2,
@@ -490,7 +506,7 @@ namespace DataBase
 
             User GuestUser = new User()
             {
-                Id = 2,
+               // Id = 2,
                 UserProfileId = 2,
                 Login = "guest",
                 SaltPassword = Properties.Resources.GuestSaltPassword,
@@ -499,7 +515,7 @@ namespace DataBase
 
             User SupperUser = new User()
             {
-                Id = 1,
+               // Id = 1,
                 UserProfileId = 1,
                 Login = "supper",
                 SaltPassword = Properties.Resources.SupperSaltPassword,
@@ -511,13 +527,13 @@ namespace DataBase
                 {
                     new UserRole()
                     {
-                        Id = 1,
+                       // Id = 1,
                         UserId = 1, // Supper-User Id
                         RoleId = 1 // Sepper-Role Id
                     },
                     new UserRole()
                     {
-                        Id = 2,
+                       // Id = 2,
                         UserId = 2, // Guest-User Id
                         RoleId = 2 // Guest-Role Id
                     }
@@ -543,6 +559,8 @@ namespace DataBase
                 SupperUser,
                 GuestUser
             );
+            */
         }
+        
     }
 }
