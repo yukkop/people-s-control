@@ -20,12 +20,17 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_registration"
-            app:destination="@id/registration" />
+            app:destination="@id/regionSelectFragment" />
     </fragment>
     <fragment
         android:id="@+id/registration"
-        android:name="com.hectik.androidpeoples.Registration"
+        android:name="com.hectik.androidpeoples.RegistrationFragment"
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" />
+    <fragment
+        android:id="@+id/regionSelectFragment"
+        android:name="com.hectik.androidpeoples.RegionSelectFragment"
+        android:label="fragment_region_select"
+        tools:layout="@layout/fragment_region_select" />
 
 </navigation>
