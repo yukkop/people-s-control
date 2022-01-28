@@ -365,6 +365,16 @@ namespace DataBase
                     { 
                         Id = 2, 
                         Name = "Макеевка" 
+                    },
+                    new City() 
+                    { 
+                        Id = 3, 
+                        Name = "Харцызск" 
+                    },
+                    new City() 
+                    { 
+                        Id = 4, 
+                        Name = "Ясиноватая" 
                     }
                 }
             );
@@ -375,7 +385,56 @@ namespace DataBase
                         Id = 1, 
                         Name = "Червоногвардейка",
                         CityId = 2
+                    },
+                    new District() 
+                    { 
+                        Id = 2, 
+                        Name = "Центральногородской",
+                        CityId = 2
+                    },
+                    new District() 
+                    { 
+                        Id = 3, 
+                        Name = "Горняцкий",
+                        CityId = 2
                     }
+            );
+
+            ActionMeta RegionsCreation = new ActionMeta()
+            {
+                Id = 1,
+                UserId = null,
+                Date = DateTime.Now
+            };
+
+            modelBuilder.Entity<Region>().HasData(
+                new Region[]
+                {                 
+                    new Region()
+                    {
+                        Id = 1,
+                        CityId = 1,
+                        IsRegionSupported = true
+                    },
+                    new Region()
+                    {
+                        Id = 2,
+                        CityId = 2,
+                        IsRegionSupported = true
+                    },
+                    new Region()
+                    {
+                        Id = 3,
+                        CityId = 3,
+                        IsRegionSupported = false
+                    },
+                    new Region()
+                    {
+                        Id = 4,
+                        CityId = 4,
+                        IsRegionSupported = false
+                    }
+                }
             );
 
             // Создание Супер Аккаунта
@@ -391,14 +450,14 @@ namespace DataBase
 
             ActionMeta SupperCreation = new ActionMeta()
             {
-                Id = 1,
+                Id = 2,
                 UserId = null,
                 Date = DateTime.Now
             };
 
             ActionMeta GuestCreation = new ActionMeta()
             {
-                Id = 2,
+                Id = 3,
                 UserId = null,
                 Date = DateTime.Now
             };
@@ -470,6 +529,7 @@ namespace DataBase
             );
 
             modelBuilder.Entity<ActionMeta>().HasData(
+                RegionsCreation,
                 SupperCreation,
                 GuestCreation
             );
