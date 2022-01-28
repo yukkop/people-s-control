@@ -32,49 +32,50 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public List<GetCityDTO> Get([FromHeader] string Authorization)
+        public RequestStatus<List<GetCityDTO>> Get([FromHeader] string Authorization)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Get"])) {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Get"]);
+            if (isAuthenticated)  
+            {  
                 return _cityReadService.GetAll();
             }
             else
             {
-                return null;
+                return RequestStatus<List<GetCityDTO>>.AuthFailed();
             }
         }
         
         [HttpGet("{id}")]
-        public GetCityDTO Get([FromHeader] string Authorization, long id)
+        public RequestStatus<GetCityDTO> Get([FromHeader] string Authorization, long id)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Get"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Get"]);
+            if (isAuthenticated){
                 return _cityReadService.Get(id);
             }
             else 
             {
-                return null;
+                return RequestStatus<GetCityDTO>.AuthFailed();
             }
         }
 
         [HttpPost]
-        public bool Post([FromHeader] string Authorization, [FromBody] CreateCityDTO createEntity)
+        public RequestStatus Post([FromHeader] string Authorization, [FromBody] CreateCityDTO createEntity)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Add"]))
-            {
-                _cityWriteService.Add(createEntity);
-                return true;
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Add"]);
+            if (isAuthenticated){
+                return _cityWriteService.Add(createEntity);
             }
             else
             {
-                return false;
+                return RequestStatus.AuthFailed();
             }
         }
 
         [HttpPut("{id}")]
         public bool Put([FromHeader] string Authorization, [FromBody] UpdateCityDTO updateEntity)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Update"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Update"]);
+            if (isAuthenticated){
                 return _cityWriteService.Update(updateEntity);
             }
             else
@@ -84,16 +85,16 @@ namespace API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public bool Delete([FromHeader] string Authorization, long id)
+        public RequestStatus Delete([FromHeader] string Authorization, long id)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Delete"]))
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Delete"]);
+            if (isAuthenticated)
             {
-                _cityWriteService.Delete(id);
-                return true;
+                return _cityWriteService.Delete(id);
             }
             else
             {
-                return false;
+                return RequestStatus.AuthFailed();
             }
         }
     }

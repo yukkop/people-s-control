@@ -25,7 +25,7 @@ namespace Logic.WriteServices
             _mapper = mapper;
         }
 
-        public ActionStatus<GetReportDTO> Add(CreateReportDTO createEntity)
+        public RequestStatus<GetReportDTO> Add(CreateReportDTO createEntity)
         {
             Report entity = _mapper.Map<Report>(createEntity);
             entity.User = _userRepository.Get(entity.UserId);
@@ -38,7 +38,7 @@ namespace Logic.WriteServices
 
             GetReportDTO getEntity = _mapper.Map<GetReportDTO>(entity);
             _reportRepository.SaveChanges();
-            return new ActionStatus<GetReportDTO>(getEntity);
+            return new RequestStatus<GetReportDTO>(getEntity);
         }
 
         public bool Update(UpdateReportDTO updateEntity)

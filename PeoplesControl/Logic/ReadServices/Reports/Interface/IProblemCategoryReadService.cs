@@ -8,7 +8,7 @@ namespace Logic.ReadServices
 {
     public interface IProblemCategoryReadService
     {
-        public ActionStatus<GetProblemCategoryDTO> Get(long id);
-        public ActionStatus<List<GetProblemCategoryDTO>> GetAll();
+        public RequestStatus<GetProblemCategoryDTO> Get(long id);
+        public RequestStatus<List<GetProblemCategoryDTO>> GetAll();
     }
 }

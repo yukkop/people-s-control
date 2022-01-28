@@ -6,6 +6,6 @@ namespace Logic.Helpers
 {
     public interface IAuthorizationService
     {
-        public bool Authorization(string token, string roles);
+        public (bool, long) Authorization(string token, string rolesString);
     }
 }

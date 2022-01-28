@@ -8,7 +8,7 @@ namespace Logic.ReadServices
 {
     public interface IAvatarReadService
     {
-        public ActionStatus<GetAvatarDTO> Get(long id);
-        public ActionStatus<List<GetAvatarDTO>> GetAll();
+        public RequestStatus<GetAvatarDTO> Get(long id);
+        public RequestStatus<List<GetAvatarDTO>> GetAll();
     }
 }

@@ -43,7 +43,7 @@ namespace Logic.WriteServices
             return path;
         }
 
-        public ActionStatus<GetAvatarDTO> Add(CreateAvatarDTO createEntity)
+        public RequestStatus<GetAvatarDTO> Add(CreateAvatarDTO createEntity)
         {
             Avatar entity = new Avatar();
             entity.Path = MakeImageOnFileSystem(createEntity.Image, createEntity.Format);
@@ -51,7 +51,7 @@ namespace Logic.WriteServices
 
             GetAvatarDTO getEntity = _mapper.Map<GetAvatarDTO>(entity);
             _avatarRepository.SaveChanges();
-            return new ActionStatus<GetAvatarDTO>(getEntity);
+            return new RequestStatus<GetAvatarDTO>(getEntity);
         }
 
         public bool Update(UpdateAvatarDTO updateEntity)

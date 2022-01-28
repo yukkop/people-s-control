@@ -8,7 +8,7 @@ namespace Logic.ReadServices
 {
     public interface IReportReadService
     {
-        public ActionStatus<GetReportDTO> Get(long id);
-        public ActionStatus<List<GetReportDTO>> GetPage(RequestReportsPageDTO pageSettings);
+        public RequestStatus<GetReportDTO> Get(long id);
+        public RequestStatus<List<GetReportDTO>> GetPage(RequestReportsPageDTO pageSettings);
     }
 }

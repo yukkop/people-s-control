@@ -33,10 +33,10 @@ namespace API.Controllers
 
         // GET: api/<ProblemCategoryController>
         [HttpGet]
-        public ActionStatus<List<GetProblemCategoryDTO>> Get([FromHeader] string Authorization)
+        public RequestStatus<List<GetProblemCategoryDTO>> Get([FromHeader] string Authorization)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ProblemCategory:Get"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ProblemCategory:Get"]);
+            if (isAuthenticated){
                 return _problemCategoryReadService.GetAll();
             }
             else
@@ -47,10 +47,10 @@ namespace API.Controllers
 
         // GET api/<ProblemCategoryController>/5
         [HttpGet("{id}")]
-        public ActionStatus<GetProblemCategoryDTO> Get([FromHeader] string Authorization, long id)
+        public RequestStatus<GetProblemCategoryDTO> Get([FromHeader] string Authorization, long id)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ProblemCategory:Get"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ProblemCategory:Get"]);
+            if (isAuthenticated){
                 return _problemCategoryReadService.Get(id);
             }
             else
@@ -61,10 +61,10 @@ namespace API.Controllers
 
         // POST api/<ProblemCategoryController>
         [HttpPost]
-        public ActionStatus<GetProblemCategoryDTO> Post([FromHeader] string Authorization, [FromBody] CreateProblemCategoryDTO createEntity)
+        public RequestStatus<GetProblemCategoryDTO> Post([FromHeader] string Authorization, [FromBody] CreateProblemCategoryDTO createEntity)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ProblemCategory:Add"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ProblemCategory:Add"]);
+            if (isAuthenticated){
                 return _problemCategoryWriteService.Add(createEntity);
             }
             else
@@ -77,8 +77,8 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public bool Put([FromHeader] string Authorization, [FromBody] UpdateProblemCategoryDTO updateEntity)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ProblemCategory:Update"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ProblemCategory:Update"]);
+            if (isAuthenticated){
                 return _problemCategoryWriteService.Update(updateEntity);
             }
             else
@@ -91,8 +91,8 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public void Delete([FromHeader] string Authorization, long id, [FromBody] ActionMetaDTO data)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ProblemCategory:Delete"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ProblemCategory:Delete"]);
+            if (isAuthenticated){
                 _problemCategoryWriteService.Delete(id, data.UserId);
             }
         }

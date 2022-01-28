@@ -64,10 +64,25 @@ namespace API.Controllers
         */
 
         [HttpGet("Authorization")]
-        public bool Authorization([FromHeader] string Authorization)
+        public RequestStatus Authorization([FromHeader] string Authorization)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Authorization"]))
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Authorization"]);
+            if (isAuthenticated){
+                return new RequestStatus(RequestStatus.Statuses.Ok, "Аккаунт подтвержден");
+            }
+            else
             {
+                return RequestStatus.AuthFailed();
+            }
+        }
+        
+        [HttpPost("registration/ByEmail")]
+        public bool Registration([FromHeader] string Authorization, [FromBody] RegistrationByEmailDTO registration)
+        {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Registration"]);
+            if (isAuthenticated)
+            {
+                _userProfileWriteService.RegistrationByEmail(registration);
                 return true;
             }
             else
@@ -75,13 +90,13 @@ namespace API.Controllers
                 return false;
             }
         }
-        
-        [HttpPost]
-        public bool Registration([FromHeader] string Authorization, [FromBody] RegistrationDTO registration)
+        [HttpPost("confirmEmail/{confirmationCode}")]
+        public bool ConfirmEmail([FromHeader] string Authorization, int confirmationCode)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Registration"]))
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Registration"]);
+            if (isAuthenticated)
             {
-                _userProfileWriteService.Add(registration);
+                _userProfileWriteService.ConfirmEmail(userId, confirmationCode);
                 return true;
             }
             else

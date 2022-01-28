@@ -22,7 +22,7 @@ namespace Logic.WriteServices
             _mapper = mapper;
         }
 
-        public ActionStatus<GetRoleDTO> Add(CreateRoleDTO createEntity)
+        public RequestStatus<GetRoleDTO> Add(CreateRoleDTO createEntity)
         {
             ActionMeta createAction = new ActionMeta();
             createAction.UserId = createEntity.UserId;
@@ -37,7 +37,7 @@ namespace Logic.WriteServices
 
             _roleRepository.SaveChanges();
 
-            return new ActionStatus<GetRoleDTO>(_mapper.Map<GetRoleDTO>(entity));
+            return new RequestStatus<GetRoleDTO>(_mapper.Map<GetRoleDTO>(entity));
             //_roleRepository.Add()
         }
 

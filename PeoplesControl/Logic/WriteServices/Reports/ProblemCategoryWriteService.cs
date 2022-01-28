@@ -24,7 +24,7 @@ namespace Logic.WriteServices
             _mapper = mapper;
         }
 
-        public ActionStatus<GetProblemCategoryDTO> Add(CreateProblemCategoryDTO createEntity)
+        public RequestStatus<GetProblemCategoryDTO> Add(CreateProblemCategoryDTO createEntity)
         {
             ProblemCategory entity = _mapper.Map<ProblemCategory>(createEntity);
             
@@ -42,7 +42,7 @@ namespace Logic.WriteServices
             entity = _problemCategoryRepository.Add(entity);
             GetProblemCategoryDTO getEntity = _mapper.Map<GetProblemCategoryDTO>(entity);
             _problemCategoryRepository.SaveChanges();
-            return new ActionStatus<GetProblemCategoryDTO>(getEntity);
+            return new RequestStatus<GetProblemCategoryDTO>(getEntity);
         }
 
         public bool Update(UpdateProblemCategoryDTO updateEntity)

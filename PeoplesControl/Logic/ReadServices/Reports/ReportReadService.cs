@@ -19,12 +19,12 @@ namespace Logic.ReadServices
             _mapper = mapper;
         }
 
-        public ActionStatus<GetReportDTO> Get(long id)
+        public RequestStatus<GetReportDTO> Get(long id)
         {
             ReportDTO entity = _reportQuery.Get(id);
-            return new ActionStatus<GetReportDTO>(_mapper.Map<GetReportDTO>(entity));
+            return new RequestStatus<GetReportDTO>(_mapper.Map<GetReportDTO>(entity));
         }
-        public ActionStatus<List<GetReportDTO>> GetPage(RequestReportsPageDTO pageSettings)
+        public RequestStatus<List<GetReportDTO>> GetPage(RequestReportsPageDTO pageSettings)
         {
             List<ReportDTO> entities = _reportQuery.GetPage(pageSettings);
             List<GetReportDTO> getEntities = new List<GetReportDTO>();
@@ -34,7 +34,7 @@ namespace Logic.ReadServices
                 getEntities.Add(_mapper.Map<GetReportDTO>(entity));
             }
 
-            return new ActionStatus<List<GetReportDTO>>(getEntities);
+            return new RequestStatus<List<GetReportDTO>>(getEntities);
         }
     }
 }

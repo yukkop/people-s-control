@@ -22,14 +22,18 @@ namespace Logic.WriteServices
             _mapper = mapper;
         }
 
-        public GetCityDTO Add(CreateCityDTO createEntity)
+        public RequestStatus Add(CreateCityDTO createEntity)
         {
-            // проверка на уникальность в параметрах полей
             City entity = _mapper.Map<City>(createEntity);
-            entity = _cityRepository.Add(entity);
-            GetCityDTO getEntity = _mapper.Map<GetCityDTO>(entity);
-            _cityRepository.SaveChanges();
-            return getEntity;
+            _cityRepository.Add(entity);
+
+            Exception exception = _cityRepository.SaveChanges();
+            if (exception != null)
+            {
+                return RequestStatus.Exeption(exception);
+            }
+
+            return RequestStatus.Ok();
         }
 
         public bool Update(UpdateCityDTO updateEntity)
@@ -40,10 +44,15 @@ namespace Logic.WriteServices
             return status;
         }
 
-        public void Delete(long id)
+        public RequestStatus Delete(long id)
         {
-            _cityRepository.Delete(id);
+            Exception exception = _cityRepository.Delete(id);
+            if (exception != null)
+            {
+                return RequestStatus.Exeption(exception);
+            }
             _cityRepository.SaveChanges();
+            return RequestStatus.Ok();
         }
     }
 }

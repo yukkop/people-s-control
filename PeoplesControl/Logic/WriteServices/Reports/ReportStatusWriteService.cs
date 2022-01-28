@@ -21,7 +21,7 @@ namespace Logic.WriteServices
             _mapper = mapper;
         }
 
-        public ActionStatus<GetReportStatusDTO> Add(CreateReportStatusDTO createEntity)
+        public RequestStatus<GetReportStatusDTO> Add(CreateReportStatusDTO createEntity)
         {
             // проверка на уникальность в параметрах полей
             ReportStatus entity = _mapper.Map<ReportStatus>(createEntity);
@@ -30,7 +30,7 @@ namespace Logic.WriteServices
 
             GetReportStatusDTO getEntity = _mapper.Map<GetReportStatusDTO>(entity);
             _reportStatusRepository.SaveChanges();
-            return new ActionStatus<GetReportStatusDTO>(getEntity);
+            return new RequestStatus<GetReportStatusDTO>(getEntity);
         }
 
         public bool Update(UpdateReportStatusDTO updateEntity)

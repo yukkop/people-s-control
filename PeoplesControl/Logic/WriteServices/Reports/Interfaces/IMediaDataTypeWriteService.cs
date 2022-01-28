@@ -8,7 +8,7 @@ namespace Logic.WriteServices
 {
     public interface IMediaDataTypeWriteService
     {
-        public ActionStatus<GetMediaDataTypeDTO> Add(CreateMediaDataTypeDTO createEntity);
+        public RequestStatus<GetMediaDataTypeDTO> Add(CreateMediaDataTypeDTO createEntity);
         public bool Update(UpdateMediaDataTypeDTO updateEntity);
         public void Delete(long id);
     }

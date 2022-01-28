@@ -8,8 +8,8 @@ namespace Logic.ReadServices
 {
     public interface IRoleReadService
     {
-        public ActionStatus<GetRoleDTO> Get(long id);
+        public RequestStatus<GetRoleDTO> Get(long id);
 
-        public ActionStatus<List<GetRoleDTO>> GetAll();
+        public RequestStatus<List<GetRoleDTO>> GetAll();
     }
 }

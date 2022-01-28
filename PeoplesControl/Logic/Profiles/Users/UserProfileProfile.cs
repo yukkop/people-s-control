@@ -12,8 +12,12 @@ namespace Logic.Profiles
     {
         public UserProfileProfile()
         {
-            CreateMap<RegistrationDTO, User>();
-            CreateMap<RegistrationDTO, UserProfile>();
+            CreateMap<RegistrationByEmailDTO, UserProfile>()
+                .ForMember(dto => dto.EmailAddress, opt => opt.NullSubstitute(null))
+                .ForMember(dto => dto.PhoneNumber, opt => opt.NullSubstitute(null))
+                .ForMember(dto => dto.Patronymic, opt => opt.NullSubstitute(null))
+                .ForMember(dto => dto.Surname, opt => opt.NullSubstitute(null))
+                .ForMember(dto => dto.Name, opt => opt.NullSubstitute(null));
             CreateMap<UserProfile, GetUserProfileDTO>();
             CreateMap<UserProfileDTO, GetUserProfileDTO>();
         }
