@@ -56,6 +56,19 @@ namespace API.Controllers
             }
         }
 
+        [HttpGet("ByCity/{name}")]
+        public List<GetDistrictDTO> GetByCityName([FromHeader] string Authorization, string name)
+        {
+            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Get"]))
+            {
+                return _districtReadService.GetByCityName(name);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         [HttpPost]
         public GetDistrictDTO Post([FromHeader] string Authorization, [FromBody] CreateDistrictDTO createEntity)
         {

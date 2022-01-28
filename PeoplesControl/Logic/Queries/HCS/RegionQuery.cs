@@ -23,7 +23,7 @@ namespace Logic.Queries
             string query = $@"
 SELECT 
 ""Regions"".""Id"", 
-""Cities"".""Name""
+""Cities"".""Name"" as ""CityName""
 FROM ""Regions""
 JOIN ""Cities"" on ""Cities"".""Id"" = ""Regions"".""CityId""
 WHERE ""IsRegionSupported"" = true
@@ -41,7 +41,7 @@ WHERE ""IsRegionSupported"" = true
             string query = $@"
 SELECT 
 ""Regions"".""Id"", 
-""Cities"".""Name""
+""Cities"".""Name"" as ""CityName""
 FROM ""Regions""
 JOIN ""Cities"" on ""Cities"".""Id"" = ""Regions"".""CityId""
 WHERE ""IsRegionSupported"" = false
