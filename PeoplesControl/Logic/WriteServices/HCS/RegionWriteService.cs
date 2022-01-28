@@ -50,13 +50,13 @@ namespace Logic.WriteServices
             return false;
         }
 
-        public bool Add(CreateRegionDTO createEntity, long userId)
-        {
-            Region entity = _mapper.Map<Region>(createEntity);
+        //public bool Add(CreateRegionDTO createEntity, long userId)
+        //{
+        //    Region entity = _mapper.Map<Region>(createEntity);
 
-            ActionMeta creation = new ActionMeta();
-            creation.Date = DateTime.Now;
-            _actionMetaRepository.Add(creation);
-        }
+        //    ActionMeta creation = new ActionMeta();
+        //    creation.Date = DateTime.Now;
+        //    _actionMetaRepository.Add(creation);
+        //}
     }
 }

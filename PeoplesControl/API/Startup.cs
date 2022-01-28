@@ -114,6 +114,7 @@ namespace API
             services.AddScoped<IRegionRepository, RegionRepository>();
             services.AddScoped<IRegionQuery, RegionQuery>();
             services.AddScoped<IRegionReadService, RegionReadService>();
+            services.AddScoped<IRegionWriteService, RegionWriteService>();
 
             AutoMapper.IConfigurationProvider config = new MapperConfiguration(cfg =>
             {
