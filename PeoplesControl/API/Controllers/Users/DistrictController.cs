@@ -30,7 +30,6 @@ namespace API.Controllers
             _configuration = configuration;
         }
 
-        // GET: api/<DistrictController>
         [HttpGet]
         public List<GetDistrictDTO> Get([FromHeader] string Authorization)
         {
@@ -44,7 +43,6 @@ namespace API.Controllers
             }
         }
 
-        // GET api/<DistrictController>/5
         [HttpGet("{id}")]
         public GetDistrictDTO Get([FromHeader] string Authorization, long id)
         {
@@ -58,7 +56,6 @@ namespace API.Controllers
             }
         }
 
-        // POST api/<DistrictController>
         [HttpPost]
         public GetDistrictDTO Post([FromHeader] string Authorization, [FromBody] CreateDistrictDTO createEntity)
         {
@@ -72,7 +69,6 @@ namespace API.Controllers
             }
         }
 
-        // PUT api/<DistrictController>
         [HttpPut("{id}")]
         public bool Put([FromHeader] string Authorization, [FromBody] UpdateDistrictDTO updateEntity)
         {
@@ -86,7 +82,6 @@ namespace API.Controllers
             }
         }
 
-        // DELETE api/<DistrictController>/5
         [HttpDelete("{id}")]
         public bool Delete([FromHeader] string Authorization, long id)
         {
