@@ -1,4 +1,7 @@
 <resources>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="app_name">AndroidPeoples</string>
     <string name="develop_by">Разработано в рамках проекта “Хакатон-Кибердонбасс”</string>
     <!--Main Menu Strings-->
@@ -30,9 +33,9 @@
     <string name="registration_page_cancel_button">Отмена</string>
     <!--Region Select Strings-->
     <string name="region_select_page_title">Выбор региона</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="region_select_page_select_button">Выбрать</string>
-
+    <string name="coming_soon">Скоро будет доступно:</string>
+    <!--District Select Strings-->
+    <string name="district_select_page_title">Выбор района</string>
+    <string name="district_select_page_select_button">Выбрать</string>
 </resources>

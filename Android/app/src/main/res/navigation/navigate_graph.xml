@@ -31,6 +31,16 @@
         android:id="@+id/regionSelectFragment"
         android:name="com.hectik.androidpeoples.RegionSelectFragment"
         android:label="fragment_region_select"
-        tools:layout="@layout/fragment_region_select" />
+        tools:layout="@layout/fragment_region_select" >
+        <action
+            android:id="@+id/action_regionSelectFragment_to_districtSelectFragment"
+            app:destination="@id/districtSelectFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/districtSelectFragment"
+        android:name="com.hectik.androidpeoples.DistrictSelectFragment"
+        android:label="fragment_district_select"
+        tools:layout="@layout/fragment_district_select" >
+    </fragment>
 
 </navigation>

@@ -34,12 +34,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45">
-
+        app:layout_constraintVertical_bias="0.45"
+        android:gravity="center">
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/continueButtonRegistrationPage"
+        android:id="@+id/selectButtonRegionSelectPage"
         style="@style/Widget.MaterialComponents.Button.ButtonPattern"
         android:layout_width="156dp"
         android:layout_height="50dp"
@@ -48,5 +48,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/region_list" />
+
+    <LinearLayout
+        android:id="@+id/soon_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectButtonRegionSelectPage"
+        app:layout_constraintVertical_bias="0.45">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/coming_soon"
+            android:textAppearance="@style/TextAppearance.AppCompat.TogleText"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,20 +1,19 @@
 package com.hectik.androidpeoples
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
-import com.hectik.androidpeoples.models.RegionDTO
-import com.hectik.androidpeoples.services.RegionService
-import io.ktor.client.*
-import io.ktor.client.features.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import io.ktor.http.*
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
+import com.google.android.material.button.MaterialButton
+import com.hectik.androidpeoples.services.RegistrationService
+import com.hectik.androidpeoples.viewModels.UserViewModel
 import kotlinx.coroutines.*
 import java.util.*
 
@@ -25,9 +24,10 @@ import java.util.*
  */
 class RegionSelectFragment : Fragment()
 {
-    val client = HttpClient()
-    val regionService = RegionService()
-    lateinit var regionListView: LinearLayout
+    private val regionService = RegistrationService()
+    private lateinit var regionListView: LinearLayout
+    private lateinit var soonListView: LinearLayout
+    private val userModel: UserViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -47,23 +47,55 @@ class RegionSelectFragment : Fragment()
 
         super.onViewCreated(view, savedInstanceState)
         regionListView = view.findViewById(R.id.region_list)
-        MainScope().launch {
-            kotlin.runCatching {
-                regionService.getSupportedRegion()
-            }.onSuccess {
-                for (curRegion in it)
+        soonListView = view.findViewById(R.id.soon_list)
+
+        var supportRegionList = async {
+            regionService.getSupportedRegion()
+        }
+        for (curRegion in supportRegionList.await())
+        {
+            var regionView = TextView(view.context)
+            regionView.text = curRegion.cityName
+            var param = ViewGroup.MarginLayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            param.topMargin = 15
+            param.bottomMargin = 15
+            regionView.layoutParams = param
+            regionView.setTextAppearance(R.style.TextAppearance_AppCompat_RegionList)
+            regionView.setOnClickListener {
+                for (currView in regionListView.children)
                 {
-                    val regionView = TextView(view.context)
-                    regionView.text = curRegion.name
-                    regionListView.addView(regionView)
+                    (currView as TextView).typeface = Typeface.DEFAULT
                 }
-            }.onFailure {
-                val regionView = TextView(view.context)
-                regionView.text = it.localizedMessage
-                regionListView.addView(regionView)
+                regionView.typeface = Typeface.DEFAULT_BOLD
+                userModel.region = regionView.text as String
             }
+            regionListView.addView(regionView)
         }
 
+        var unsupportRegionList = async {
+            regionService.getUnsupportedRegion()
+        }
+        for (curRegion in unsupportRegionList.await())
+        {
+            var regionView = TextView(view.context)
+            regionView.text = curRegion.cityName
+            var param = ViewGroup.MarginLayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            param.topMargin = 5
+            param.bottomMargin = 5
+            regionView.layoutParams = param
+            regionView.setTextAppearance(R.style.TextAppearance_AppCompat_TogleText)
+            soonListView.addView(regionView)
+        }
+
+        view.findViewById<MaterialButton>(R.id.selectButtonRegionSelectPage).setOnClickListener {
+            it.findNavController().navigate(R.id.action_regionSelectFragment_to_districtSelectFragment, )
+        }
     }
 
 }
