@@ -48,7 +48,7 @@ namespace Logic.Queries
         {
             string query = $@"SELECT * FROM ""Districts""
                                 INNER JOIN ""Cities"" ON ""Cities"".""Id""=""Districts"".""CityId""
-                                WHERE ""City"".""Name""={cityName}";
+                                WHERE ""Cities"".""Name"" = '{cityName}'";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
