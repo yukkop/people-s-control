@@ -39,7 +39,7 @@ namespace API.Controllers
 
         // GET: api/<ReportController>
         [HttpGet]
-        public ActionStatus<List<GetReportDTO>> Get([FromHeader] string Authorization, [FromBody] RequestReportsPageDTO pageSettings)
+        public RequestStatus<List<GetReportDTO>> Get([FromHeader] string Authorization, [FromBody] RequestReportsPageDTO pageSettings)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Get"]);
             if (isAuthenticated){
@@ -53,7 +53,7 @@ namespace API.Controllers
 
         // GET api/<ReportController>/5
         [HttpGet("{id}")]
-        public ActionStatus<GetReportDTO> Get([FromHeader] string Authorization, long id)
+        public RequestStatus<GetReportDTO> Get([FromHeader] string Authorization, long id)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Get"]);
             if (isAuthenticated){
@@ -67,7 +67,7 @@ namespace API.Controllers
 
         // POST api/<ReportController>
         [HttpPost]
-        public ActionStatus<GetReportDTO> Post([FromHeader] string Authorization, [FromBody] CreateReportDTO createEntity)
+        public RequestStatus<GetReportDTO> Post([FromHeader] string Authorization, [FromBody] CreateReportDTO createEntity)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Add"]);
             if (isAuthenticated){
@@ -81,7 +81,7 @@ namespace API.Controllers
 
         // POST api/<ReportController>
         [HttpPost("view")]
-        public ActionStatus<ReportView> PostReportView([FromHeader] string Authorization, [FromBody] ReportView reportView)
+        public RequestStatus<ReportView> PostReportView([FromHeader] string Authorization, [FromBody] ReportView reportView)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportView:Add"]);
             if (isAuthenticated){
@@ -94,7 +94,7 @@ namespace API.Controllers
         }
         // POST api/<ReportController>
         [HttpPost("addCategory")]
-        public ActionStatus<ReportByProblemCategory> PostProblemCategory([FromHeader] string Authorization, [FromBody] ReportByProblemCategory reportByProblemCategory)
+        public RequestStatus<ReportByProblemCategory> PostProblemCategory([FromHeader] string Authorization, [FromBody] ReportByProblemCategory reportByProblemCategory)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportByProblemCategory:Add"]);
            if (isAuthenticated) {

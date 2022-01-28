@@ -32,7 +32,7 @@ namespace API.Controllers
 
         // GET: api/<MediaDataTypeController>
         [HttpGet]
-        public ActionStatus<List<GetMediaDataTypeDTO>> Get([FromHeader] string Authorization)
+        public RequestStatus<List<GetMediaDataTypeDTO>> Get([FromHeader] string Authorization)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:MediaDataType:Get"]);
             if (isAuthenticated){
@@ -46,7 +46,7 @@ namespace API.Controllers
 
         // GET api/<MediaDataTypeController>/5
         [HttpGet("{id}")]
-        public ActionStatus<GetMediaDataTypeDTO> Get([FromHeader] string Authorization, long id)
+        public RequestStatus<GetMediaDataTypeDTO> Get([FromHeader] string Authorization, long id)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:MediaDataType:Get"]);
             if (isAuthenticated){
@@ -60,7 +60,7 @@ namespace API.Controllers
 
         // POST api/<MediaDataTypeController>
         [HttpPost]
-        public ActionStatus<GetMediaDataTypeDTO> Post([FromHeader] string Authorization, [FromBody] CreateMediaDataTypeDTO createEntity)
+        public RequestStatus<GetMediaDataTypeDTO> Post([FromHeader] string Authorization, [FromBody] CreateMediaDataTypeDTO createEntity)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:MediaDataType:Add"]);
             if (isAuthenticated){

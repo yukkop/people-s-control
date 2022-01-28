@@ -32,7 +32,7 @@ namespace API.Controllers
 
         // GET: api/<ReportStatusController>
         [HttpGet]
-        public ActionStatus<List<GetReportStatusDTO>> Get([FromHeader] string Authorization)
+        public RequestStatus<List<GetReportStatusDTO>> Get([FromHeader] string Authorization)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportStatus:Get"]);
            if (isAuthenticated) {
@@ -46,7 +46,7 @@ namespace API.Controllers
 
         // GET api/<ReportStatusController>/5
         [HttpGet("{id}")]
-        public ActionStatus<GetReportStatusDTO> Get([FromHeader] string Authorization, long id)
+        public RequestStatus<GetReportStatusDTO> Get([FromHeader] string Authorization, long id)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportStatus:Get"]);
             if (isAuthenticated){
@@ -60,7 +60,7 @@ namespace API.Controllers
 
         // POST api/<ReportStatusController>
         [HttpPost]
-        public ActionStatus<GetReportStatusDTO> Post([FromHeader] string Authorization, [FromBody] CreateReportStatusDTO createEntity)
+        public RequestStatus<GetReportStatusDTO> Post([FromHeader] string Authorization, [FromBody] CreateReportStatusDTO createEntity)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportStatus:Add"]);
             if (isAuthenticated){                                                                                                                

@@ -19,12 +19,12 @@ namespace Logic.ReadServices
             _mapper = mapper;
         }
 
-        public ActionStatus<GetAvatarDTO> Get(long id)
+        public RequestStatus<GetAvatarDTO> Get(long id)
         {
             AvatarDTO entity = _avatarQuery.Get(id);
-            return new ActionStatus<GetAvatarDTO>(_mapper.Map<GetAvatarDTO>(entity));
+            return new RequestStatus<GetAvatarDTO>(_mapper.Map<GetAvatarDTO>(entity));
         }
-        public ActionStatus<List<GetAvatarDTO>> GetAll()
+        public RequestStatus<List<GetAvatarDTO>> GetAll()
         {
             List<AvatarDTO> entities = _avatarQuery.GetAll();
             List<GetAvatarDTO> getEntities = new List<GetAvatarDTO>();
@@ -34,7 +34,7 @@ namespace Logic.ReadServices
                 getEntities.Add(_mapper.Map<GetAvatarDTO>(entity));
             }
 
-            return new ActionStatus<List<GetAvatarDTO>>(getEntities);
+            return new RequestStatus<List<GetAvatarDTO>>(getEntities);
         }
     }
 }

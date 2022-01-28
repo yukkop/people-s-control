@@ -9,6 +9,6 @@ namespace Logic.WriteServices
 {
     public interface IRoleWriteService
     {
-        public ActionStatus<GetRoleDTO> Add(CreateRoleDTO createEntity);
+        public RequestStatus<GetRoleDTO> Add(CreateRoleDTO createEntity);
     }
 }

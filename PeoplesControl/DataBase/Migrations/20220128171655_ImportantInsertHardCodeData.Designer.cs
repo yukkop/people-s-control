@@ -11,8 +11,8 @@ using NpgsqlTypes;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220128160831_experiment1")]
-    partial class experiment1
+    [Migration("20220128171655_ImportantInsertHardCodeData")]
+    partial class ImportantInsertHardCodeData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

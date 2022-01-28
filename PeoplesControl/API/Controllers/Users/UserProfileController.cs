@@ -64,20 +64,20 @@ namespace API.Controllers
         */
 
         [HttpGet("Authorization")]
-        public bool Authorization([FromHeader] string Authorization)
+        public RequestStatus Authorization([FromHeader] string Authorization)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Authorization"]);
             if (isAuthenticated){
-                return true;
+                return new RequestStatus(RequestStatus.Statuses.Ok, "Аккаунт подтвержден");
             }
             else
             {
-                return false;
+                return RequestStatus.AuthFailed();
             }
         }
         
-        [HttpPost("registrationByEmail")]
-        public bool Registration([FromHeader] string Authorization, [FromBody] RegistrationDTO registration)
+        [HttpPost("registration/ByEmail")]
+        public bool Registration([FromHeader] string Authorization, [FromBody] RegistrationByEmailDTO registration)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Registration"]);
             if (isAuthenticated)

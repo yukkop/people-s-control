@@ -37,7 +37,7 @@ namespace Logic.WriteServices
             _mapper = mapper;
         }
 
-        public bool RegistrationByEmail(RegistrationDTO registrationEntity)
+        public bool RegistrationByEmail(RegistrationByEmailDTO registrationEntity)
         {
             if (registrationEntity.DistrictId == null)
                 return false;
@@ -54,7 +54,7 @@ namespace Logic.WriteServices
             userProfileEntity = _userProfileRepository.Add(userProfileEntity);
 
             User userEntity = new User();
-            userEntity.Login = registrationEntity.EmailAddress == "" ? registrationEntity.PhoneNumber : registrationEntity.EmailAddress;
+            userEntity.Login = registrationEntity.EmailAddress;
             userEntity.SaltValue = _authenticationService.SaltGen();
             userEntity.SaltPassword = _authenticationService.SaltHash(registrationEntity.Password, userEntity.SaltValue);
 

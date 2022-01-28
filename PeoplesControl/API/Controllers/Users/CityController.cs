@@ -32,19 +32,21 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public List<GetCityDTO> Get([FromHeader] string Authorization)
+        public RequestStatus<List<GetCityDTO>> Get([FromHeader] string Authorization)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Get"]);
-            if (isAuthenticated)  {  return _cityReadService.GetAll();
+            if (isAuthenticated)  
+            {  
+                return _cityReadService.GetAll();
             }
             else
             {
-                return null;
+                return RequestStatus<List<GetCityDTO>>.AuthFailed();
             }
         }
         
         [HttpGet("{id}")]
-        public GetCityDTO Get([FromHeader] string Authorization, long id)
+        public RequestStatus<GetCityDTO> Get([FromHeader] string Authorization, long id)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Get"]);
             if (isAuthenticated){
@@ -52,21 +54,20 @@ namespace API.Controllers
             }
             else 
             {
-                return null;
+                return RequestStatus<GetCityDTO>.AuthFailed();
             }
         }
 
         [HttpPost]
-        public bool Post([FromHeader] string Authorization, [FromBody] CreateCityDTO createEntity)
+        public RequestStatus Post([FromHeader] string Authorization, [FromBody] CreateCityDTO createEntity)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Add"]);
             if (isAuthenticated){
-                _cityWriteService.Add(createEntity);
-                return true;
+                return _cityWriteService.Add(createEntity);
             }
             else
             {
-                return false;
+                return RequestStatus.AuthFailed();
             }
         }
 
@@ -84,16 +85,16 @@ namespace API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public bool Delete([FromHeader] string Authorization, long id)
+        public RequestStatus Delete([FromHeader] string Authorization, long id)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Delete"]);
-            if (isAuthenticated){
-                _cityWriteService.Delete(id);
-                return true;
+            if (isAuthenticated)
+            {
+                return _cityWriteService.Delete(id);
             }
             else
             {
-                return false;
+                return RequestStatus.AuthFailed();
             }
         }
     }

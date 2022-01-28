@@ -34,7 +34,7 @@ namespace API.Controllers
         }
 
         [HttpGet("Supported")]
-        public List<SupportedRegionDTO> GetSupported([FromHeader] string Authorization)
+        public RequestStatus<List<SupportedRegionDTO>> GetSupported([FromHeader] string Authorization)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Region:Supported"]);
             if (isAuthenticated){
@@ -42,12 +42,12 @@ namespace API.Controllers
             }
             else
             {
-                return null;
+                return RequestStatus<List<SupportedRegionDTO>>.AuthFailed();
             }
         }
 
         [HttpGet("Unsupported")]
-        public List<UnsupportedRegionDTO> GetUnsupported([FromHeader] string Authorization)
+        public RequestStatus<List<UnsupportedRegionDTO>> GetUnsupported([FromHeader] string Authorization)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Region:Unsupported"]);
             if (isAuthenticated){
@@ -55,7 +55,7 @@ namespace API.Controllers
             }
             else
             {
-                return null;
+                return RequestStatus<List<UnsupportedRegionDTO>>.AuthFailed();
             }
         }
 

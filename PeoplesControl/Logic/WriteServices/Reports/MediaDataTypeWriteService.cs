@@ -21,7 +21,7 @@ namespace Logic.WriteServices
             _mapper = mapper;
         }
 
-        public ActionStatus<GetMediaDataTypeDTO> Add(CreateMediaDataTypeDTO createEntity)
+        public RequestStatus<GetMediaDataTypeDTO> Add(CreateMediaDataTypeDTO createEntity)
         {
             // проверка на уникальность в параметрах полей
             MediaDataType entity = _mapper.Map<MediaDataType>(createEntity);
@@ -30,7 +30,7 @@ namespace Logic.WriteServices
 
             GetMediaDataTypeDTO getEntity = _mapper.Map<GetMediaDataTypeDTO>(entity);
             _mediaDataTypeRepository.SaveChanges();
-            return new ActionStatus<GetMediaDataTypeDTO>(getEntity);
+            return new RequestStatus<GetMediaDataTypeDTO>(getEntity);
         }
 
         public bool Update(UpdateMediaDataTypeDTO updateEntity)

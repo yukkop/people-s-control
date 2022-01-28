@@ -8,8 +8,8 @@ namespace Logic.WriteServices
 {
     public interface ICityWriteService
     {
-        public GetCityDTO Add(CreateCityDTO createEntity);
+        public RequestStatus Add(CreateCityDTO createEntity);
         public bool Update(UpdateCityDTO updateEntity);
-        public void Delete(long id);
+        public RequestStatus Delete(long id);
     }
 }

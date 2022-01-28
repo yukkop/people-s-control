@@ -18,12 +18,12 @@ namespace Logic.ReadServices
             _userProfileQuery = userProfileQuery;
             _mapper = mapper;
         }
-        public ActionStatus<GetUserProfileDTO> Get(long id)
+        public RequestStatus<GetUserProfileDTO> Get(long id)
         {
             UserProfileDTO entity = _userProfileQuery.Get(id);
             //entity.Avatar = System.IO.File.ReadAllBytes(entity.AvatarPath);
 
-            return new ActionStatus<GetUserProfileDTO>(_mapper.Map<GetUserProfileDTO>(entity));
+            return new RequestStatus<GetUserProfileDTO>(_mapper.Map<GetUserProfileDTO>(entity));
         }
     }
 }

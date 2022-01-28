@@ -34,13 +34,21 @@ namespace Logic.Repositories
         {
             return _context.Update(entity);
         }
-        public void Delete(long id)
+        public Exception Delete(long id)
         {
-            _context.Cities.Remove(_context.Cities.Where(i => i.Id == id).FirstOrDefault());
+            try
+            {
+                _context.Cities.Remove(_context.Cities.Where(i => i.Id == id).FirstOrDefault());
+            }
+            catch (Exception e)
+            {
+                return e;
+            }
+            return null;
         }
-        public void SaveChanges()
+        public Exception SaveChanges()
         {
-            _context.SaveChanges();
+           return _context.SaveChanges();
         }
     }
 }

@@ -33,7 +33,7 @@ namespace API.Controllers
 
         // GET: api/<ProblemCategoryController>
         [HttpGet]
-        public ActionStatus<List<GetProblemCategoryDTO>> Get([FromHeader] string Authorization)
+        public RequestStatus<List<GetProblemCategoryDTO>> Get([FromHeader] string Authorization)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ProblemCategory:Get"]);
             if (isAuthenticated){
@@ -47,7 +47,7 @@ namespace API.Controllers
 
         // GET api/<ProblemCategoryController>/5
         [HttpGet("{id}")]
-        public ActionStatus<GetProblemCategoryDTO> Get([FromHeader] string Authorization, long id)
+        public RequestStatus<GetProblemCategoryDTO> Get([FromHeader] string Authorization, long id)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ProblemCategory:Get"]);
             if (isAuthenticated){
@@ -61,7 +61,7 @@ namespace API.Controllers
 
         // POST api/<ProblemCategoryController>
         [HttpPost]
-        public ActionStatus<GetProblemCategoryDTO> Post([FromHeader] string Authorization, [FromBody] CreateProblemCategoryDTO createEntity)
+        public RequestStatus<GetProblemCategoryDTO> Post([FromHeader] string Authorization, [FromBody] CreateProblemCategoryDTO createEntity)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ProblemCategory:Add"]);
             if (isAuthenticated){

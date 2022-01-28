@@ -1,4 +1,5 @@
 ﻿using Logic.Queries;
+using Logic.Helpers;
 using Logic.WebEntities;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,14 @@ namespace Logic.ReadServices
             _regionQuery = regionQuery;
         }
 
-        public List<SupportedRegionDTO> GetSupported()
+        public RequestStatus< List<SupportedRegionDTO>> GetSupported()
         {
-            return _regionQuery.GetSupported();
+            return new RequestStatus<List<SupportedRegionDTO>>(_regionQuery.GetSupported());
         }
 
-        public List<UnsupportedRegionDTO> GetUnsupported()
+        public RequestStatus<List<UnsupportedRegionDTO>> GetUnsupported()
         {
-            return _regionQuery.GetUnsupported();
+            return new RequestStatus<List<UnsupportedRegionDTO>>(_regionQuery.GetUnsupported());
         }
     }
 }

@@ -83,7 +83,7 @@ namespace DataBase
 
             return true;
         }
-        public bool SaveChanges()
+        public Exception SaveChanges()
         {
             try
             {
@@ -93,10 +93,10 @@ namespace DataBase
             {
                 //handle with some logger
                 Console.WriteLine(e);
-                return false;
+                return e;
             }
 
-            return true;
+            return null;
         }
         public bool Update<TEntity>(TEntity entity)
         {

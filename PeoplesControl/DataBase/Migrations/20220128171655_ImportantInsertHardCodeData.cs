@@ -1,10 +1,9 @@
 ﻿using System;
-using DataBase.Models;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataBase.Migrations
 {
-    public partial class experiment1 : Migration
+    public partial class ImportantInsertHardCodeData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -123,11 +122,9 @@ namespace DataBase.Migrations
                 keyColumn: "Id",
                 keyValue: 2L);
 
-
-
             migrationBuilder.InsertData(
                 table: "Cities",
-                columns: new[] {"Id", "Name"},
+                columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
                     {1, "Донецк"},
@@ -152,7 +149,7 @@ namespace DataBase.Migrations
 
             migrationBuilder.InsertData(
                 table: "ActionMeta",
-                columns: new[] {"Id", "UserId", "Date"},
+                columns: new[] { "Id", "UserId", "Date" },
                 values: new object[,]
                 {
                     {1, null, DateTime.Now},
@@ -176,7 +173,7 @@ namespace DataBase.Migrations
 
             migrationBuilder.InsertData(
                 table: "Roles",
-                columns: new[] { "Id", "Name"},
+                columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
                     {1, "Admin"},
@@ -198,57 +195,35 @@ namespace DataBase.Migrations
                                 1},
                     { 2, "Guest", "Account", 2, false,
                                 false, false,false,
-                                1} 
+                                1}
                 }
 
                 );
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] {"Id", "UserProfileId", "Login", "SaltPassword", "SaltValue"},
+                columns: new[] { "Id", "UserProfileId", "Login", "SaltPassword", "SaltValue" },
                 values: new object[,]
                 {
                     {1,  1, "supper", Properties.Resources.SupperSaltPassword,Properties.Resources.SupperSaltValue},
 
                     {2,  2, "guest", Properties.Resources.GuestSaltPassword,Properties.Resources.GuestSaltValue},
-                    
+
                 }
 
                 );
-            
+
             migrationBuilder.InsertData(
                 table: "UsersRoles",
-                columns: new[] { "UserId", "RoleId"},
+                columns: new[] { "UserId", "RoleId" },
                 values: new object[,]
                 {
                     { 1,1},
                     { 2,2},
-                    
+
                 }
 
                 );
-
-            /*
-             migrationBuilder.InsertData(
-            table: "Orders",
-            columns: new[] { "Id", "Name" },
-            values: new object[,]
-            {
-                { 1, "Licensed Cotton Shirt" },
-                { 2, "Rustic Concrete Pizza" },
-                { 3, "Handcrafted Metal Keyboard" },
-                { 4, "Licensed Wooden Chicken" },
-                { 5, "Awesome Metal Pizza" },
-                { 6, "Practical Metal Chair" },
-                { 7, "Handmade Steel Gloves" },
-                { 8, "Refined Soft Chair" },
-                { 9, "Sleek Plastic Salad" },
-                { 10, "Ergonomic Steel Mouse" }
-            });
-            */
-
-
-
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -258,9 +233,9 @@ namespace DataBase.Migrations
                 columns: new[] { "Id", "Date", "UserId" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(2022, 1, 28, 18, 54, 30, 792, DateTimeKind.Local).AddTicks(8587), null },
-                    { 2L, new DateTime(2022, 1, 28, 18, 54, 30, 793, DateTimeKind.Local).AddTicks(8790), null },
-                    { 3L, new DateTime(2022, 1, 28, 18, 54, 30, 793, DateTimeKind.Local).AddTicks(8818), null }
+                    { 1L, new DateTime(2022, 1, 28, 18, 50, 4, 52, DateTimeKind.Local).AddTicks(438), null },
+                    { 2L, new DateTime(2022, 1, 28, 18, 50, 4, 53, DateTimeKind.Local).AddTicks(2510), null },
+                    { 3L, new DateTime(2022, 1, 28, 18, 50, 4, 53, DateTimeKind.Local).AddTicks(2536), null }
                 });
 
             migrationBuilder.InsertData(

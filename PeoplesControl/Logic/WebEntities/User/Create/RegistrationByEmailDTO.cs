@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Logic.WebEntities
 {
-    public class RegistrationDTO
+    public class RegistrationByEmailDTO
     {
-        public string PhoneNumber { get; set; }
         public string EmailAddress { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }

@@ -31,7 +31,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public List<GetDistrictDTO> Get([FromHeader] string Authorization)
+        public RequestStatus<List<GetDistrictDTO>> Get([FromHeader] string Authorization)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Get"]);
             if (isAuthenticated){
@@ -39,12 +39,12 @@ namespace API.Controllers
             }
             else
             {
-                return null;
+                return RequestStatus<List<GetDistrictDTO>>.AuthFailed();
             }
         }
 
         [HttpGet("{id}")]
-        public GetDistrictDTO Get([FromHeader] string Authorization, long id)
+        public RequestStatus<GetDistrictDTO> Get([FromHeader] string Authorization, long id)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Get"]);
             if (isAuthenticated)
@@ -53,12 +53,12 @@ namespace API.Controllers
             }
             else
             {
-                return null;
+                return RequestStatus<GetDistrictDTO>.AuthFailed();
             }
         }
 
         [HttpGet("ByCity/{name}")]
-        public List<GetDistrictDTO> GetByCityName([FromHeader] string Authorization, string name)
+        public RequestStatus< List<GetDistrictDTO> >GetByCityName([FromHeader] string Authorization, string name)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:District:Get"]);
             if (isAuthenticated)
@@ -67,7 +67,7 @@ namespace API.Controllers
             }
             else
             {
-                return null;
+                return RequestStatus<List<GetDistrictDTO>>.AuthFailed();
             }
         }
 
