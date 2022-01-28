@@ -48,11 +48,10 @@ class RegionSelectFragment : Fragment()
         super.onViewCreated(view, savedInstanceState)
         regionListView = view.findViewById(R.id.region_list)
         soonListView = view.findViewById(R.id.soon_list)
-
         var supportRegionList = async {
             regionService.getSupportedRegion()
         }
-        for (curRegion in supportRegionList.await())
+        for (curRegion in supportRegionList.await().entity)
         {
             var regionView = TextView(view.context)
             regionView.text = curRegion.cityName
@@ -78,7 +77,7 @@ class RegionSelectFragment : Fragment()
         var unsupportRegionList = async {
             regionService.getUnsupportedRegion()
         }
-        for (curRegion in unsupportRegionList.await())
+        for (curRegion in unsupportRegionList.await().entity)
         {
             var regionView = TextView(view.context)
             regionView.text = curRegion.cityName
