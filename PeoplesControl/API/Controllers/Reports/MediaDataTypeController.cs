@@ -34,8 +34,8 @@ namespace API.Controllers
         [HttpGet]
         public ActionStatus<List<GetMediaDataTypeDTO>> Get([FromHeader] string Authorization)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:MediaDataType:Get"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:MediaDataType:Get"]);
+            if (isAuthenticated){
                 return _mediaDataTypeReadService.GetAll();
             }
             else
@@ -48,8 +48,8 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public ActionStatus<GetMediaDataTypeDTO> Get([FromHeader] string Authorization, long id)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:MediaDataType:Get"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:MediaDataType:Get"]);
+            if (isAuthenticated){
                 return _mediaDataTypeReadService.Get(id);
             }
             else
@@ -62,8 +62,8 @@ namespace API.Controllers
         [HttpPost]
         public ActionStatus<GetMediaDataTypeDTO> Post([FromHeader] string Authorization, [FromBody] CreateMediaDataTypeDTO createEntity)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:MediaDataType:Add"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:MediaDataType:Add"]);
+            if (isAuthenticated){
                 return _mediaDataTypeWriteService.Add(createEntity);
             }
             else
@@ -76,8 +76,8 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public bool Put([FromHeader] string Authorization, [FromBody] UpdateMediaDataTypeDTO updateEntity)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:MediaDataType:Update"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:MediaDataType:Update"]);
+            if (isAuthenticated){
                 return _mediaDataTypeWriteService.Update(updateEntity);
             }
             else
@@ -90,8 +90,8 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public void Delete([FromHeader] string Authorization, long id)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:MediaDataType:Delete"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:MediaDataType:Delete"]);
+            if (isAuthenticated){
                 _mediaDataTypeWriteService.Delete(id);
             }
         }

@@ -66,8 +66,8 @@ namespace API.Controllers
         [HttpGet("Authorization")]
         public bool Authorization([FromHeader] string Authorization)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Authorization"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Authorization"]);
+            if (isAuthenticated){
                 return true;
             }
             else
@@ -79,9 +79,10 @@ namespace API.Controllers
         [HttpPost]
         public bool Registration([FromHeader] string Authorization, [FromBody] RegistrationDTO registration)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Registration"]))
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Registration"]);
+            if (isAuthenticated)
             {
-                _userProfileWriteService.Add(registration);
+                _userProfileWriteService.Registration(registration);
                 return true;
             }
             else

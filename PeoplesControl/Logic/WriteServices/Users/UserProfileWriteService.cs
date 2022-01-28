@@ -14,22 +14,56 @@ namespace Logic.WriteServices
     {
         IUserProfileRepository _userProfileRepository;
         IUserRepository _userRepository;
+        IAuthenticationService _authenticationService;
         private readonly IMapper _mapper;
 
-        public UserProfileWriteService(IUserProfileRepository userProfileRepository, IUserRepository userRepository, IMapper mapper)
+        public UserProfileWriteService(
+            IUserProfileRepository userProfileRepository, 
+            IUserRepository userRepository, 
+            IMapper mapper,
+            IAuthenticationService authenticationService
+            )
         {
             _userProfileRepository = userProfileRepository;
             _userRepository = userRepository;
             _mapper = mapper;
+            _authenticationService = authenticationService;
         }
 
-        public GetUserProfileDTO Add(RegistrationDTO registrationEntity)
+        public bool RegistrationByE(RegistrationDTO registrationEntity)
         {
-            UserProfile userProfileEntity = _mapper.Map<UserProfile>(registrationEntity);
+            if (registrationEntity.DistrictId == null)
+                return false;
 
+            UserProfile userProfileEntity = _mapper.Map<UserProfile>(registrationEntity);
             userProfileEntity = _userProfileRepository.Add(userProfileEntity);
-            _userProfileRepository.SaveChanges();
+
+            User userEntity = new User();
+            userEntity.Login = registrationEntity.EmailAddress == "" ? registrationEntity.PhoneNumber : registrationEntity.EmailAddress;
+            userEntity.SaltValue = _authenticationService.SaltGen();
+            userEntity.SaltPassword = _authenticationService.SaltHash(registrationEntity.Password, userEntity.SaltValue);
+
+            userEntity.UserProfile = userProfileEntity;
+            userEntity = _userRepository.Add(userEntity);
+
             /*
+             * Почта телефон подтверждение?
+             */
+
+            _userRepository.SaveChanges();
+            
+            return true ;
+        }
+        public int SendConfirmationEmail(string emailAddress)
+        {
+            int code = -1;
+            /*
+             * отправка сообщения по емаил, возвращает код подтверждения
+             */
+            return code;
+        }
+
+        /*
             User userEntity = _mapper.Map<User>(registrationEntity);
             
             userEntity.UserProfile = userProfileEntity;
@@ -49,16 +83,7 @@ namespace Logic.WriteServices
             GetUserProfileDTO getEntity = _mapper.Map<GetUserProfileDTO>(userProfileEntity);
             return new ActionStatus<GetUserProfileDTO>(getEntity);
         */
-            return null;
-        }
-        public int SendConfirmationEmail(string emailAddress)
-        {
-            int code = -1;
-            /*
-             * отправка сообщения по емаил, возвращает код подтверждения
-             */
-            return code;
-        }
+
         public int SendConfirmationSMS(string phoneNumer)
         {
             int code=-1;

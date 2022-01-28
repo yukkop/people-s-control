@@ -36,8 +36,8 @@ namespace API.Controllers
         [HttpGet("Supported")]
         public List<SupportedRegionDTO> GetSupported([FromHeader] string Authorization)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Region:Supported"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Region:Supported"]);
+            if (isAuthenticated){
                 return _regionReadService.GetSupported();
             }
             else
@@ -49,8 +49,8 @@ namespace API.Controllers
         [HttpGet("Unsupported")]
         public List<UnsupportedRegionDTO> GetUnsupported([FromHeader] string Authorization)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Region:Unsupported"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Region:Unsupported"]);
+            if (isAuthenticated){
                 return _regionReadService.GetUnsupported();
             }
             else
@@ -62,9 +62,9 @@ namespace API.Controllers
         [HttpPut("{id}/MakeItSupported")]
         public bool MakeItSupported([FromHeader] string Authorization, long id)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Region:Unsupported"]))
-            {
-                return _regionWriteService.MakeItSupported(id);
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Region:Unsupported"]);
+            if (isAuthenticated){
+                return _regionWriteService.MakeItSupported(id, userId);
             }
             else
             {
@@ -75,9 +75,9 @@ namespace API.Controllers
         [HttpPut("{id}/MakeItUnsupported")]
         public bool MakeItUnsupported([FromHeader] string Authorization, long id)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Region:Unsupported"]))
-            {
-                return _regionWriteService.MakeItUnsupported(id);
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Region:Unsupported"]);
+            if (isAuthenticated){
+                return _regionWriteService.MakeItUnsupported(id, userId);
             }
             else
             {

@@ -12,6 +12,6 @@ namespace Logic.WebEntities
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Patronymic { get; set; }
-        public long DistrictId { get; set; }
+        public long? DistrictId { get; set; }
     }
 }

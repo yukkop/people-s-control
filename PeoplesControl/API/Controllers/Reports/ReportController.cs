@@ -41,8 +41,8 @@ namespace API.Controllers
         [HttpGet]
         public ActionStatus<List<GetReportDTO>> Get([FromHeader] string Authorization, [FromBody] RequestReportsPageDTO pageSettings)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Get"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Get"]);
+            if (isAuthenticated){
                 return _reportReadService.GetPage(pageSettings);
             }
             else
@@ -55,8 +55,8 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public ActionStatus<GetReportDTO> Get([FromHeader] string Authorization, long id)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Get"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Get"]);
+            if (isAuthenticated){
                 return _reportReadService.Get(id);
             }
             else
@@ -69,8 +69,8 @@ namespace API.Controllers
         [HttpPost]
         public ActionStatus<GetReportDTO> Post([FromHeader] string Authorization, [FromBody] CreateReportDTO createEntity)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Add"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Add"]);
+            if (isAuthenticated){
                 return _reportWriteService.Add(createEntity);
             }
             else
@@ -83,8 +83,8 @@ namespace API.Controllers
         [HttpPost("view")]
         public ActionStatus<ReportView> PostReportView([FromHeader] string Authorization, [FromBody] ReportView reportView)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportView:Add"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportView:Add"]);
+            if (isAuthenticated){
                 return _reportViewWriteService.Add(reportView);
             }
             else
@@ -96,8 +96,8 @@ namespace API.Controllers
         [HttpPost("addCategory")]
         public ActionStatus<ReportByProblemCategory> PostProblemCategory([FromHeader] string Authorization, [FromBody] ReportByProblemCategory reportByProblemCategory)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportByProblemCategory:Add"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportByProblemCategory:Add"]);
+           if (isAuthenticated) {
                 return _reportByProblemCategoryWriteService.Add(reportByProblemCategory);
             }
             else
@@ -108,8 +108,8 @@ namespace API.Controllers
         [HttpPost("deleteCategory")]
         public void DeleteProblemCategory([FromHeader] string Authorization, [FromBody] ReportByProblemCategory reportByProblemCategory)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportByProblemCategory:Delete"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportByProblemCategory:Delete"]);
+            if (isAuthenticated){
                 _reportByProblemCategoryWriteService.Delete(reportByProblemCategory);
             }
         }
@@ -117,8 +117,8 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public bool Put([FromHeader] string Authorization, [FromBody] UpdateReportDTO updateEntity)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Update"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Update"]);
+            if (isAuthenticated){
                 return _reportWriteService.Update(updateEntity);
             }
             else
@@ -131,8 +131,8 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public void Delete([FromHeader] string Authorization, long id)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Delete"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Delete"]);
+            if (isAuthenticated){
                 _reportWriteService.Delete(id);
             }
         }

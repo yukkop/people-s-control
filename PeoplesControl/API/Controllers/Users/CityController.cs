@@ -34,8 +34,8 @@ namespace API.Controllers
         [HttpGet]
         public List<GetCityDTO> Get([FromHeader] string Authorization)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Get"])) {
-                return _cityReadService.GetAll();
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Get"]);
+            if (isAuthenticated)  {  return _cityReadService.GetAll();
             }
             else
             {
@@ -46,8 +46,8 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public GetCityDTO Get([FromHeader] string Authorization, long id)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Get"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Get"]);
+            if (isAuthenticated){
                 return _cityReadService.Get(id);
             }
             else 
@@ -59,8 +59,8 @@ namespace API.Controllers
         [HttpPost]
         public bool Post([FromHeader] string Authorization, [FromBody] CreateCityDTO createEntity)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Add"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Add"]);
+            if (isAuthenticated){
                 _cityWriteService.Add(createEntity);
                 return true;
             }
@@ -73,8 +73,8 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public bool Put([FromHeader] string Authorization, [FromBody] UpdateCityDTO updateEntity)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Update"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Update"]);
+            if (isAuthenticated){
                 return _cityWriteService.Update(updateEntity);
             }
             else
@@ -86,8 +86,8 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public bool Delete([FromHeader] string Authorization, long id)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Delete"]))
-            {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:City:Delete"]);
+            if (isAuthenticated){
                 _cityWriteService.Delete(id);
                 return true;
             }
