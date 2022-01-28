@@ -14,7 +14,7 @@ namespace Logic.Profiles
         { 
             CreateMap<CreateDistrictDTO, District>();
             CreateMap<UpdateDistrictDTO, District>();
-            CreateMap<District, GetDistrictDTO>().ForMember("CityName", opt => opt.MapFrom(c => c.City.Name));
+            CreateMap<District, GetDistrictDTO>();
             CreateMap<DistrictDTO, GetDistrictDTO>();
         }
     }

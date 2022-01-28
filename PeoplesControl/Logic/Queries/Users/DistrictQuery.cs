@@ -19,7 +19,14 @@ namespace Logic.Queries
 
         public DistrictDTO Get(long id)
         {
-            string query = $@"SELECT * FROM ""Districts""
+            string query = $@"
+                            SELECT 
+                            ""Districts"".""Id"", 
+                            ""Districts"".""Name"", 
+                            ""Cities"".""Id"" as CityId, 
+                            ""Cities"".""Name"" as CityName
+                            FROM ""Districts""
+                            JOIN ""Cities"" on ""Cities"".""Id"" = ""Districts"".""CityId""
                             WHERE ""Districts"".""Id"" = {id}";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
@@ -46,9 +53,15 @@ namespace Logic.Queries
 
         public List<DistrictDTO> GetByCityName(string cityName)
         {
-            string query = $@"SELECT * FROM ""Districts""
-                                INNER JOIN ""Cities"" ON ""Cities"".""Id""=""Districts"".""CityId""
-                                WHERE ""Cities"".""Name"" = '{cityName}'";
+            string query = $@"
+            SELECT 
+            ""Districts"".""Id"", 
+            ""Districts"".""Name"",
+            ""Cities"".""Id"" as ""CityId"",
+            ""Cities"".""Name"" as ""CityName""
+            FROM ""Districts""
+            INNER JOIN ""Cities"" ON ""Cities"".""Id""=""Districts"".""CityId""
+            WHERE ""Cities"".""Name"" = '{cityName}'";
 
             using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
             {
