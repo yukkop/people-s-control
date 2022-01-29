@@ -2,6 +2,7 @@
 using DataBase.Models;
 using Logic.Helpers;
 using Logic.Profiles;
+using Logic.Queries;
 using Logic.Repositories;
 using Logic.WebEntities;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,8 @@ namespace Logic.WriteServices
         IActionMetaRepository _actionMetaRepository;
         IUserRepository _userRepository;
         IConfiguration _configuration;
+        IUserRoleRepository _userRoleRepository;
+        IRoleQuery _roleQuery;
         private readonly IMapper _mapper;
 
         public UserProfileWriteService(IUserProfileRepository userProfileRepository, 
@@ -27,7 +30,9 @@ namespace Logic.WriteServices
                                         IConfiguration configuration,
                                         IActionMetaRepository actionMetaRepository,
                                         IAuthenticationService authenticationService, 
-                                        IMapper mapper)
+                                        IMapper mapper,
+                                        IUserRoleRepository userRoleRepository,
+                                        IRoleQuery roleQuery)
         {
             _userProfileRepository = userProfileRepository;
             _userRepository = userRepository;
@@ -35,6 +40,8 @@ namespace Logic.WriteServices
             _configuration = configuration;
             _authenticationService = authenticationService;
             _mapper = mapper;
+            _userRoleRepository = userRoleRepository;
+            _roleQuery = roleQuery;
         }
 
         public RequestStatus RegistrationByEmail(RegistrationByEmailDTO registrationEntity)
@@ -68,10 +75,17 @@ namespace Logic.WriteServices
                 return RequestStatus.Exeption(exception);
             }
 
+            UserRole userRole = new UserRole();
+            userRole.User = userEntity;
+            userRole.RoleId = _roleQuery.FindIdByName("User"); //Ой захардкоженно плохо, ой плохо
+            _userRoleRepository.Add(userRole);
+            _userRoleRepository.SaveChanges();
+
             SendConfirmationEmail(userProfileEntity.EmailAddress, (int)userEntity.EmailConfirmationCode);
 
             return RequestStatus.Ok();
         }
+
         public void SendConfirmationEmail(string emailAddress, int code)
         {
 
