@@ -124,37 +124,37 @@ namespace DataBase.Migrations
 
             migrationBuilder.InsertData(
                 table: "Cities",
-                columns: new[] { "Id", "Name" },
+                columns: new[] { "Name" },
                 values: new object[,]
                 {
-                    {1, "Донецк"},
-                    {2, "Макеевка"},
-                    {3, "Харцызск"},
-                    {4, "Ясиноватая"},
+                    {"Донецк"},
+                    {"Макеевка"},
+                    {"Харцызск"},
+                    {"Ясиноватая"},
                 }
 
                 );
 
             migrationBuilder.InsertData(
                 table: "Districts",
-                columns: new[] { "Id", "CityId", "Name" },
+                columns: new[] {"CityId", "Name" },
                 values: new object[,]
                 {
-                    {1, 2, "Червоногвардейка"},
-                    {2, 2, "Центральногородской"},
-                    {3, 2, "Горняцкий"},
+                    {2, "Червоногвардейка"},
+                    {2, "Центральногородской"},
+                    {2, "Горняцкий"},
                 }
 
                 );
 
             migrationBuilder.InsertData(
                 table: "ActionMeta",
-                columns: new[] { "Id", "UserId", "Date" },
+                columns: new[] {"UserId", "Date" },
                 values: new object[,]
                 {
-                    {1, null, DateTime.Now},
-                    {2, null, DateTime.Now},
-                    {3, null, DateTime.Now},
+                    {null, DateTime.Now},
+                    {null, DateTime.Now},
+                    {null, DateTime.Now},
                 }
 
                 );
@@ -173,27 +173,27 @@ namespace DataBase.Migrations
 
             migrationBuilder.InsertData(
                 table: "Roles",
-                columns: new[] { "Id", "Name" },
+                columns: new[] {"Name" },
                 values: new object[,]
                 {
-                    {1, "Admin"},
-                    {2, "Guest"},
-                    {3, "User"},
-                    }
+                    {"Admin"},
+                    {"Guest"},
+                    {"User"},
+                }
 
                 );
 
             migrationBuilder.InsertData(
                 table: "UsersProfiles",
-                columns: new[] { "Id", "Name", "Surname", "CreationId", "IsBlock",
+                columns: new[] {"Name", "Surname", "CreationId", "IsBlock",
                                 "NotifyByEmail", "NotifyBySMS","RequestAnonymity",
                                 "DistrictId"},
                 values: new object[,]
                 {
-                    { 1, "Supper", "Account", 1, false,
+                    {"Supper", "Account", 1, false,
                                 false, false,false,
                                 1},
-                    { 2, "Guest", "Account", 2, false,
+                    {"Guest", "Account", 2, false,
                                 false, false,false,
                                 1}
                 }
@@ -202,12 +202,12 @@ namespace DataBase.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "UserProfileId", "Login", "SaltPassword", "SaltValue" },
+                columns: new[] {"UserProfileId", "Login", "SaltPassword", "SaltValue" },
                 values: new object[,]
                 {
-                    {1,  1, "supper", Properties.Resources.SupperSaltPassword,Properties.Resources.SupperSaltValue},
+                    { 1, "supper", Properties.Resources.SupperSaltPassword,Properties.Resources.SupperSaltValue},
 
-                    {2,  2, "guest", Properties.Resources.GuestSaltPassword,Properties.Resources.GuestSaltValue},
+                    { 2, "guest", Properties.Resources.GuestSaltPassword,Properties.Resources.GuestSaltValue},
 
                 }
 
@@ -240,13 +240,13 @@ namespace DataBase.Migrations
 
             migrationBuilder.InsertData(
                 table: "Cities",
-                columns: new[] { "Id", "Name" },
+                columns: new[] {"Id", "Name" },
                 values: new object[,]
                 {
-                    { 1L, "Донецк" },
-                    { 2L, "Макеевка" },
-                    { 3L, "Харцызск" },
-                    { 4L, "Ясиноватая" }
+                    {1L, "Донецк" },
+                    {2L, "Макеевка" },
+                    {3L, "Харцызск" },
+                    {4L, "Ясиноватая" }
                 });
 
             migrationBuilder.InsertData(

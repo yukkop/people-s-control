@@ -119,6 +119,8 @@ namespace DataBase
             //HCS
             modelBuilder.Entity<HCS>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.ResponsiblePerson)
                     .WithMany()
                     .HasForeignKey(d => d.ResponsiblePersonId); 
@@ -134,6 +136,8 @@ namespace DataBase
             
             modelBuilder.Entity<HCSByProblemCategory>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.HCS)
                     .WithMany()
                     .HasForeignKey(d => d.HCSId); 
@@ -145,6 +149,8 @@ namespace DataBase
 
             modelBuilder.Entity<HCSByRegion>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.HCS)
                     .WithMany()
                     .HasForeignKey(d => d.HCSId); 
@@ -156,6 +162,8 @@ namespace DataBase
 
             modelBuilder.Entity<HCSTask>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.HCS)
                     .WithMany()
                     .HasForeignKey(d => d.HCSId); 
@@ -171,6 +179,8 @@ namespace DataBase
 
             modelBuilder.Entity<Region>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.City)
                     .WithMany()
                     .HasForeignKey(d => d.CityId);
@@ -179,6 +189,8 @@ namespace DataBase
             // Mailing
             modelBuilder.Entity<MailingQueue>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.MailingStatus)
                     .WithMany()
                     .HasForeignKey(d => d.MailingStatusId);
@@ -187,6 +199,8 @@ namespace DataBase
             // Reports
             modelBuilder.Entity<DraftReport>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.User)
                     .WithMany()
                     .HasForeignKey(d => d.UserId);
@@ -194,6 +208,8 @@ namespace DataBase
 
             modelBuilder.Entity<DraftReportByProblemCategory>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.DraftReport)
                     .WithMany()
                     .HasForeignKey(d => d.DraftReportId);
@@ -205,6 +221,8 @@ namespace DataBase
 
             modelBuilder.Entity<MediaData>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.Type)
                     .WithMany()
                     .HasForeignKey(d => d.TypeId);
@@ -220,6 +238,8 @@ namespace DataBase
             
             modelBuilder.Entity<ProblemCategory>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.Avatar)
                     .WithMany()
                     .HasForeignKey(d => d.AvatarId);
@@ -227,6 +247,8 @@ namespace DataBase
 
             modelBuilder.Entity<Report>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.Moderator)
                     .WithMany()
                     .HasForeignKey(d => d.ModeratorId);
@@ -246,6 +268,8 @@ namespace DataBase
 
             modelBuilder.Entity<ReportByProblemCategory>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.ProblemCategory)
                     .WithMany()
                     .HasForeignKey(d => d.ProblemCategoryId);
@@ -257,6 +281,8 @@ namespace DataBase
 
             modelBuilder.Entity<ReportView>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.Report)
                     .WithMany()
                     .HasForeignKey(d => d.ReportId);
@@ -269,6 +295,8 @@ namespace DataBase
             // Транспорт
             modelBuilder.Entity<DriverOnRoute>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.Driver)
                     .WithMany()
                     .HasForeignKey(d => d.DriverId);
@@ -280,6 +308,8 @@ namespace DataBase
 
             modelBuilder.Entity<StopOnRoute>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.TransportStop)
                     .WithMany()
                     .HasForeignKey(d => d.TransportStopId);
@@ -291,6 +321,8 @@ namespace DataBase
 
             modelBuilder.Entity<TransportStop>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.TransportCompany)
                     .WithMany()
                     .HasForeignKey(d => d.TransportCompanyId);
@@ -301,6 +333,8 @@ namespace DataBase
             });
             modelBuilder.Entity<TransportStopAction>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.StopOnRoute)
                     .WithMany()
                     .HasForeignKey(d => d.StopOnRouteId);
@@ -308,11 +342,15 @@ namespace DataBase
             //User
             modelBuilder.Entity<City>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasIndex(e => e.Name).IsUnique();
             });
 
             modelBuilder.Entity<District>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.City)
                     .WithMany()
                     .HasForeignKey(d => d.CityId);
@@ -320,6 +358,8 @@ namespace DataBase
 
             modelBuilder.Entity<UserRole>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.User)
                     .WithMany()
                     .HasForeignKey(d => d.UserId);
@@ -331,6 +371,8 @@ namespace DataBase
 
             modelBuilder.Entity<UserProfile>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.District)
                     .WithMany()
                     .HasForeignKey(d => d.DistrictId);
@@ -350,6 +392,8 @@ namespace DataBase
 
             modelBuilder.Entity<ActionMeta>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.User)
                     .WithMany()
                     .HasForeignKey(d => d.UserId);
@@ -359,6 +403,8 @@ namespace DataBase
 
             modelBuilder.Entity<User>(entity =>
             {
+                entity.HasKey(e => e.Id);
+
                 entity.HasOne(d => d.UserProfile)
                     .WithMany()
                     .HasForeignKey(d => d.UserProfileId);

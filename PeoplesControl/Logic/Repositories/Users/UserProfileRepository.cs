@@ -38,9 +38,9 @@ namespace Logic.Repositories
         {
             _context.UsersProfiles.Remove(_context.UsersProfiles.Where(i => i.Id == id).FirstOrDefault());
         }
-        public void SaveChanges()
+        public Exception SaveChanges()
         {
-            _context.SaveChanges();
+            return _context.SaveChanges();
         }
     }
 }

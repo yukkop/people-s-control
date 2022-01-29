@@ -76,57 +76,45 @@ namespace API.Controllers
             }
         }
         
-        [HttpPost("registration/ByEmail")]
-        public bool Registration([FromHeader] string Authorization, [FromBody] RegistrationByEmailDTO registration)
+        [HttpPost("registration/Email")]
+        public RequestStatus RegistrationByEmail([FromHeader] string Authorization, [FromBody] RegistrationByEmailDTO registration)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Registration"]);
             if (isAuthenticated)
             {
-                _userProfileWriteService.RegistrationByEmail(registration);
-                return true;
+                return _userProfileWriteService.RegistrationByEmail(registration);
             }
             else
             {
-                return false;
+                return RequestStatus.AuthFailed();
             }
         }
-        [HttpPost("confirmEmail/{confirmationCode}")]
-        public bool ConfirmEmail([FromHeader] string Authorization, int confirmationCode)
+        [HttpPut("registration/Email/{confirmationCode}")]
+        public RequestStatus ConfirmEmail([FromHeader] string Authorization, int confirmationCode)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Registration"]);
             if (isAuthenticated)
             {
-                _userProfileWriteService.ConfirmEmail(userId, confirmationCode);
-                return true;
+                return _userProfileWriteService.ConfirmEmail(userId, confirmationCode);
             }
             else
             {
-                return false;
-            }
-        }
-/*
-        // PUT api/<UserProfileController>
-        [HttpPut("{id}")]
-        public bool Put([FromHeader] string Authorization, [FromBody] UpdateUserProfileDTO updateEntity)
-        {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Update"]))
-            {
-                return _userProfileWriteService.Update(updateEntity);
-            }
-            else
-            {
-                return false;
+                return RequestStatus.AuthFailed();
             }
         }
 
-        // DELETE api/<UserProfileController>/5
-        [HttpDelete("{id}")]
-        public void Delete([FromHeader] string Authorization, long id)
+        [HttpPut("registration/Email/resend")]
+        public RequestStatus ResendConfirmationCodeEmail([FromHeader] string Authorization)
         {
-            if (_authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Delete"]))
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Registration"]);
+            if (isAuthenticated)
             {
-                _userProfileWriteService.Delete(id);
+                return _userProfileWriteService.ResendConfirmationCodeEmail(userId);
             }
-        }*/
+            else
+            {
+                return RequestStatus.AuthFailed();
+            }
+        }
     }
 }

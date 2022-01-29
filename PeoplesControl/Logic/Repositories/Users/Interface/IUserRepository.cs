@@ -11,7 +11,7 @@ namespace Logic.Repositories
         public List<User> GetAll();
         public User Add(User user);
         bool Update(User entity);
-        void SaveChanges();
+        Exception SaveChanges();
         void Delete(long id);
     }
 }
