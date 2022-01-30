@@ -37,9 +37,8 @@ namespace API.Controllers
             _configuration = configuration;
         }
 
-        // GET: api/<ReportController>
-        [HttpGet]
-        public RequestStatus<List<GetReportDTO>> Get([FromHeader] string Authorization, [FromBody] RequestReportsPageDTO pageSettings)
+        [HttpGet("Page")] //Достать страницу с учетом сортировки (ShortReport)
+        public RequestStatus<List<GetReportDTO>> GetPage([FromHeader] string Authorization, [FromBody] RequestReportsPageDTO pageSettings)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Get"]);
             if (isAuthenticated){
@@ -47,12 +46,11 @@ namespace API.Controllers
             }
             else
             {
-                return null;
+                return RequestStatus<List<GetReportDTO>>.AuthFailed();
             }
         }
 
-        // GET api/<ReportController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{id}")] // Страница репорта
         public RequestStatus<GetReportDTO> Get([FromHeader] string Authorization, long id)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Get"]);
@@ -61,80 +59,81 @@ namespace API.Controllers
             }
             else
             {
-                return null;
+                return RequestStatus<GetReportDTO>.AuthFailed();
             }
         }
 
-        // POST api/<ReportController>
         [HttpPost]
-        public RequestStatus<GetReportDTO> Post([FromHeader] string Authorization, [FromBody] CreateReportDTO createEntity)
+        public RequestStatus Post([FromHeader] string Authorization, [FromBody] CreateReportDTO createEntity)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Add"]);
             if (isAuthenticated){
-                return _reportWriteService.Add(createEntity);
+                return _reportWriteService.Create(createEntity, userId);
             }
             else
             {
-                return null;
+                return RequestStatus.AuthFailed();
             }
         }
 
-        // POST api/<ReportController>
-        [HttpPost("view")]
-        public RequestStatus<ReportView> PostReportView([FromHeader] string Authorization, [FromBody] ReportView reportView)
+        [HttpPost("{id}/view")]
+        public RequestStatus PostReportView([FromHeader] string Authorization, long id)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportView:Add"]);
             if (isAuthenticated){
-                return _reportViewWriteService.Add(reportView);
+                return _reportViewWriteService.Add(id, userId);
             }
             else
             {
-                return null;
+                return RequestStatus.AuthFailed();
             }
         }
         // POST api/<ReportController>
-        [HttpPost("addCategory")]
-        public RequestStatus<ReportByProblemCategory> PostProblemCategory([FromHeader] string Authorization, [FromBody] ReportByProblemCategory reportByProblemCategory)
+        [HttpPost("{id}/put/Category/{categoryId}")]
+        public RequestStatus PostProblemCategory([FromHeader] string Authorization, long id, long categoryId)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportByProblemCategory:Add"]);
            if (isAuthenticated) {
-                return _reportByProblemCategoryWriteService.Add(reportByProblemCategory);
+                return _reportByProblemCategoryWriteService.Add(id, categoryId);
             }
             else
             {
-                return null;
+                return RequestStatus.AuthFailed();
             }
         }
-        [HttpPost("deleteCategory")]
-        public void DeleteProblemCategory([FromHeader] string Authorization, [FromBody] ReportByProblemCategory reportByProblemCategory)
+        [HttpPost("{id}/Delete/Category/{categoryId}")]
+        public RequestStatus DeleteProblemCategory([FromHeader] string Authorization, long id, long categoryId)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:ReportByProblemCategory:Delete"]);
             if (isAuthenticated){
-                _reportByProblemCategoryWriteService.Delete(reportByProblemCategory);
-            }
-        }
-        // PUT api/<ReportController>
-        [HttpPut("{id}")]
-        public bool Put([FromHeader] string Authorization, [FromBody] UpdateReportDTO updateEntity)
-        {
-            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Update"]);
-            if (isAuthenticated){
-                return _reportWriteService.Update(updateEntity);
+                return _reportByProblemCategoryWriteService.Delete(id, categoryId);
             }
             else
             {
-                return false;
+                return RequestStatus.AuthFailed();
             }
         }
 
-        // DELETE api/<ReportController>/5
-        [HttpDelete("{id}")]
-        public void Delete([FromHeader] string Authorization, long id)
-        {
-            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Delete"]);
-            if (isAuthenticated){
-                _reportWriteService.Delete(id);
-            }
-        }
+        //[HttpPut("{id}")]
+        //public bool Put([FromHeader] string Authorization, [FromBody] UpdateReportDTO updateEntity)
+        //{
+        //    var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Update"]);
+        //    if (isAuthenticated){
+        //        return _reportWriteService.Update(updateEntity);
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        //[HttpDelete("{id}")]
+        //public void Delete([FromHeader] string Authorization, long id)
+        //{
+        //    var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Delete"]);
+        //    if (isAuthenticated){
+        //        _reportWriteService.Delete(id);
+        //    }
+        //}
     }
 }

@@ -8,7 +8,8 @@ namespace Logic.Repositories
     public interface IReportByProblemCategoryRepository
     {
         public ReportByProblemCategory Add(ReportByProblemCategory reportByProblemCategory);
-        void SaveChanges();
+        Exception SaveChanges();
         public void Delete(ReportByProblemCategory entity);
+        public ReportByProblemCategory Get(long id);
     }
 }

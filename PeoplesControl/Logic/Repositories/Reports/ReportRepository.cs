@@ -39,9 +39,9 @@ namespace Logic.Repositories
         {
             _context.Reports.Remove(_context.Reports.Where(i => i.Id == id).FirstOrDefault());
         }
-        public void SaveChanges()
+        public Exception SaveChanges()
         {
-            _context.SaveChanges();
+            return _context.SaveChanges();
         }
     }
 }

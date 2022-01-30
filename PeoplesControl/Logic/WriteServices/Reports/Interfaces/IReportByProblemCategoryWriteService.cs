@@ -8,7 +8,7 @@ namespace Logic.WriteServices
 {
     public interface IReportByProblemCategoryWriteService
     {
-        public RequestStatus<ReportByProblemCategory> Add(ReportByProblemCategory createEntity);
-        public void Delete(ReportByProblemCategory entity);
+        public RequestStatus Add(long reportId, long categoryId);
+        public RequestStatus Delete(long id, long categoryI);
     }
 }

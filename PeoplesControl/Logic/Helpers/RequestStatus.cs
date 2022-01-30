@@ -12,6 +12,7 @@ namespace Logic.Helpers
             Ok,
             Error,
             Exeption,
+            Empty,
             BadParams,
             Teapot
         }
@@ -57,8 +58,10 @@ namespace Logic.Helpers
         {
             Ok,
             Error,
-            Empty, 
-            BadParams
+            Exeption,
+            Empty,
+            BadParams,
+            Teapot
         }
 
         public Statuses Status { get; set; }
