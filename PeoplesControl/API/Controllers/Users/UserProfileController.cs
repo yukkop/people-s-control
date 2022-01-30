@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/user")]
     [ApiController]
     public class UserProfileController : ControllerBase
     {
@@ -92,7 +92,7 @@ namespace API.Controllers
         [HttpPut("registration/Email/{confirmationCode}")]
         public RequestStatus ConfirmEmail([FromHeader] string Authorization, int confirmationCode)
         {
-            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Registration"]);
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Confirmation"]);
             if (isAuthenticated)
             {
                 return _userProfileWriteService.ConfirmEmail(userId, confirmationCode);
@@ -103,10 +103,38 @@ namespace API.Controllers
             }
         }
 
+        [HttpPut("role/remove/driver")]
+        public RequestStatus RemoveDriverRole([FromHeader] string Authorization)
+        {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Registration"]);
+            if (isAuthenticated)
+            {
+                return RequestStatus.Ok();
+            }
+            else
+            {
+                return RequestStatus.AuthFailed();
+            }
+        }
+
+        [HttpPut("role/add/driver")]
+        public RequestStatus AddDriverRole([FromHeader] string Authorization)
+        {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Registration"]);
+            if (isAuthenticated)
+            {
+                return RequestStatus.Ok();
+            }
+            else
+            {
+                return RequestStatus.AuthFailed();
+            }
+        }
+
         [HttpPut("registration/Email/resend")]
         public RequestStatus ResendConfirmationCodeEmail([FromHeader] string Authorization)
         {
-            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Registration"]);
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Confirmation"]);
             if (isAuthenticated)
             {
                 return _userProfileWriteService.ResendConfirmationCodeEmail(userId);
