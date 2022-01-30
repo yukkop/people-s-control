@@ -37,8 +37,8 @@ namespace API.Controllers
             _configuration = configuration;
         }
 
-        [HttpGet("Page")] //Достать страницу с учетом сортировки (ShortReport)
-        public RequestStatus<List<GetReportDTO>> GetPage([FromHeader] string Authorization, [FromBody] RequestReportsPageDTO pageSettings)
+        [HttpGet("page")] //Достать страницу с учетом сортировки (ShortReport)
+        public RequestStatus<List<ShortShowReportDTO>> GetPage([FromHeader] string Authorization, [FromBody] RequestReportsPageDTO pageSettings)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Get"]);
             if (isAuthenticated){
@@ -46,7 +46,7 @@ namespace API.Controllers
             }
             else
             {
-                return RequestStatus<List<GetReportDTO>>.AuthFailed();
+                return RequestStatus<List<ShortShowReportDTO>>.AuthFailed();
             }
         }
 

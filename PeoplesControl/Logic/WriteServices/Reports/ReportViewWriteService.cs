@@ -26,7 +26,7 @@ namespace Logic.WriteServices
             Exception exception = _reportViewRepository.SaveChanges();
             if (exception != null)
             {
-                return RequestStatus.Exeption(exception);
+                return RequestStatus.Exception(exception);
             }
 
             return RequestStatus.Ok();

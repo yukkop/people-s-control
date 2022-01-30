@@ -32,7 +32,7 @@ namespace Logic.WriteServices
             Exception exception = _reportByProblemCategoryRepository.SaveChanges();
             if (exception != null)
             {
-                return RequestStatus.Exeption(exception);
+                return RequestStatus.Exception(exception);
             }
 
             return RequestStatus.Ok();
@@ -51,7 +51,7 @@ namespace Logic.WriteServices
             Exception exception =  _reportByProblemCategoryRepository.SaveChanges();
             if (exception != null)
             {
-                return RequestStatus.Exeption(exception);
+                return RequestStatus.Exception(exception);
             }
 
             return RequestStatus.Ok();

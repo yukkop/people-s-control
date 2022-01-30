@@ -11,7 +11,7 @@ namespace Logic.Helpers
         {
             Ok,
             Error,
-            Exeption,
+            Exception,
             Empty,
             BadParams,
             Teapot
@@ -43,13 +43,13 @@ namespace Logic.Helpers
             return new RequestStatus(Statuses.BadParams, "Неправильный логин или пароль.");
         }
 
-        public static RequestStatus Exeption(Exception e)
+        public static RequestStatus Exception(Exception e)
         {
             while (e.InnerException != null)
             {
                 e = e.InnerException;
             }
-            return new RequestStatus(Statuses.Exeption, e.Message);
+            return new RequestStatus(Statuses.Exception, e.Message);
         }
     }
     public class RequestStatus<EntityType>
@@ -58,7 +58,7 @@ namespace Logic.Helpers
         {
             Ok,
             Error,
-            Exeption,
+            Exception,
             Empty,
             BadParams,
             Teapot
@@ -102,6 +102,15 @@ namespace Logic.Helpers
         public static RequestStatus<EntityType> AuthFailed()
         {
             return new RequestStatus<EntityType>(default, Statuses.BadParams, "Неправильный логин или пароль.");
+        }
+
+        public static RequestStatus<EntityType> Exception(Exception e)
+        {
+            while (e.InnerException != null)
+            {
+                e = e.InnerException;
+            }
+            return new RequestStatus<EntityType>(default, Statuses.Exception, e.Message);
         }
     }
 }

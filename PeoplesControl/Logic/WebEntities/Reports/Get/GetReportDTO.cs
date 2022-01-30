@@ -27,5 +27,7 @@ namespace Logic.WebEntities
         public long ViewsCount { get; set; }
         public long[] ProblemCategoriesIds { get; set; }
         public string[] ProblemCategoriesNames { get; set; }
+        public long[] RelatedReportsIds { get; set; }
+        public long RelatedReportsCount { get; set; }
     }
 }
