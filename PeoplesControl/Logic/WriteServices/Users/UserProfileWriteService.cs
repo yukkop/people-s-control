@@ -65,9 +65,6 @@ namespace Logic.WriteServices
             userEntity.SaltValue = _authenticationService.SaltGen();
             userEntity.SaltPassword = _authenticationService.SaltHash(registrationEntity.Password, userEntity.SaltValue);
 
-            userEntity.UserProfile = userProfileEntity;
-            userEntity.EmailConfirmationCode = MakeConfirmationCode();
-            userEntity = _userRepository.Add(userEntity);
 
             Exception exception = _userRepository.SaveChanges();
             if (exception != null)
@@ -81,12 +78,16 @@ namespace Logic.WriteServices
             _userRoleRepository.Add(userRole);
             _userRoleRepository.SaveChanges();
 
-            SendConfirmationEmail(userProfileEntity.EmailAddress, (int)userEntity.EmailConfirmationCode);
+            exception = SendConfirmationEmail(userProfileEntity.EmailAddress, (int)userEntity.EmailConfirmationCode);
+            if (exception != null)
+            {
+                return new RequestStatus(RequestStatus.Statuses.BadParams, $"🤣 {exception}");
+            } 
 
             return RequestStatus.Ok();
         }
 
-        public void SendConfirmationEmail(string emailAddress, int code)
+        public Exception SendConfirmationEmail(string emailAddress, int code)
         {
 
             MailAddress from = new MailAddress(_configuration["ServerEmailAddress"], "People-s-control");
@@ -103,7 +104,15 @@ namespace Logic.WriteServices
             smtp.UseDefaultCredentials = false;
             smtp.Credentials = new NetworkCredential(_configuration["ServerEmailAddress"], _configuration["ServerEmailPassword"]);
             smtp.EnableSsl = true;
-            smtp.Send(m);
+            try
+            {
+                smtp.Send(m);
+            }
+            catch (Exception e)
+            {
+                return e;
+            }
+            return null;
         }
 
         private int MakeConfirmationCode()
