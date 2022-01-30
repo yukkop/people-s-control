@@ -24,17 +24,20 @@ namespace Logic.ReadServices
             ReportDTO entity = _reportQuery.Get(id);
             return new RequestStatus<GetReportDTO>(_mapper.Map<GetReportDTO>(entity));
         }
-        public RequestStatus<List<GetReportDTO>> GetPage(RequestReportsPageDTO pageSettings)
-        {
-            List<ReportDTO> entities = _reportQuery.GetPage(pageSettings);
-            List<GetReportDTO> getEntities = new List<GetReportDTO>();
 
-            foreach (var entity in entities)
+        public RequestStatus<List<ShortShowReportDTO>> GetPage(RequestReportsPageDTO pageSettings)
+        {
+            List<ShortShowReportDTO> entities;
+            try
             {
-                getEntities.Add(_mapper.Map<GetReportDTO>(entity));
+                entities = _reportQuery.GetPage(pageSettings);
+            }
+            catch (Exception e)
+            {
+                return RequestStatus<List<ShortShowReportDTO>>.Exception(e);
             }
 
-            return new RequestStatus<List<GetReportDTO>>(getEntities);
+            return new RequestStatus<List<ShortShowReportDTO>>(entities);
         }
     }
 }

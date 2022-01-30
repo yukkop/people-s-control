@@ -1,5 +1,6 @@
 ﻿using DataBase.Models;
 using Logic.Helpers;
+using Logic.Queries;
 using Logic.Repositories;
 using System;
 using System.Collections.Generic;
@@ -10,23 +11,50 @@ namespace Logic.WriteServices
     public class ReportByProblemCategoryWriteService : IReportByProblemCategoryWriteService
     {
         IReportByProblemCategoryRepository _reportByProblemCategoryRepository;
+        IReportByProblemCategoryQuery _reportByProblemCategoryQuery;
 
-        public ReportByProblemCategoryWriteService(IReportByProblemCategoryRepository reportByProblemCategoryRepository)
+        public ReportByProblemCategoryWriteService(
+            IReportByProblemCategoryRepository reportByProblemCategoryRepository,
+            IReportByProblemCategoryQuery reportByProblemCategoryQuery
+            )
         {
             _reportByProblemCategoryRepository = reportByProblemCategoryRepository;
+            _reportByProblemCategoryQuery = reportByProblemCategoryQuery;
         }
 
-        public RequestStatus<ReportByProblemCategory> Add(ReportByProblemCategory createEntity)
+        public RequestStatus Add(long reportId, long categoryId)
         {
-            RequestStatus<ReportByProblemCategory> actionStatus = new RequestStatus<ReportByProblemCategory>(_reportByProblemCategoryRepository.Add(createEntity));
-            _reportByProblemCategoryRepository.SaveChanges();
-            return actionStatus;
+            ReportByProblemCategory entity = new ReportByProblemCategory();
+            entity.ReportId = reportId;
+            entity.ProblemCategoryId = categoryId;
+
+            _reportByProblemCategoryRepository.Add(entity);
+            Exception exception = _reportByProblemCategoryRepository.SaveChanges();
+            if (exception != null)
+            {
+                return RequestStatus.Exception(exception);
+            }
+
+            return RequestStatus.Ok();
         }
 
-        public void Delete(ReportByProblemCategory entity)
+        public RequestStatus Delete(long reportId, long categoryId)
         {
+            long? reportByProblemCategoryId = _reportByProblemCategoryQuery.FindInReport(reportId, categoryId);
+            if (reportByProblemCategoryId == null)
+            {
+                return new RequestStatus(RequestStatus.Statuses.BadParams, "Эта заявкая не содержит такую категорию.");
+            }
+
+            ReportByProblemCategory entity = _reportByProblemCategoryRepository.Get((long)reportByProblemCategoryId);
             _reportByProblemCategoryRepository.Delete(entity);
-            _reportByProblemCategoryRepository.SaveChanges();
+            Exception exception =  _reportByProblemCategoryRepository.SaveChanges();
+            if (exception != null)
+            {
+                return RequestStatus.Exception(exception);
+            }
+
+            return RequestStatus.Ok();
         }
     }
 }

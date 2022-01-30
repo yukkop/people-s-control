@@ -69,7 +69,7 @@ namespace Logic.WriteServices
             Exception exception = _userRepository.SaveChanges();
             if (exception != null)
             {
-                return RequestStatus.Exeption(exception);
+                return RequestStatus.Exception(exception);
             }
 
             UserRole userRole = new UserRole();
@@ -151,7 +151,7 @@ namespace Logic.WriteServices
             Exception exception = _userRepository.SaveChanges();
             if (exception != null)
             {
-                return RequestStatus.Exeption(exception);
+                return RequestStatus.Exception(exception);
             }
 
             SendConfirmationEmail(userProfile.EmailAddress, (int)user.EmailConfirmationCode);

@@ -8,7 +8,7 @@ namespace Logic.WriteServices
 {
     public interface IReportWriteService
     {
-        public RequestStatus<GetReportDTO> Add(CreateReportDTO createEntity);
+        public RequestStatus Create(CreateReportDTO createEntity, long userId);
         public bool Update(UpdateReportDTO updateEntity);
         public void Delete(long id);
     }

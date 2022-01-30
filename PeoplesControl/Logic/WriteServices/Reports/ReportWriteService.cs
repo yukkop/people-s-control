@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
 using DataBase.Models;
 using Logic.Helpers;
-using Logic.Profiles;
 using Logic.Repositories;
 using Logic.WebEntities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Logic.WriteServices
 {
@@ -25,20 +22,21 @@ namespace Logic.WriteServices
             _mapper = mapper;
         }
 
-        public RequestStatus<GetReportDTO> Add(CreateReportDTO createEntity)
+        public RequestStatus Create(CreateReportDTO createEntity, long userId)
         {
             Report entity = _mapper.Map<Report>(createEntity);
-            entity.User = _userRepository.Get(entity.UserId);
-            entity.Status = _reportStatusRepository.Get(entity.StatusId);
+            entity.UserId = userId;
             entity.DateCreation = DateTime.Now;
-            entity.RelationReportId = null;
-           // entity.RelationReport = entity;
+
             entity = _reportRepository.Add(entity);
 
+            Exception exception = _reportRepository.SaveChanges();
+            if (exception != null)
+            {
+                return RequestStatus.Exception(exception);
+            }
 
-            GetReportDTO getEntity = _mapper.Map<GetReportDTO>(entity);
-            _reportRepository.SaveChanges();
-            return new RequestStatus<GetReportDTO>(getEntity);
+            return RequestStatus.Ok();
         }
 
         public bool Update(UpdateReportDTO updateEntity)

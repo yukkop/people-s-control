@@ -99,6 +99,7 @@ namespace API
             services.AddScoped<IReportViewWriteService, ReportViewWriteService>();
 
             services.AddScoped<IReportByProblemCategoryRepository, ReportByProblemCategoryRepository>();
+            services.AddScoped<IReportByProblemCategoryQuery, ReportByProblemCategoryQuery>();
             services.AddScoped<IReportByProblemCategoryWriteService, ReportByProblemCategoryWriteService>();
 
 

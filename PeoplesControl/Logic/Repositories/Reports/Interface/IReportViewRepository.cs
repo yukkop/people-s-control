@@ -8,6 +8,6 @@ namespace Logic.Repositories
     public interface IReportViewRepository
     {
         public ReportView Add(ReportView reportView);
-        public void SaveChanges();
+        public Exception SaveChanges();
     }
 }
