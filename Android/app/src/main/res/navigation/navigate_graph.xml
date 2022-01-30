@@ -26,7 +26,11 @@
         android:id="@+id/registration"
         android:name="com.hectik.androidpeoples.RegistrationFragment"
         android:label="fragment_registration"
-        tools:layout="@layout/fragment_registration" />
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registration_to_confirmFragment"
+            app:destination="@id/confirmFragment" />
+    </fragment>
     <fragment
         android:id="@+id/regionSelectFragment"
         android:name="com.hectik.androidpeoples.RegionSelectFragment"
@@ -44,6 +48,15 @@
         <action
             android:id="@+id/action_districtSelectFragment_to_registration"
             app:destination="@id/registration" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmFragment"
+        android:name="com.hectik.androidpeoples.ConfirmFragment"
+        android:label="fragment_confirm"
+        tools:layout="@layout/fragment_confirm" >
+        <action
+            android:id="@+id/action_confirmFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
     </fragment>
 
 </navigation>

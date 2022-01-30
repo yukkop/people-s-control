@@ -23,6 +23,7 @@ class LoginFragment : Fragment()
     private lateinit var loginToggleEmailView: TextView
     private lateinit var loginTogglePhoneView: TextView
     private lateinit var loginInputView: EditText
+    private lateinit var loginButtonEnter: MaterialButton
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -44,6 +45,7 @@ class LoginFragment : Fragment()
         loginToggleEmailView = view.findViewById(R.id.emailToggleButtonOnLoginPage)
         loginTogglePhoneView = view.findViewById(R.id.phoneToggleButtonOnLoginPage)
         loginInputView = view.findViewById(R.id.inputLoginOnLoginPage)
+        loginButtonEnter = view.findViewById(R.id.loginButtonEnter)
         loginToggleEmailView.setOnClickListener {
             loginToggle = LoginType.E_MAIL
             toggleStyleSet()
@@ -55,6 +57,7 @@ class LoginFragment : Fragment()
         view.findViewById<TextView>(R.id.LoginPageRegistrationTextButton).setOnClickListener {
             it.findNavController().navigate(R.id.action_loginFragment_to_registration)
         }
+        
     }
 
     private fun toggleStyleSet()

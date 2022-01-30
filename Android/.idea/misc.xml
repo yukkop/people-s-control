@@ -22,11 +22,12 @@
         <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout/activity_main.xml" value="0.21875" />
         <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout/activity_main_menu.xml" value="0.12" />
+        <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout/fragment_confirm.xml" value="0.5" />
         <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout/fragment_district_select.xml" value="0.19444444444444445" />
         <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout/fragment_login.xml" value="0.39926062846580407" />
         <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout/fragment_main_menu.xml" value="0.25" />
         <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout/fragment_region_select.xml" value="0.41589648798521256" />
-        <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout/fragment_registration.xml" value="0.33" />
+        <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout/fragment_registration.xml" value="0.25" />
         <entry key="..\:/Hackathon/people-s-control/Android/app/src/main/res/layout/toolbar.xml" value="0.25" />
       </map>
     </option>
