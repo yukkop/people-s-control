@@ -82,6 +82,7 @@ namespace API
             services.AddScoped<IUserQuery, UserQuery>();
 
             services.AddScoped<IUserRoleQuery, UserRoleQuery>();
+            services.AddScoped<IUserRoleRepository, UserRoleRepository>();
 
             //reports
             services.AddScoped<IReportStatusRepository, ReportStatusRepository>();
