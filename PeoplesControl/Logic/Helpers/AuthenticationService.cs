@@ -26,6 +26,10 @@ namespace Logic.Helpers
                 return 0;
             var (login, password) = Base64Decode(authorizationBase64String);
             UserPasswordDTO user = _userQuery.FindUserByLogin(login);
+            if (user == null)
+            {
+                return 0;
+            }
             byte[] saltPasword = SaltHash(password, user.SaltValue);
 
             if (user.SaltPassword.SequenceEqual(saltPasword))
