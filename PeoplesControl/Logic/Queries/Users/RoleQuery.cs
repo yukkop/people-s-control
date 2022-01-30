@@ -17,6 +17,19 @@ namespace Logic.Queries
             _connectionString = configuration["ConnectionStrings:DefaultConnection"];
         }
 
+        public long FindIdByName(string name)
+        {
+            string query = $@"SELECT 
+""Roles"".""Id""
+FROM ""Roles""
+WHERE ""Roles"".""Name"" = '{name}'";
+
+            using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
+            {
+                return db.Query<long>(query).FirstOrDefault();
+            }
+        }
+
         public RoleDTO Get(long id)
         {
             string query = $@"SELECT 

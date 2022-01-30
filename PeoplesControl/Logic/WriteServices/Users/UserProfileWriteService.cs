@@ -2,6 +2,7 @@
 using DataBase.Models;
 using Logic.Helpers;
 using Logic.Profiles;
+using Logic.Queries;
 using Logic.Repositories;
 using Logic.WebEntities;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,8 @@ namespace Logic.WriteServices
         IActionMetaRepository _actionMetaRepository;
         IUserRepository _userRepository;
         IConfiguration _configuration;
+        IUserRoleRepository _userRoleRepository;
+        IRoleQuery _roleQuery;
         private readonly IMapper _mapper;
 
         public UserProfileWriteService(IUserProfileRepository userProfileRepository, 
@@ -27,7 +30,9 @@ namespace Logic.WriteServices
                                         IConfiguration configuration,
                                         IActionMetaRepository actionMetaRepository,
                                         IAuthenticationService authenticationService, 
-                                        IMapper mapper)
+                                        IMapper mapper,
+                                        IUserRoleRepository userRoleRepository,
+                                        IRoleQuery roleQuery)
         {
             _userProfileRepository = userProfileRepository;
             _userRepository = userRepository;
@@ -35,6 +40,8 @@ namespace Logic.WriteServices
             _configuration = configuration;
             _authenticationService = authenticationService;
             _mapper = mapper;
+            _userRoleRepository = userRoleRepository;
+            _roleQuery = roleQuery;
         }
 
         public RequestStatus RegistrationByEmail(RegistrationByEmailDTO registrationEntity)
@@ -58,9 +65,6 @@ namespace Logic.WriteServices
             userEntity.SaltValue = _authenticationService.SaltGen();
             userEntity.SaltPassword = _authenticationService.SaltHash(registrationEntity.Password, userEntity.SaltValue);
 
-            userEntity.UserProfile = userProfileEntity;
-            userEntity.EmailConfirmationCode = MakeConfirmationCode();
-            userEntity = _userRepository.Add(userEntity);
 
             Exception exception = _userRepository.SaveChanges();
             if (exception != null)
@@ -68,11 +72,22 @@ namespace Logic.WriteServices
                 return RequestStatus.Exeption(exception);
             }
 
-            SendConfirmationEmail(userProfileEntity.EmailAddress, (int)userEntity.EmailConfirmationCode);
+            UserRole userRole = new UserRole();
+            userRole.User = userEntity;
+            userRole.RoleId = _roleQuery.FindIdByName("User"); //Ой захардкоженно плохо, ой плохо
+            _userRoleRepository.Add(userRole);
+            _userRoleRepository.SaveChanges();
+
+            exception = SendConfirmationEmail(userProfileEntity.EmailAddress, (int)userEntity.EmailConfirmationCode);
+            if (exception != null)
+            {
+                return new RequestStatus(RequestStatus.Statuses.BadParams, $"🤣 {exception}");
+            } 
 
             return RequestStatus.Ok();
         }
-        public void SendConfirmationEmail(string emailAddress, int code)
+
+        public Exception SendConfirmationEmail(string emailAddress, int code)
         {
 
             MailAddress from = new MailAddress(_configuration["ServerEmailAddress"], "People-s-control");
@@ -89,7 +104,15 @@ namespace Logic.WriteServices
             smtp.UseDefaultCredentials = false;
             smtp.Credentials = new NetworkCredential(_configuration["ServerEmailAddress"], _configuration["ServerEmailPassword"]);
             smtp.EnableSsl = true;
-            smtp.Send(m);
+            try
+            {
+                smtp.Send(m);
+            }
+            catch (Exception e)
+            {
+                return e;
+            }
+            return null;
         }
 
         private int MakeConfirmationCode()

@@ -9,5 +9,6 @@ namespace Logic.Queries
     {
         public RoleDTO Get(long id);
         public List<RoleDTO> GetAll();
+        public long FindIdByName(string name);
     }
 }
