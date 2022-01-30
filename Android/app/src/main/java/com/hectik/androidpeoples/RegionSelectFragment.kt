@@ -19,11 +19,6 @@ import com.hectik.androidpeoples.viewModels.UserViewModel
 import kotlinx.coroutines.*
 import java.util.*
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RegionSelectFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RegionSelectFragment : Fragment()
 {
     private val registrationService = AuthService()
@@ -50,6 +45,11 @@ class RegionSelectFragment : Fragment()
         super.onViewCreated(view, savedInstanceState)
         regionListView = view.findViewById(R.id.region_list)
         soonListView = view.findViewById(R.id.soon_list)
+
+        view.findViewById<MaterialButton>(R.id.cancelButtonRegionSelectPage).setOnClickListener {
+            it.findNavController().navigate(R.id.action_regionSelectFragment_to_loginFragment)
+        }
+
         var supportRegionList = withContext(Dispatchers.Default) {
                 registrationService.getSupportedRegion()
             }
@@ -94,9 +94,9 @@ class RegionSelectFragment : Fragment()
             statusOk = {
                 for (curRegion in unsupportRegionList.entity)
                 {
-                    var regionView = TextView(view.context)
+                    val regionView = TextView(view.context)
                     regionView.text = curRegion.cityName
-                    var param = ViewGroup.MarginLayoutParams(
+                    val param = ViewGroup.MarginLayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT
                     )

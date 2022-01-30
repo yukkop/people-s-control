@@ -7,9 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.google.android.material.button.MaterialButton
+import com.hectik.androidpeoples.models.statusCheckRun
+import com.hectik.androidpeoples.services.AuthService
+import com.hectik.androidpeoples.viewModels.UserViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.w3c.dom.Text
 
 /**
@@ -20,10 +28,16 @@ import org.w3c.dom.Text
 class LoginFragment : Fragment()
 {
     private var loginToggle = LoginType.E_MAIL
+    private val authorizationService = AuthService()
     private lateinit var loginToggleEmailView: TextView
     private lateinit var loginTogglePhoneView: TextView
+    private lateinit var registrationButtonView: TextView
     private lateinit var loginInputView: EditText
+    private lateinit var passwordInputView: EditText
     private lateinit var loginButtonEnter: MaterialButton
+    private lateinit var skipButtonView: TextView
+    private val userModel: UserViewModel by activityViewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -42,10 +56,27 @@ class LoginFragment : Fragment()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
-        loginToggleEmailView = view.findViewById(R.id.emailToggleButtonOnLoginPage)
-        loginTogglePhoneView = view.findViewById(R.id.phoneToggleButtonOnLoginPage)
-        loginInputView = view.findViewById(R.id.inputLoginOnLoginPage)
-        loginButtonEnter = view.findViewById(R.id.loginButtonEnter)
+        findAllView(view)
+        setListeners()
+    }
+
+    private fun findAllView(viewFragment: View)
+    {
+        loginToggleEmailView = viewFragment.findViewById(R.id.emailToggleButtonOnLoginPage)
+        loginTogglePhoneView = viewFragment.findViewById(R.id.phoneToggleButtonOnLoginPage)
+        loginInputView = viewFragment.findViewById(R.id.inputLoginOnLoginPage)
+        passwordInputView = viewFragment.findViewById(R.id.inputPassOnLoginPage)
+        loginButtonEnter = viewFragment.findViewById(R.id.loginButtonEnter)
+        registrationButtonView = viewFragment.findViewById(R.id.LoginPageRegistrationTextButton)
+        skipButtonView = viewFragment.findViewById(R.id.skipButtonOnLoginPage)
+    }
+
+    private fun setListeners()
+    {
+        skipButtonView.setOnClickListener {
+            it.findNavController().navigate(R.id.action_loginFragment_to_mainMenuFragment)
+        }
+
         loginToggleEmailView.setOnClickListener {
             loginToggle = LoginType.E_MAIL
             toggleStyleSet()
@@ -54,10 +85,56 @@ class LoginFragment : Fragment()
             loginToggle = LoginType.PHONE
             toggleStyleSet()
         }
-        view.findViewById<TextView>(R.id.LoginPageRegistrationTextButton).setOnClickListener {
+
+
+        registrationButtonView.setOnClickListener {
             it.findNavController().navigate(R.id.action_loginFragment_to_registration)
         }
-        
+
+        loginButtonEnter.setOnClickListener {
+            userModel.password = passwordInputView.text.toString()
+            when (loginToggle)
+            {
+                LoginType.E_MAIL ->
+                {
+                    userModel.email = loginInputView.text.toString()
+                    GlobalScope.launch(Dispatchers.IO)
+                    {
+                        val authMessage = authorizationService.authorization(userModel.email, userModel.password)
+                        authMessage.statusCheckRun(
+                            statusOk = {
+                                userModel.authorized = true
+                                it.findNavController().navigate(R.id.action_loginFragment_to_mainMenuFragment)
+                            },
+                            statusNoOk = {
+                                userModel.authorized = false
+                                Toast.makeText(context, "Неверный логин/пароль", Toast.LENGTH_LONG)
+                                    .show()
+                            }
+                        )
+                    }
+                }
+                LoginType.PHONE ->
+                {
+                    userModel.phone = loginInputView.text.toString()
+                    GlobalScope.launch(Dispatchers.IO)
+                    {
+                        val authMessage =  authorizationService.authorization(userModel.phone, userModel.password)
+                        authMessage.statusCheckRun(
+                            statusOk = {
+                                userModel.authorized = true
+                                it.findNavController().navigate(R.id.action_loginFragment_to_mainMenuFragment)
+                            },
+                            statusNoOk = {
+                                userModel.authorized = false
+                                Toast.makeText(context, "Неверный логин/пароль", Toast.LENGTH_LONG)
+                                    .show()
+                            }
+                        )
+                    }
+                }
+            }
+        }
     }
 
     private fun toggleStyleSet()

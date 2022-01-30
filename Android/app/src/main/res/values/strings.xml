@@ -43,4 +43,5 @@
     <string name="code_hint_confirm_page">XXXXXXXX</string>
     <string name="confirm_button_text_confirm_page">Подтвердить</string>
     <string name="resend_button_text_confirm_page"><u>Отправить код еще раз</u></string>
+    <string name="cancel_button_text_region_select_page">Отмена</string>
 </resources>

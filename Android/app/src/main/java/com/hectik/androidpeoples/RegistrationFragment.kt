@@ -30,6 +30,7 @@ class RegistrationFragment : Fragment()
     private lateinit var surnameInputView: EditText
     private lateinit var patronimicInputView: EditText
     private lateinit var continueButton: MaterialButton
+    private lateinit var cancelButton: MaterialButton
     private val userModel: UserViewModel by activityViewModels()
 
 
@@ -83,6 +84,7 @@ class RegistrationFragment : Fragment()
         surnameInputView = viewFragment.findViewById(R.id.inputSurnameOnRegistrationPage)
         patronimicInputView = viewFragment.findViewById(R.id.inputPatronimicOnRegistrationPage)
         continueButton = viewFragment.findViewById(R.id.continueButtonRegistrationPage)
+        cancelButton = viewFragment.findViewById(R.id.cancelButtonRegistrationPage)
     }
 
     @DelicateCoroutinesApi
@@ -147,6 +149,7 @@ class RegistrationFragment : Fragment()
                 }
             }
         }
+
         loginToggleEmailView.setOnClickListener {
             loginToggle = LoginType.E_MAIL
             toggleStyleSet()
@@ -154,6 +157,10 @@ class RegistrationFragment : Fragment()
         loginTogglePhoneView.setOnClickListener {
             loginToggle = LoginType.PHONE
             toggleStyleSet()
+        }
+
+        cancelButton.setOnClickListener {
+            it.findNavController().navigate(R.id.action_registration_to_loginFragment)
         }
     }
 }

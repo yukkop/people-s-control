@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_loginFragment_to_registration"
             app:destination="@id/regionSelectFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/registration"
@@ -30,6 +33,9 @@
         <action
             android:id="@+id/action_registration_to_confirmFragment"
             app:destination="@id/confirmFragment" />
+        <action
+            android:id="@+id/action_registration_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/regionSelectFragment"
@@ -39,6 +45,9 @@
         <action
             android:id="@+id/action_regionSelectFragment_to_districtSelectFragment"
             app:destination="@id/districtSelectFragment" />
+        <action
+            android:id="@+id/action_regionSelectFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/districtSelectFragment"
@@ -48,6 +57,9 @@
         <action
             android:id="@+id/action_districtSelectFragment_to_registration"
             app:destination="@id/registration" />
+        <action
+            android:id="@+id/action_districtSelectFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/confirmFragment"
