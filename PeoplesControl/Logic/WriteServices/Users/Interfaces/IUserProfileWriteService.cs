@@ -8,9 +8,10 @@ namespace Logic.WriteServices
 {
     public interface IUserProfileWriteService
     {
-        public bool RegistrationByEmail(RegistrationByEmailDTO registrationEntity);
+        public RequestStatus RegistrationByEmail(RegistrationByEmailDTO registrationEntity);
         public bool UpdatePrivateInfo(UpdateUserProfileDTO updateEntity);
-        public bool ConfirmEmail(long userID, int confirmationCode);
+        public RequestStatus ConfirmEmail(long userID, int confirmationCode);
+        public RequestStatus ResendConfirmationCodeEmail(long userId);
         public void Delete(long id);
     }
 }
