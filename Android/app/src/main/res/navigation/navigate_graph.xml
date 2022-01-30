@@ -41,6 +41,9 @@
         android:name="com.hectik.androidpeoples.DistrictSelectFragment"
         android:label="fragment_district_select"
         tools:layout="@layout/fragment_district_select" >
+        <action
+            android:id="@+id/action_districtSelectFragment_to_registration"
+            app:destination="@id/registration" />
     </fragment>
 
 </navigation>

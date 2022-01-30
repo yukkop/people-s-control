@@ -47,7 +47,7 @@ namespace Logic.WriteServices
         {
             Region entity = _regionRepository.Get(id);
             if (entity.IsRegionSupported != false)
-            {
+            { 
                 entity.IsRegionSupported = false;
 
                 ActionMeta editing = new ActionMeta();

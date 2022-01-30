@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import com.hectik.androidpeoples.viewModels.UserViewModel
 
 
 class RegistrationFragment : Fragment()
@@ -17,6 +19,8 @@ class RegistrationFragment : Fragment()
     private lateinit var loginToggleEmailView: TextView
     private lateinit var loginTogglePhoneView: TextView
     private lateinit var loginInputView: EditText
+    private val userModel: UserViewModel by activityViewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?)
     {

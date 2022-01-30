@@ -63,13 +63,14 @@ class RegionSelectFragment : Fragment()
             param.bottomMargin = 15
             regionView.layoutParams = param
             regionView.setTextAppearance(R.style.TextAppearance_AppCompat_RegionList)
+            regionView.typeface = Typeface.DEFAULT
             regionView.setOnClickListener {
                 for (currView in regionListView.children)
                 {
                     (currView as TextView).typeface = Typeface.DEFAULT
                 }
                 regionView.typeface = Typeface.DEFAULT_BOLD
-                userModel.region = regionView.text as String
+                userModel.region = curRegion
             }
             regionListView.addView(regionView)
         }
