@@ -22,10 +22,13 @@ namespace Logic.WebEntities
         public bool IsRequestModeration { get; set; }
         public long ModeratorId { get; set; }
         public string ProblemDescription { get; set; }
+        public float Rate { get; set; }
         public float BaseRate { get; set; }
         public bool IsAnonymously { get; set; }
         public long ViewsCount { get; set; }
         public long[] ProblemCategoriesIds { get; set; }
         public string[] ProblemCategoriesNames { get; set; }
+        public long[] RelatedReportsIds { get; set; }
+        public long RelatedReportsCount { get; set; }
     }
 }

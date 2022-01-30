@@ -8,6 +8,6 @@ namespace Logic.Queries
     public interface IReportQuery
     {
         public ReportDTO Get(long id);
-        public List<ReportDTO> GetPage(RequestReportsPageDTO pageSettings);
+        public List<ShortShowReportDTO> GetPage(RequestReportsPageDTO pageSettings);
     }
 }

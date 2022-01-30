@@ -30,7 +30,7 @@ namespace Logic.WriteServices
             Exception exception = _cityRepository.SaveChanges();
             if (exception != null)
             {
-                return RequestStatus.Exeption(exception);
+                return RequestStatus.Exception(exception);
             }
 
             return RequestStatus.Ok();
@@ -49,7 +49,7 @@ namespace Logic.WriteServices
             Exception exception = _cityRepository.Delete(id);
             if (exception != null)
             {
-                return RequestStatus.Exeption(exception);
+                return RequestStatus.Exception(exception);
             }
             _cityRepository.SaveChanges();
             return RequestStatus.Ok();

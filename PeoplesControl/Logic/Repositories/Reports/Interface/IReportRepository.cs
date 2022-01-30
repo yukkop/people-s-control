@@ -12,6 +12,6 @@ namespace Logic.Repositories
         public Report Add(Report report);
         public bool Update(Report report);
         public void Delete(long id);
-        public void SaveChanges();
+        public Exception SaveChanges();
     }
 }

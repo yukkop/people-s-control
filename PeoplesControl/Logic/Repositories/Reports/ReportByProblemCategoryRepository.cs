@@ -25,9 +25,13 @@ namespace Logic.Repositories
                         Where(i => i.ReportId == entity.ReportId && i.ProblemCategoryId == entity.ProblemCategoryId).FirstOrDefault());
         }
 
-        public void SaveChanges()
+        public Exception SaveChanges()
         {
-            _context.SaveChanges();
+            return _context.SaveChanges();
+        }
+        public ReportByProblemCategory Get(long id)
+        {
+            return _context.ReportsByProblemCategories.Where(entity => entity.Id == id).FirstOrDefault();
         }
     }
 }

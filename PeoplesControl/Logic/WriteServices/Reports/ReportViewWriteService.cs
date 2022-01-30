@@ -16,11 +16,20 @@ namespace Logic.WriteServices
             _reportViewRepository = reportViewRepository;
         }
 
-        public RequestStatus<ReportView> Add(ReportView createEntity)
+        public RequestStatus Add(long reportId, long userId)
         {
-            RequestStatus<ReportView> actionStatus =  new RequestStatus<ReportView>(_reportViewRepository.Add(createEntity));
-            _reportViewRepository.SaveChanges();
-            return actionStatus;
+            ReportView entity = new ReportView();
+            entity.ReportId = reportId;
+            entity.UserId = userId;
+
+            _reportViewRepository.Add(entity);
+            Exception exception = _reportViewRepository.SaveChanges();
+            if (exception != null)
+            {
+                return RequestStatus.Exception(exception);
+            }
+
+            return RequestStatus.Ok();
         }
     }
 }

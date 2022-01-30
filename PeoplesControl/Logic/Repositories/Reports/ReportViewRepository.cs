@@ -18,9 +18,9 @@ namespace Logic.Repositories
         {
             return _context.ReportsViews.Add(entity).Entity;
         }
-        public void SaveChanges()
+        public Exception SaveChanges()
         {
-            _context.SaveChanges();
+            return _context.SaveChanges();
         }
     }
 }
