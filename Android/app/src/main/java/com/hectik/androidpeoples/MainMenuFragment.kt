@@ -4,12 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.hectik.androidpeoples.viewModels.UserViewModel
 
 class MainMenuFragment : Fragment()
 {
-
+    private val userModel: UserViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -27,7 +33,30 @@ class MainMenuFragment : Fragment()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
-        view.findNavController().navigate(R.id.from_mainMenuFragment_to_loginFragment)
+        if (!userModel.authorized)
+        {
+            val constraintLayout = view.findViewById<ConstraintLayout>(R.id.constraint_main_menu)
+            val loginButton = TextView(view.context)
+            loginButton.id = R.id.login_view_on_main_menu_page
+            loginButton.text = getString(R.string.main_menu_login_str)
+            val param = ViewGroup.MarginLayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            loginButton.layoutParams = param
+            loginButton.setTextAppearance(R.style.TextAppearance_AppCompat_PrimaryLink)
+            loginButton.setOnClickListener {
+                findNavController().navigate(R.id.action_mainMenuFragment_to_loginFragment)
+            }
+            constraintLayout.addView(loginButton)
+            val set = ConstraintSet()
+            set.clone(constraintLayout)
+            set.connect(R.id.login_view_on_main_menu_page, ConstraintSet.START, R.id.constraint_main_menu, ConstraintSet.START)
+            set.connect(R.id.login_view_on_main_menu_page, ConstraintSet.END, R.id.constraint_main_menu, ConstraintSet.END)
+            set.connect(R.id.login_view_on_main_menu_page, ConstraintSet.BOTTOM, R.id.textView7, ConstraintSet.TOP)
+            set.connect(R.id.login_view_on_main_menu_page, ConstraintSet.TOP, R.id.linearLayout2, ConstraintSet.BOTTOM)
+            set.applyTo(constraintLayout)
+        }
     }
 
 }

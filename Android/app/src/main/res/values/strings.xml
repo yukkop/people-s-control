@@ -1,5 +1,4 @@
 <resources>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="app_name">AndroidPeoples</string>
@@ -11,6 +10,8 @@
     <string name="main_menu_button_faq_str">Вопросы и ответы</string>
     <string name="main_menu_button_government_str">Органы власти</string>
     <string name="main_menu_button_stats_str">Статистика</string>
+    <string name="main_menu_login_str"><u>Войти в аккаунт</u></string>
+
     <!--Hints-->
     <string name="input_pass_hint">Пароль</string>
     <string name="input_email_hint">E-mail</string>

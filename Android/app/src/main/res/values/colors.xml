@@ -15,4 +15,5 @@
     <color name="end_background_gradient">#FFFAFA</color>
     <color name="inactive_dark">#818181</color>
     <color name="error">#C81212</color>
+    <color name="primary_dark">#14286B</color>
 </resources>

@@ -122,6 +122,14 @@ class LoginFragment : Fragment()
                         val authMessage =  authorizationService.authorization(userModel.phone, userModel.password)
                         authMessage.statusCheckRun(
                             statusOk = {
+                                userModel.district.id = authMessage.entity?.districtId ?: 0
+                                userModel.district.name = authMessage.entity?.districtName ?:""
+                                userModel.district.cityName = authMessage.entity?.cityName ?:""
+                                userModel.email = authMessage.entity?.email ?:""
+                                userModel.phone = authMessage.entity?.phoneNumber ?:""
+                                userModel.name = authMessage.entity?.name?: ""
+                                userModel.surname = authMessage.entity?.surname?: ""
+                                userModel.patronimic = authMessage.entity?.patronimic?: ""
                                 userModel.authorized = true
                                 it.findNavController().navigate(R.id.action_loginFragment_to_mainMenuFragment)
                             },

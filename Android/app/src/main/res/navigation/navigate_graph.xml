@@ -10,7 +10,7 @@
         android:label="fragment_main_menu"
         tools:layout="@layout/fragment_main_menu" >
         <action
-            android:id="@+id/from_mainMenuFragment_to_loginFragment"
+            android:id="@+id/action_mainMenuFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
