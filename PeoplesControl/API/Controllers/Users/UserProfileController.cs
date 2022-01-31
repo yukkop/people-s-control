@@ -64,15 +64,15 @@ namespace API.Controllers
         */
 
         [HttpGet("Authorization")]
-        public RequestStatus Authorization([FromHeader] string Authorization)
+        public RequestStatus<GetUserProfileDTO> Authorization([FromHeader] string Authorization)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:UserProfile:Authorization"]);
             if (isAuthenticated){
-                return new RequestStatus(RequestStatus.Statuses.Ok, "Аккаунт подтвержден");
+                return _userProfileReadService.Get(userId);
             }
             else
             {
-                return RequestStatus.AuthFailed();
+                return RequestStatus < GetUserProfileDTO > .AuthFailed();
             }
         }
         

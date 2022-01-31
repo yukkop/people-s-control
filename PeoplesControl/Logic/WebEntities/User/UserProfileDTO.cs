@@ -12,7 +12,10 @@ namespace Logic.WebEntities
         public string Patronymic { get; set; }
         public string PhoneNumber { get; set; }
         public string EmailAddress { get; set; }
+        public long DistrictId { get; set; }
         public string DistrictName { get; set; }
+        public long CityId { get; set; }
+        public string CityName { get; set; }
         public bool NotifyByEmail { get; set; }
         public bool NotifyBySMS { get; set; }
         public bool RequestAnonymity { get; set; }
