@@ -13,6 +13,8 @@ namespace Logic.WebEntities
         public string EmailAddress { get; set; }
         public long DistrictId { get; set; }
         public string DistrictName { get; set; }
+        public long CityId { get; set; }
+        public string CityName { get; set; }
         public bool NotifyByEmail { get; set; }
         public bool NotifyBySMS { get; set; }
         public byte[] Avatar { get; set; }
