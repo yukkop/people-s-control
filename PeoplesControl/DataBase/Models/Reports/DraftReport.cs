@@ -15,9 +15,9 @@ namespace DataBase.Models
         public long UserId { get; set; }
         public User User { get; set; }
         public NpgsqlPoint Сoordinates { get; set; }
-        public string Description { get; set; }
-        public DateTime DateRemoval { get; set; }
-        public DateTime DateLastEditing { get; set; }
-        public DateTime DateCreation { get; set; }
+        public string ProblemDescription { get; set; }
+        public DateTime? DateRemoval { get; set; }
+        public DateTime? DateLastEditing { get; set; }
+        public DateTime? DateCreation { get; set; }
     }
 }

@@ -5,8 +5,9 @@ using System.Text;
 
 namespace Logic.WebEntities
 {
-    public class CreateDraftReportDTO
+    public class GetDraftReportDTO
     {
+        public long Id { get; set; }
         public string Title { get; set; }
         public long UserId { get; set; }
         public NpgsqlPoint Сoordinates { get; set; }

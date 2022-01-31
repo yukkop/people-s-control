@@ -95,6 +95,11 @@ namespace API
             services.AddScoped<IReportWriteService, ReportWriteService>();
             services.AddScoped<IReportReadService, ReportReadService>();
 
+            services.AddScoped<IDraftReportRepository, DraftReportRepository>();
+            services.AddScoped<IDraftReportQuery, DraftReportQuery>();
+            services.AddScoped<IDraftReportWriteService, DraftReportWriteService>();
+            services.AddScoped<IDraftReportReadService, DraftReportReadService>();
+
             services.AddScoped<IReportViewRepository, ReportViewRepository>();
             services.AddScoped<IReportViewWriteService, ReportViewWriteService>();
 
@@ -129,6 +134,7 @@ namespace API
 
                 cfg.AddProfile<ReportStatusProfile>();
                 cfg.AddProfile<ReportProfile>();
+                cfg.AddProfile<DraftReportProfile>();
                 cfg.AddProfile<MediaDataTypeProfile>();
                 cfg.AddProfile<ProblemCategoryProfile>();
 

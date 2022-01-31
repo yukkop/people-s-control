@@ -7,8 +7,10 @@ namespace Logic.Repositories
 {
     public interface IDraftReportRepository
     {
-        public DraftReport Get(int id);
+        public DraftReport Get(long id);
         public List<DraftReport> GetAll();
         public DraftReport Add(DraftReport draftReport);
+        public Exception SaveChanges();
+        public bool Update(DraftReport entity);
     }
 }
