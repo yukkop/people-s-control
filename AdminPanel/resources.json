@@ -1,0 +1,79 @@
+{
+    "screens": {
+        "home": "homescreen"
+    },
+    "colors": {
+        "primar": "#fff",
+        "background": "#fff"
+    },
+    "controllers": [
+        {
+            "name": "city",
+            "tabs": [
+                {
+                    "name": "get",
+                    "description": "",
+                    "request": "",
+                    "items": [],
+                    "body": []
+                },
+                {
+                    "name": "set",
+                    "description": "",
+                    "request": "",
+                    "items": [],
+                    "body": []
+                },
+                {
+                    "name": "set",
+                    "description": "",
+                    "request": "",
+                    "items": [],
+                    "body": []
+                },
+                {
+                    "name": "setsetsetsetsetset",
+                    "description": "",
+                    "request": "",
+                    "items": [],
+                    "body": []
+                },
+                {
+                    "name": "setsetsetset",
+                    "description": "",
+                    "request": "",
+                    "items": [],
+                    "body": []
+                },
+                {
+                    "name": "setsetsetset",
+                    "description": "",
+                    "request": "",
+                    "items": [],
+                    "body": []
+                },
+                {
+                    "name": "setsetsetsetsetset",
+                    "description": "",
+                    "request": "",
+                    "items": [],
+                    "body": []
+                },
+                {
+                    "name": "setsetsetsetsetset",
+                    "description": "",
+                    "request": "",
+                    "items": [],
+                    "body": []
+                },
+                {
+                    "name": "setsetsetsetsetset",
+                    "description": "",
+                    "request": "",
+                    "items": [],
+                    "body": []
+                }
+            ]
+        }
+    ]
+}
