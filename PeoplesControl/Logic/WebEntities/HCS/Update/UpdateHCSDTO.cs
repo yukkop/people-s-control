@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Logic.WebEntities
 {
-    public class CreateHCSDTO
+    public class UpdateHCSDTO
     {
+        public long Id { get; set; }
         public string Name { get; set; }
         public string MnemonicName { get; set; }
         public string Description { get; set; }
@@ -22,6 +23,6 @@ namespace Logic.WebEntities
         public bool IsEmailMailingEnabled { get; set; }
         public bool IsSMSMailingEnabled { get; set; }
         public bool IsDailyReportsGenerating { get; set; }
-        public bool IsVisible { get; set; }
+        public long UserId { get; set; }
     }
 }
