@@ -1,0 +1,35 @@
+import { StatusBar } from 'expo-status-bar';
+import React, { useState, useLayoutEffect } from 'react';
+import { FlatList, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+
+import { home, colors, screens } from './../resources.json'
+import { gStyles } from './../Styles';
+
+export default function Users({ navigation }: any) {
+    const [users, setUsers] = useState()
+
+    const renderUser = ({ item }: any) => (
+        <TouchableHighlight>
+            <Text style={[gStyles.titleText, { color: "#ffffff" }]}>{item.name}</Text>
+        </TouchableHighlight>
+    )
+
+    return (
+        <View>
+            <FlatList
+                data={users}
+                renderItem={renderUser}
+                keyExtractor={item => item.id}
+            />
+        </View>
+    );
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});

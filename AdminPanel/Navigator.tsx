@@ -1,11 +1,12 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useState } from 'react';
-import { TouchableHighlight } from 'react-native'
+import { Button, TouchableHighlight } from 'react-native'
 
-import Home from './Home';
+import Home from './screens/Home';
+import Users from './screens/Users';
 
-import resources from './resources.json';
+import { screens } from './resources.json';
 
 
 const Stack = createNativeStackNavigator();
@@ -15,8 +16,15 @@ export default function Navigation() {
         <NavigationContainer >
             <Stack.Navigator>
                 <Stack.Screen
-                    name={resources.screens.home}
+                    name={screens.home.path}
                     component={Home}
+
+                    options={{
+                    }}
+                />
+                <Stack.Screen
+                    name={screens.users.path}
+                    component={Users}
 
                     options={{
                     }}

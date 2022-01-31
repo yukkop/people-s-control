@@ -4,9 +4,8 @@ import * as ScreenOrientation from 'expo-screen-orientation';
 
 import Navigator from './Navigator';
 
-
 export default function App() {
-  ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
+  ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
   return (
     <Navigator />
   );

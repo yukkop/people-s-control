@@ -1,9 +1,46 @@
 {
     "screens": {
-        "home": "homescreen"
+        "home": {
+            "title": "Главная",
+            "path": "home"
+        },
+        "users": {
+            "title": "Пользователи",
+            "path": "users"
+        },
+        "reports": {
+            "title": "Заявки",
+            "path": "reports"
+        },
+        "HCS": {
+            "title": "Органы",
+            "path": "HCS"
+        },
+        "user-property": {
+            "title": "Органы",
+            "path": "HCS"
+        }
+    },
+    "home": {
+        "buttons": [
+            {
+                "screen": "users",
+                "name": "Пользователи"
+            },
+            {
+                "screen": "reports",
+                "name": "Заявки"
+            },
+            {
+                "screen": "HCS",
+                "name": "Органы"
+            }
+        ]
     },
     "colors": {
-        "primar": "#fff",
+        "primary-dark": "#102027",
+        "primary": "#37474F",
+        "primary-light": "#4F5B62",
         "background": "#fff"
     },
     "controllers": [
@@ -12,62 +49,6 @@
             "tabs": [
                 {
                     "name": "get",
-                    "description": "",
-                    "request": "",
-                    "items": [],
-                    "body": []
-                },
-                {
-                    "name": "set",
-                    "description": "",
-                    "request": "",
-                    "items": [],
-                    "body": []
-                },
-                {
-                    "name": "set",
-                    "description": "",
-                    "request": "",
-                    "items": [],
-                    "body": []
-                },
-                {
-                    "name": "setsetsetsetsetset",
-                    "description": "",
-                    "request": "",
-                    "items": [],
-                    "body": []
-                },
-                {
-                    "name": "setsetsetset",
-                    "description": "",
-                    "request": "",
-                    "items": [],
-                    "body": []
-                },
-                {
-                    "name": "setsetsetset",
-                    "description": "",
-                    "request": "",
-                    "items": [],
-                    "body": []
-                },
-                {
-                    "name": "setsetsetsetsetset",
-                    "description": "",
-                    "request": "",
-                    "items": [],
-                    "body": []
-                },
-                {
-                    "name": "setsetsetsetsetset",
-                    "description": "",
-                    "request": "",
-                    "items": [],
-                    "body": []
-                },
-                {
-                    "name": "setsetsetsetsetset",
                     "description": "",
                     "request": "",
                     "items": [],
