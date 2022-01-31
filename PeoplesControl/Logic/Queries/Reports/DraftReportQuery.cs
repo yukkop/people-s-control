@@ -17,7 +17,7 @@ namespace Logic.Queries
             _connectionString = configuration["ConnectionStrings:DefaultConnection"];
         }
 
-        public List<DraftReportDTO> Get(long userId)
+        public List<DraftReportDTO> GetAllByUserId(long userId)
         {
             string query = $@"SELECT ""DraftReports"".""Id"",""DraftReports"".""Title"",""DraftReports"".""UserId"",""DraftReports"".""Сoordinates"",
 ""DraftReports"".""ProblemDescription"" FROM ""DraftReports""
@@ -30,7 +30,19 @@ WHERE ""DraftReports"".""DateRemoval"" IS NULL AND ""DraftReports"".""UserId""={
 
 
         }
+        public DraftReportDTO Get(long id)
+        {
+            string query = $@"SELECT ""DraftReports"".""Id"",""DraftReports"".""Title"",""DraftReports"".""UserId"",""DraftReports"".""Сoordinates"",
+""DraftReports"".""ProblemDescription"" FROM ""DraftReports""
+WHERE ""DraftReports"".""Id""={id}";
 
+            using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
+            {
+                return db.Query<DraftReportDTO>(query).FirstOrDefault();
+            }
+
+
+        }
         public List<DraftReportDTO> GetAll()
         {
             string query = $@"SELECT ""DraftReports"".""Id"",""DraftReports"".""Title"",""DraftReports"".""UserId"",""DraftReports"".""Сoordinates"",

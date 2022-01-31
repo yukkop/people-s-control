@@ -34,13 +34,13 @@ namespace API.Controllers
             _configuration = configuration;
         }
 
-        [HttpGet]
+        [HttpGet("byUserId")]
         public RequestStatus<List<GetDraftReportDTO>> Get([FromHeader] string Authorization)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:DraftReport:Get"]);
             if (isAuthenticated)
             {
-                return _draftReportReadService.Get(userId);
+                return _draftReportReadService.GetAllByUserId(userId);
             }
             else
             {
@@ -48,6 +48,19 @@ namespace API.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public RequestStatus<GetDraftReportDTO> Get([FromHeader] string Authorization, long id)
+        {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:DraftReport:Get"]);
+            if (isAuthenticated)
+            {
+                return _draftReportReadService.Get(id);
+            }
+            else
+            {
+                return RequestStatus<GetDraftReportDTO>.AuthFailed();
+            }
+        }
         [HttpGet("all")]
         public RequestStatus<List<GetDraftReportDTO>> GetAll([FromHeader] string Authorization)
         {

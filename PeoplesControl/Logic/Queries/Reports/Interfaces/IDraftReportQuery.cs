@@ -7,7 +7,8 @@ namespace Logic.Queries
 {
     public interface IDraftReportQuery
     {
-        public List<DraftReportDTO> Get(long id);
+        public DraftReportDTO Get(long id);
+        public List<DraftReportDTO> GetAllByUserId(long userId);
         public List<DraftReportDTO> GetAll();
     }
 }

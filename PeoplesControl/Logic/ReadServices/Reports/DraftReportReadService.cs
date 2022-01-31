@@ -17,9 +17,9 @@ namespace Logic.ReadServices
             _draftReportQuery = draftReportQuery;
             _mapper = mapper;
         }
-        public RequestStatus<List<GetDraftReportDTO>> Get(long userId)
+        public RequestStatus<List<GetDraftReportDTO>> GetAllByUserId(long userId)
         {
-            List<DraftReportDTO> entities = _draftReportQuery.Get(userId);
+            List<DraftReportDTO> entities = _draftReportQuery.GetAllByUserId(userId);
             List<GetDraftReportDTO> getEntities = new List<GetDraftReportDTO>();
 
             foreach (var entity in entities)
@@ -29,7 +29,11 @@ namespace Logic.ReadServices
 
             return new RequestStatus<List<GetDraftReportDTO>>(getEntities);
         }
-
+        public RequestStatus<GetDraftReportDTO> Get(long id)
+        {
+            DraftReportDTO entity = _draftReportQuery.Get(id);
+            return new RequestStatus<GetDraftReportDTO>(_mapper.Map<GetDraftReportDTO>(entity));
+        }
         public RequestStatus<List<GetDraftReportDTO>> GetAll()
         {
             List<DraftReportDTO> entities = _draftReportQuery.GetAll();

@@ -8,7 +8,8 @@ namespace Logic.ReadServices
 { 
     public interface IDraftReportReadService
     {
-        public RequestStatus<List<GetDraftReportDTO>> Get(long userId);
+        public RequestStatus<GetDraftReportDTO> Get(long id);
+        public RequestStatus<List<GetDraftReportDTO>> GetAllByUserId(long userId);
         public RequestStatus<List<GetDraftReportDTO>> GetAll();
     }
 }
