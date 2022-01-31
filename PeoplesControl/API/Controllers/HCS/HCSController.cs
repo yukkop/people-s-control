@@ -87,6 +87,20 @@ namespace API.Controllers
             }
         }
 
+        [HttpPut("{hCSId}/resronsiblePersonId/{resronsiblePersonId}")]
+        public bool UpdateResponsiblePerson([FromHeader] string Authorization, long hCSId, long resronsiblePersonId)
+        {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:HCS:Update"]);
+            if (isAuthenticated)
+            {
+                return _hCSWriteService.UpdateResponsiblePerson(hCSId, userId, resronsiblePersonId);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         [HttpDelete("{id}")]
         public RequestStatus Delete([FromHeader] string Authorization, long id)
         {
