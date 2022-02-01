@@ -23,6 +23,5 @@ namespace Logic.WebEntities
         public bool IsSMSMailingEnabled { get; set; }
         public bool IsDailyReportsGenerating { get; set; }
         public bool IsVisible { get; set; }
-        public long UserId { get; set; }
     }
 }

@@ -202,7 +202,7 @@ namespace DataBase.Migrations
                     b.Property<string>("AdditionalInformation")
                         .HasColumnType("text");
 
-                    b.Property<long>("AvatarId")
+                    b.Property<long?>("AvatarId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("ContactEmail")
@@ -250,10 +250,10 @@ namespace DataBase.Migrations
                     b.Property<long?>("RemovalId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("ResponsiblePersonId")
+                    b.Property<long?>("ResponsiblePersonId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("TelegramChannelId")
+                    b.Property<long?>("TelegramChannelId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("WebResourseURL")
@@ -1123,9 +1123,7 @@ namespace DataBase.Migrations
                 {
                     b.HasOne("DataBase.Models.Avatar", "Avatar")
                         .WithMany()
-                        .HasForeignKey("AvatarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AvatarId");
 
                     b.HasOne("DataBase.Models.ActionMeta", "Creation")
                         .WithMany()
@@ -1147,9 +1145,7 @@ namespace DataBase.Migrations
 
                     b.HasOne("DataBase.Models.User", "ResponsiblePerson")
                         .WithMany()
-                        .HasForeignKey("ResponsiblePersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ResponsiblePersonId");
                 });
 
             modelBuilder.Entity("DataBase.Models.HCSByProblemCategory", b =>

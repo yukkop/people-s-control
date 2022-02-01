@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_mainMenuFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_applicationMenuFragment"
+            app:destination="@id/applicationMenuFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -70,5 +73,10 @@
             android:id="@+id/action_confirmFragment_to_mainMenuFragment"
             app:destination="@id/mainMenuFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/applicationMenuFragment"
+        android:name="com.hectik.androidpeoples.ApplicationMenuFragment"
+        android:label="fragment_application"
+        tools:layout="@layout/fragment_application_menu" />
 
 </navigation>

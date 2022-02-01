@@ -118,6 +118,16 @@ namespace API
             services.AddScoped<IProblemCategoryWriteService, ProblemCategoryWriteService>();
             services.AddScoped<IProblemCategoryReadService, ProblemCategoryReadService>();
 
+            services.AddScoped<IHCSTypeRepository, HCSTypeRepository>();
+            services.AddScoped<IHCSTypeQuery, HCSTypeQuery>();
+            services.AddScoped<IHCSTypeWriteService, HCSTypeWriteService>();
+            services.AddScoped<IHCSTypeReadService, HCSTypeReadService>();
+
+            services.AddScoped<IHCSRepository, HCSRepository>();
+            services.AddScoped<IHCSQuery, HCSQuery>();
+            services.AddScoped<IHCSWriteService, HCSWriteService>();
+            services.AddScoped<IHCSReadService, HCSReadService>();
+
             services.AddScoped<IRegionRepository, RegionRepository>();
             services.AddScoped<IRegionQuery, RegionQuery>();
             services.AddScoped<IRegionReadService, RegionReadService>();
@@ -137,6 +147,8 @@ namespace API
                 cfg.AddProfile<DraftReportProfile>();
                 cfg.AddProfile<MediaDataTypeProfile>();
                 cfg.AddProfile<ProblemCategoryProfile>();
+                cfg.AddProfile<HCSTypeProfile>();
+                cfg.AddProfile<HCSProfile>();
 
             });
             services.AddSingleton(config);
