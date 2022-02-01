@@ -92,7 +92,6 @@ class LoginFragment : Fragment()
         }
 
         loginButtonEnter.setOnClickListener {
-            userModel.password = passwordInputView.text.toString()
             when (loginToggle)
             {
                 LoginType.E_MAIL ->
@@ -100,7 +99,10 @@ class LoginFragment : Fragment()
                     userModel.email = loginInputView.text.toString()
                     GlobalScope.launch(Dispatchers.IO)
                     {
-                        val authMessage = authorizationService.authorization(userModel.email, userModel.password)
+                        val authMessage = authorizationService.authorization(
+                            userModel.email,
+                            passwordInputView.text.toString()
+                        )
                         authMessage.statusCheckRun(
                             statusOk = {
                                 userModel.authorized = true
@@ -119,7 +121,10 @@ class LoginFragment : Fragment()
                     userModel.phone = loginInputView.text.toString()
                     GlobalScope.launch(Dispatchers.IO)
                     {
-                        val authMessage =  authorizationService.authorization(userModel.phone, userModel.password)
+                        val authMessage = authorizationService.authorization(
+                            userModel.phone,
+                            passwordInputView.text.toString()
+                        )
                         authMessage.statusCheckRun(
                             statusOk = {
                                 userModel.district.id = authMessage.entity?.districtId ?: 0

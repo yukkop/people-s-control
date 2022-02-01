@@ -117,7 +117,6 @@ class RegistrationFragment : Fragment()
                 {
                     userModel.email = loginInputView.text.toString()
                     userModel.name = nameInputView.text.toString()
-                    userModel.password = passwordInputView.text.toString()
                     userModel.name = nameInputView.text.toString()
                     userModel.surname = surnameInputView.text.toString()
                     userModel.patronimic = patronimicInputView.text.toString()
@@ -126,7 +125,7 @@ class RegistrationFragment : Fragment()
                             withContext(Dispatchers.IO) {
                                 registrationService.postUserRegistration(
                                     userModel.email,
-                                    userModel.password,
+                                    passwordInputView.text.toString(),
                                     userModel.name,
                                     userModel.surname,
                                     userModel.district.id,

@@ -50,9 +50,9 @@ class RegionSelectFragment : Fragment()
             it.findNavController().navigate(R.id.action_regionSelectFragment_to_loginFragment)
         }
 
-        var supportRegionList = withContext(Dispatchers.Default) {
-                registrationService.getSupportedRegion()
-            }
+        var supportRegionList = withContext(Dispatchers.IO) {
+            registrationService.getSupportedRegion()
+        }
 
         supportRegionList.statusCheckRun(
             statusOk = {
@@ -87,9 +87,9 @@ class RegionSelectFragment : Fragment()
             }
         )
 
-        var unsupportRegionList = withContext(Dispatchers.Default) {
-                registrationService.getUnsupportedRegion()
-            }
+        var unsupportRegionList = withContext(Dispatchers.IO) {
+            registrationService.getUnsupportedRegion()
+        }
         unsupportRegionList.statusCheckRun(
             statusOk = {
                 for (curRegion in unsupportRegionList.entity)
