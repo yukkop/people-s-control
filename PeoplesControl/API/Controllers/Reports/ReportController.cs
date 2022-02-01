@@ -41,8 +41,23 @@ namespace API.Controllers
         public RequestStatus<List<ShortShowReportDTO>> GetPage([FromHeader] string Authorization, [FromBody] RequestReportsPageDTO pageSettings)
         {
             var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Get"]);
-            if (isAuthenticated){
+            if (isAuthenticated)
+            {
                 return _reportReadService.GetPage(pageSettings);
+            }
+            else
+            {
+                return RequestStatus<List<ShortShowReportDTO>>.AuthFailed();
+            }
+        }
+
+        [HttpGet("page/nearby")] //Достать страницу с учетом сортировки (ShortReport)
+        public RequestStatus<List<ShortShowReportDTO>> GetPageNearbyReports([FromHeader] string Authorization, [FromBody] RequerstNearbyReportsPageDTO pageSettings)
+        {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Get"]);
+            if (isAuthenticated)
+            {
+                return _reportReadService.GetPageNearbyReports(pageSettings);
             }
             else
             {
