@@ -78,5 +78,24 @@ namespace Logic.WriteServices
             _hCSRepository.SaveChanges();
             return status;
         }
+
+        public bool UpdateResponsiblePerson(long hCSId, long userId, long responsiblePersonId)
+        {
+            HCS hCS = _hCSRepository.Get(hCSId);
+            hCS.ResponsiblePersonId = responsiblePersonId;
+            hCS.ResponsiblePerson = _userRepository.Get(responsiblePersonId);
+
+            ActionMeta edit = new ActionMeta()
+            {
+                UserId = userId,
+                Date = DateTime.Now
+            };
+            hCS.LastEditing = edit;
+            edit = _actionMetaRepository.Add(edit);
+            _actionMetaRepository.SaveChanges();
+            bool status = _hCSRepository.Update(hCS);
+            _hCSRepository.SaveChanges();
+            return status;
+        }
     }
 }
