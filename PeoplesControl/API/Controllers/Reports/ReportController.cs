@@ -78,6 +78,19 @@ namespace API.Controllers
             }
         }
 
+        [HttpGet("category/{categotyId}")] // Страница репорта
+        public RequestStatus<GetReportDTO> GetByCategory([FromHeader] string Authorization, long categotyId)
+        {
+            var (isAuthenticated, userId) = _authorizationService.Authorization(Authorization, _configuration["ActionsConfig:Report:Get"]);
+            if (isAuthenticated){
+                return _reportReadService.GetByCategory(categotyId);
+            }
+            else
+            {
+                return RequestStatus<GetReportDTO>.AuthFailed();
+            }
+        }
+
         [HttpPost]
         public RequestStatus Post([FromHeader] string Authorization, [FromBody] CreateReportDTO createEntity)
         {

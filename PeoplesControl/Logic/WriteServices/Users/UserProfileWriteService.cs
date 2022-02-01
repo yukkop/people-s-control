@@ -91,7 +91,7 @@ namespace Logic.WriteServices
             return RequestStatus.Ok();
         }
 
-        public Exception SendConfirmationEmail(string emailAddress, int code)
+        private Exception SendConfirmationEmail(string emailAddress, int code)
         {
 
             MailAddress from = new MailAddress(_configuration["ServerEmailAddress"], "People-s-control");
@@ -139,7 +139,12 @@ namespace Logic.WriteServices
             return code;
         }
 
-        public RequestStatus ResendConfirmationCodeEmail(long userId)
+        //public RequestStatus ChangePassword(string Base64String, int code)
+        //{
+
+        //}
+
+        public RequestStatus CheckEmail(long userId)
         {
             User user = _userRepository.Get(userId);
             UserProfile userProfile = _userProfileRepository.Get(user.UserProfileId);
@@ -160,6 +165,11 @@ namespace Logic.WriteServices
 
             SendConfirmationEmail(userProfile.EmailAddress, (int)user.EmailConfirmationCode);
             return RequestStatus.Ok();
+        }
+
+        public RequestStatus ResendConfirmationCodeEmail(long userId)
+        {
+            return CheckEmail(userId);
         }
 
         public RequestStatus ConfirmEmail(long userID, int confirmationCode)

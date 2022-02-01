@@ -51,7 +51,60 @@ namespace Logic.Queries
                     LEFT JOIN ""Users"" ON ""Users"".""Id"" = ""Reports"".""UserId""
                     LEFT JOIN ""UsersProfiles"" ON ""Users"".""UserProfileId"" = ""UsersProfiles"".""Id""
                     LEFT JOIN ""Reports"" AS ""RelationReports"" ON ""Reports"".""Id"" = ""RelationReports"".""RelationReportId""
-                    WHERE ""Reports"".""IsDeleted"" = false AND""Reports"".""IsDeleted"" = false AND ""Reports"".""Id"" = {id}
+                    WHERE ""Reports"".""IsDeleted"" = false AND""Reports"".""IsDeleted"" = false AND ""Reports"".""Id"" = {id} 
+GROUP BY ""Reports"".""Id"", ""Reports"".""UserId"", ""Reports"".""Title"", 
+""Reports"".""RelationReportId"", ""Reports"".""Address"", ""Reports"".""StatusId"",
+        ""ReportStatuses"".""Name"",
+        ""Reports"".""DateConsideration"", ""Reports"".""DateStartExecution"", 
+        ""Reports"".""DateFinishExecution"", ""Reports"".""DateFinalControl"",
+        ""Reports"".""IsRequestModeration"", ""Reports"".""ModeratorId"",
+        ""Reports"".""ProblemDescription"", ""Reports"".""BaseRate"",
+        ""Reports"".""IsAnonymously"",
+        ""UsersProfiles"".""Name"",""UsersProfiles"".""PhoneNumber"",""Users"".""DateSMSConfirmation"",""ProblemCategories"".""Id""";
+
+            using (IDbConnection db = new Npgsql.NpgsqlConnection(_connectionString))
+            {
+                return db.Query<ReportDTO>(query).FirstOrDefault();
+            }
+        
+        
+        }
+        
+        public ReportDTO GetByCategoty(long categotyId)
+        {
+            string query = $@"SELECT ""Reports"".""Id"", ""Reports"".""UserId"", ""Reports"".""Title"", 
+        ""Reports"".""RelationReportId"", ""Reports"".""Address"", ""Reports"".""StatusId"",
+        ""ReportStatuses"".""Name"" AS ""StatusName"", ""Reports"".""Coordinates"", 
+        ""Reports"".""DateConsideration"", ""Reports"".""DateStartExecution"", 
+        ""Reports"".""DateFinishExecution"", ""Reports"".""DateFinalControl"",
+        ""Reports"".""IsRequestModeration"", ""Reports"".""ModeratorId"",
+        ""Reports"".""ProblemDescription"", ""Reports"".""BaseRate"",
+        ""Reports"".""IsAnonymously"",
+        count(""ReportsViews"".""UserId"") AS ""ViewsCount"",
+        array_agg(DISTINCT ""ProblemCategories"".""Id"") AS ""ProblemCategoriesIds"",
+        array_agg(DISTINCT ""ProblemCategories"".""Name"") AS ""ProblemCategoriesNames"",
+        array_agg (DISTINCT""RelationReports"".""Id"") AS ""RelatedReports"",
+        COUNT(""RelationReports"".""Id"") AS ""RelatedReportsCount"",
+        
+        CASE WHEN ""UsersProfiles"".""Name"" != 'Guest' THEN 10 ELSE 0
+             END + CASE WHEN ""UsersProfiles"".""PhoneNumber"" IS NOT NULL THEN 20 ELSE 0
+             END + CASE WHEN ""Users"".""DateSMSConfirmation"" IS NOT NULL THEN 50 ELSE 0
+             END + CASE WHEN ""Reports"".""Coordinates"" IS NOT NULL THEN 20 ELSE 0
+             END + CASE WHEN ""Reports"".""ProblemDescription"" IS NOT NULL THEN 10 ELSE 0
+
+
+             END + CASE WHEN ""ProblemCategories"".""Id"" IS NOT NULL THEN 5 ELSE 0
+            END AS ""Rate""
+
+                    FROM ""Reports""
+                    LEFT JOIN ""ReportStatuses"" ON ""ReportStatuses"".""Id"" = ""Reports"".""StatusId""
+                    LEFT JOIN ""ReportsViews"" ON ""ReportsViews"".""ReportId"" = ""Reports"".""Id""
+                    LEFT JOIN ""ReportsByProblemCategories"" ON ""ReportsByProblemCategories"".""ReportId"" = ""Reports"".""Id""
+                    LEFT JOIN ""ProblemCategories"" ON  ""ProblemCategories"".""Id"" = ""ReportsByProblemCategories"".""ProblemCategoryId""
+                    LEFT JOIN ""Users"" ON ""Users"".""Id"" = ""Reports"".""UserId""
+                    LEFT JOIN ""UsersProfiles"" ON ""Users"".""UserProfileId"" = ""UsersProfiles"".""Id""
+                    LEFT JOIN ""Reports"" AS ""RelationReports"" ON ""Reports"".""Id"" = ""RelationReports"".""RelationReportId""
+                    WHERE ""Reports"".""IsDeleted"" = false AND""Reports"".""IsDeleted"" = false AND AND ""ProblemCategories"".""ProblemCategoryId"" = {categotyId}
 GROUP BY ""Reports"".""Id"", ""Reports"".""UserId"", ""Reports"".""Title"", 
 ""Reports"".""RelationReportId"", ""Reports"".""Address"", ""Reports"".""StatusId"",
         ""ReportStatuses"".""Name"",
