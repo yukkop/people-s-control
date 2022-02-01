@@ -59,11 +59,15 @@ namespace Logic.WriteServices
             creation = _actionMetaRepository.Add(creation);
             userProfileEntity.Creation = creation;
             userProfileEntity = _userProfileRepository.Add(userProfileEntity);
+            _userProfileRepository.SaveChanges();
 
             User userEntity = new User();
             userEntity.Login = registrationEntity.EmailAddress;
             userEntity.SaltValue = _authenticationService.SaltGen();
             userEntity.SaltPassword = _authenticationService.SaltHash(registrationEntity.Password, userEntity.SaltValue);
+            userEntity.UserProfile = userProfileEntity;
+
+            userEntity.EmailConfirmationCode = MakeConfirmationCode();
 
 
             Exception exception = _userRepository.SaveChanges();
