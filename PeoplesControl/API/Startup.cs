@@ -39,6 +39,8 @@ namespace API
         {
             services.AddControllers();
 
+            services.AddCors();
+
             services.AddSwaggerGen();
 
             services.AddDbContext<Context>(l => l.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
@@ -164,6 +166,12 @@ namespace API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(x => x
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .SetIsOriginAllowed(origin => true)
+                    .AllowCredentials());
 
             app.UseHttpsRedirection();
 

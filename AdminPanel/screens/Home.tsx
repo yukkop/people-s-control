@@ -4,24 +4,26 @@ import { FlatList, StyleSheet, Text, TouchableHighlight, View } from 'react-nati
 
 import { home, colors, screens } from './../resources.json'
 import { gStyles } from './../Styles';
+import { api } from './../API'
+import { User } from './Users';
 
-export type screensEnum = 'home' | 'users' | 'reports' | 'HCS' | 'user-property'
+export type ScreensEnum = keyof typeof screens
 
 export type MenuButton = {
     id: string
     name: string
-    screen: screensEnum
+    screen: ScreensEnum
 }
 
 export default function Home({ navigation }: any) {
-
+    api<User>("https://194.28.61.185:44373/api/user/Authorization", 'GET', 'admin', 'B2ling54B2ling3rPL292')
     const [buttons, setButtons]: [buttons: MenuButton[], setButton: any] = useState(home.buttons.map((current, index) => {
         return (
 
             {
                 id: index.toString(),
                 name: current.name,
-                screen: (current.screen as screensEnum)
+                screen: (current.screen as ScreensEnum)
             }
         )
     }));
@@ -38,7 +40,7 @@ export default function Home({ navigation }: any) {
                     */
 
     const renderButton = ({ item }: { item: MenuButton }) => (
-        <TouchableHighlight onPress={() => navigation.navigate(screens[item.screen])} style={styles.button}>
+        <TouchableHighlight onPress={() => navigation.navigate(screens[item.screen].path)} style={styles.button}>
             <Text style={[gStyles.titleText, { color: "#ffffff" }]}>{item.name}</Text>
         </TouchableHighlight>
     )
