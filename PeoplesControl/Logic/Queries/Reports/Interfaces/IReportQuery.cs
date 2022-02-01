@@ -10,5 +10,6 @@ namespace Logic.Queries
         public ReportDTO Get(long id);
         public List<ShortShowReportDTO> GetPage(RequestReportsPageDTO pageSettings);
         public List<ShortShowReportDTO> GetPageNearbyReports(RequerstNearbyReportsPageDTO pageSettings);
+        public ReportDTO GetByCategoty(long categotyId);
     }
 }
