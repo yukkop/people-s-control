@@ -50,6 +50,9 @@ namespace DataBase.Migrations
                 principalTable: "Users",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.Sql(@"create extension cube;
+create extension earthdistance;");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

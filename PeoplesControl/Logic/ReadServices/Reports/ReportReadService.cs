@@ -39,6 +39,20 @@ namespace Logic.ReadServices
 
             return new RequestStatus<List<ShortShowReportDTO>>(entities);
         }
+        public RequestStatus<List<ShortShowReportDTO>> GetPageNearbyReports(RequerstNearbyReportsPageDTO pageSettings)
+        {
+            List<ShortShowReportDTO> entities;
+            try
+            {
+                entities = _reportQuery.GetPageNearbyReports(pageSettings);
+            }
+            catch (Exception e)
+            {
+                return RequestStatus<List<ShortShowReportDTO>>.Exception(e);
+            }
+
+            return new RequestStatus<List<ShortShowReportDTO>>(entities);
+        }
     }
 }
 
