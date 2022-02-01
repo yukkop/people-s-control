@@ -3,6 +3,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="app_name">Народный контроль</string>
     <string name="develop_by">Разработано в рамках проекта “Хакатон-Кибердонбасс”</string>
+    <string name="coming_soon">В разработке</string>
     <!--Main Menu Strings-->
     <string name="main_menu_button_request_str">Заявки</string>
     <string name="main_menu_button_profile_str">Профиль</string>
@@ -35,7 +36,7 @@
     <!--Region Select Strings-->
     <string name="region_select_page_title">Выбор региона</string>
     <string name="region_select_page_select_button">Выбрать</string>
-    <string name="coming_soon">Скоро будет доступно:</string>
+    <string name="coming_soon_region_page">Скоро будет доступно:</string>
     <!--District Select Strings-->
     <string name="district_select_page_title">Выбор района</string>
     <string name="district_select_page_select_button">Выбрать</string>
@@ -51,4 +52,11 @@
     <string name="application_menu_archive_button_str">Мой архив</string>
     <string name="application_menu_drafts_button_str">Черновики обращений</string>
     <string name="contentDescriptionToIconApp">иконка Приложения</string>
+    <string name="input_title_hint_application_form_page">Название</string>
+    <string name="categories_select_button_application_form_page">Категории</string>
+    <string name="coordinates_select_button_application_form_page">Местоположение</string>
+    <string name="use_draft_button_str_application_form_page"><u>Использовать черновик</u></string>
+    <string name="create_button_str_application_form_page">Создать заявку</string>
+    <string name="rules_familiar_application_form_page">С правилами ознакомлен</string>
+    <string name="connect_data_application_form_page">Приложить данные профиля к заявке(это повысит ее рейтинг)</string>
 </resources>

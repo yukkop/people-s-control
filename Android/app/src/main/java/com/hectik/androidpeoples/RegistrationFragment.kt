@@ -119,27 +119,29 @@ class RegistrationFragment : Fragment()
                     userModel.name = nameInputView.text.toString()
                     userModel.name = nameInputView.text.toString()
                     userModel.surname = surnameInputView.text.toString()
-                    userModel.patronimic = patronimicInputView.text.toString()
-                    GlobalScope.launch(Dispatchers.IO) {
-                        val registrationMessage =
-                            withContext(Dispatchers.IO) {
-                                registrationService.postUserRegistration(
-                                    userModel.email,
-                                    passwordInputView.text.toString(),
-                                    userModel.name,
-                                    userModel.surname,
-                                    userModel.district.id,
-                                    userModel.patronimic
-                                )
-                            }
+                    userModel.patronymic = patronimicInputView.text.toString()
+                    GlobalScope.launch(Dispatchers.Main) {
+                        val registrationMessage = registrationService.postUserRegistration(
+                            userModel.email,
+                            passwordInputView.text.toString(),
+                            userModel.name,
+                            userModel.surname,
+                            userModel.district.id,
+                            userModel.patronymic
+                        )
                         registrationMessage.statusCheckRun(
                             statusOk =
                             {
-                                it.findNavController().navigate(R.id.action_registration_to_confirmFragment)
+                                it.findNavController()
+                                    .navigate(R.id.action_registration_to_confirmFragment)
                             },
                             statusNoOk =
                             {
-                                Toast.makeText(context, "Недействительный e-mail", Toast.LENGTH_LONG)
+                                Toast.makeText(
+                                    context,
+                                    "Недействительный e-mail",
+                                    Toast.LENGTH_LONG
+                                )
                                     .show()
                             }
                         )

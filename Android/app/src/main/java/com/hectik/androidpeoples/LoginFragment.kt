@@ -18,7 +18,6 @@ import com.hectik.androidpeoples.viewModels.UserViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.w3c.dom.Text
 
 /**
  * A simple [Fragment] subclass.
@@ -97,7 +96,7 @@ class LoginFragment : Fragment()
                 LoginType.E_MAIL ->
                 {
                     userModel.email = loginInputView.text.toString()
-                    GlobalScope.launch(Dispatchers.IO)
+                    GlobalScope.launch(Dispatchers.Main)
                     {
                         val authMessage = authorizationService.authorization(
                             userModel.email,
@@ -106,7 +105,18 @@ class LoginFragment : Fragment()
                         authMessage.statusCheckRun(
                             statusOk = {
                                 userModel.authorized = true
-                                it.findNavController().navigate(R.id.action_loginFragment_to_mainMenuFragment)
+                                userModel.email = authMessage.entity?.emailAddress ?: ""
+                                userModel.name = authMessage.entity?.name ?: ""
+                                userModel.surname = authMessage.entity?.surname ?: ""
+                                userModel.patronymic = authMessage.entity?.patronymic ?: ""
+                                userModel.phone = authMessage.entity?.phoneNumber ?: ""
+                                userModel.district.id = authMessage.entity?.districtId ?: 0
+                                userModel.district.name = authMessage.entity?.districtName ?: ""
+                                userModel.district.cityName = authMessage.entity?.cityName ?: ""
+                                userModel.notifyByEmail = authMessage.entity?.notifyByEmail ?: false
+                                userModel.notifyBySMS = authMessage.entity?.notifyBySMS ?: false
+                                it.findNavController()
+                                    .navigate(R.id.action_loginFragment_to_mainMenuFragment)
                             },
                             statusNoOk = {
                                 userModel.authorized = false
@@ -119,7 +129,7 @@ class LoginFragment : Fragment()
                 LoginType.PHONE ->
                 {
                     userModel.phone = loginInputView.text.toString()
-                    GlobalScope.launch(Dispatchers.IO)
+                    GlobalScope.launch(Dispatchers.Main)
                     {
                         val authMessage = authorizationService.authorization(
                             userModel.phone,
@@ -128,13 +138,13 @@ class LoginFragment : Fragment()
                         authMessage.statusCheckRun(
                             statusOk = {
                                 userModel.district.id = authMessage.entity?.districtId ?: 0
-                                userModel.district.name = authMessage.entity?.districtName ?:""
-                                userModel.district.cityName = authMessage.entity?.cityName ?:""
-                                userModel.email = authMessage.entity?.email ?:""
-                                userModel.phone = authMessage.entity?.phoneNumber ?:""
+                                userModel.district.name = authMessage.entity?.districtName ?: ""
+                                userModel.district.cityName = authMessage.entity?.cityName ?: ""
+                                userModel.email = authMessage.entity?.emailAddress ?: ""
+                                userModel.phone = authMessage.entity?.phoneNumber ?: ""
                                 userModel.name = authMessage.entity?.name?: ""
-                                userModel.surname = authMessage.entity?.surname?: ""
-                                userModel.patronimic = authMessage.entity?.patronimic?: ""
+                                userModel.surname = authMessage.entity?.surname ?: ""
+                                userModel.patronymic = authMessage.entity?.patronymic ?: ""
                                 userModel.authorized = true
                                 it.findNavController().navigate(R.id.action_loginFragment_to_mainMenuFragment)
                             },

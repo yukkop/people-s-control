@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.Fragment
@@ -29,7 +30,7 @@ class MainMenuFragment : Fragment()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View?
+    ): View
     {
         // Inflate the layout for this fragment
         inflater.inflate(R.layout.fragment_main_menu, container, false)
@@ -54,7 +55,22 @@ class MainMenuFragment : Fragment()
         binding.toolbar.profileButton.setOnClickListener {
             userProfileAction()
         }
-
+        binding.vkLink.setOnClickListener {
+            Toast.makeText(context, R.string.coming_soon, Toast.LENGTH_SHORT)
+                .show()
+        }
+        binding.instLink.setOnClickListener {
+            Toast.makeText(context, R.string.coming_soon, Toast.LENGTH_SHORT)
+                .show()
+        }
+        binding.telegramLink.setOnClickListener {
+            Toast.makeText(context, R.string.coming_soon, Toast.LENGTH_SHORT)
+                .show()
+        }
+        binding.landingLink.setOnClickListener {
+            Toast.makeText(context, R.string.coming_soon, Toast.LENGTH_SHORT)
+                .show()
+        }
     }
 
     private fun userProfileAction()
