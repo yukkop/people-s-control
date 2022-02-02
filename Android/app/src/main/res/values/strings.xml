@@ -1,0 +1,68 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Народный контроль</string>
+    <string name="develop_by">Разработано в рамках проекта “Хакатон-Кибердонбасс”</string>
+    <string name="coming_soon">В разработке</string>
+    <string name="contentDescriptionToIconApp">иконка Приложения</string>
+
+    <!--Main Menu Strings-->
+    <string name="main_menu_button_request_str">Заявки</string>
+    <string name="main_menu_button_profile_str">Профиль</string>
+    <string name="main_menu_button_timetable_str">Расписание транспорта</string>
+    <string name="main_menu_button_faq_str">Вопросы и ответы</string>
+    <string name="main_menu_button_government_str">Органы власти</string>
+    <string name="main_menu_button_stats_str">Статистика</string>
+    <string name="main_menu_login_str"><u>Войти в аккаунт</u></string>
+
+    <!--Hints-->
+    <string name="input_pass_hint">Пароль</string>
+    <string name="input_email_hint">E-mail</string>
+    <string name="input_phone_hint">Телефон</string>
+    <string name="input_name_hint">Имя</string>
+    <string name="input_surname_hint">Фамилия</string>
+    <string name="input_patronimic_hint">Отчество</string>
+    <!--Login Menu Strings-->
+    <string name="login_page_title">Вход в систему</string>
+    <string name="login_page_forget_pass"><u>Забыл пароль</u></string>
+    <string name="login_page_enter_button_text">Вход</string>
+    <string name="login_page_have_profile_quathion">У вас еще нет профиля?</string>
+    <string name="login_page_registration"><u>Регистрация</u></string>
+    <string name="login_page_or">или</string>
+    <string name="login_page_skip"><u>Пропустить</u></string>
+    <string name="login_page_confidence"><u>Правила и соглашение</u> на использование персональных данных</string>
+    <!--Registration Menu Strings-->
+    <string name="registration_page_title">Регистрация</string>
+    <string name="registration_page_continue_button">Продолжить</string>
+    <string name="registration_page_cancel_button">Отмена</string>
+    <!--Region Select Strings-->
+    <string name="region_select_page_title">Выбор региона</string>
+    <string name="region_select_page_select_button">Выбрать</string>
+    <string name="coming_soon_region_page">Скоро будет доступно:</string>
+    <string name="cancel_button_text_region_select_page">Отмена</string>
+    <!--District Select Strings-->
+    <string name="district_select_page_title">Выбор района</string>
+    <string name="district_select_page_select_button">Выбрать</string>
+    <!--Confirm Strings-->
+    <string name="input_code_message_confirm_page">Введите код подтверждения</string>
+    <string name="code_hint_confirm_page">XXXXXXXX</string>
+    <string name="confirm_button_text_confirm_page">Подтвердить</string>
+    <string name="resend_button_text_confirm_page"><u>Отправить код еще раз</u></string>
+
+    <!--Application Menu Strings-->
+    <string name="application_menu_create_button_str">Создать заявку</string>
+    <string name="application_menu_find_button_str">Найти заявку</string>
+    <string name="application_menu_my_app_button_str">Мои обращения</string>
+    <string name="application_menu_archive_button_str">Мой архив</string>
+    <string name="application_menu_drafts_button_str">Черновики обращений</string>
+
+    <!--Application Form Strings-->
+    <string name="input_title_hint_application_form_page">Название</string>
+    <string name="categories_select_button_application_form_page">Категории</string>
+    <string name="coordinates_select_button_application_form_page">Местоположение</string>
+    <string name="use_draft_button_str_application_form_page"><u>Использовать черновик</u></string>
+    <string name="create_button_str_application_form_page">Создать заявку</string>
+    <string name="rules_familiar_application_form_page">С правилами ознакомлен</string>
+    <string name="connect_data_application_form_page">Приложить данные профиля к заявке(это повысит ее рейтинг)</string>
+    <string name="enter_in_account_form_page">Войдите, чтобы повысить рейтинг заявки</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="login_view_on_main_menu_page" type="id" />
+    <item name="connect_data_profile" type="id" />
+    <item name="enter_in_account_application_form_page" type="id" />
+</resources>

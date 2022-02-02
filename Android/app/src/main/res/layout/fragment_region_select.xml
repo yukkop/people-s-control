@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".RegionSelectFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/region_select_page_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:textAppearance="@style/TextAppearance.AppCompat.Header"/>
+    <LinearLayout
+        android:id="@+id/region_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45"
+        android:gravity="center">
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/selectButtonRegionSelectPage"
+        style="@style/Widget.MaterialComponents.Button.ButtonPattern"
+        android:layout_width="156dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/region_select_page_select_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/region_list" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/cancelButtonRegionSelectPage"
+        style="@style/Widget.MaterialComponents.Button.ButtonPattern"
+        android:layout_width="156dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/cancel_button_text_region_select_page"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectButtonRegionSelectPage" />
+
+    <LinearLayout
+        android:id="@+id/soon_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cancelButtonRegionSelectPage"
+        app:layout_constraintVertical_bias="0.45">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/coming_soon_region_page"
+            android:textAppearance="@style/TextAppearance.AppCompat.TogleText" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

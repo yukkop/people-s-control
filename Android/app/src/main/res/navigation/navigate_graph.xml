@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigate_graph"
+    app:startDestination="@id/mainMenuFragment">
+    <fragment
+        android:id="@+id/mainMenuFragment"
+        android:name="com.hectik.androidpeoples.MainMenuFragment"
+        android:label="fragment_main_menu"
+        tools:layout="@layout/fragment_main_menu">
+        <action
+            android:id="@+id/action_mainMenuFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_applicationMenuFragment"
+            app:destination="@id/applicationMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.hectik.androidpeoples.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registration"
+            app:destination="@id/regionSelectFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registration"
+        android:name="com.hectik.androidpeoples.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registration_to_confirmFragment"
+            app:destination="@id/confirmFragment" />
+        <action
+            android:id="@+id/action_registration_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/regionSelectFragment"
+        android:name="com.hectik.androidpeoples.RegionSelectFragment"
+        android:label="fragment_region_select"
+        tools:layout="@layout/fragment_region_select" >
+        <action
+            android:id="@+id/action_regionSelectFragment_to_districtSelectFragment"
+            app:destination="@id/districtSelectFragment" />
+        <action
+            android:id="@+id/action_regionSelectFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/districtSelectFragment"
+        android:name="com.hectik.androidpeoples.DistrictSelectFragment"
+        android:label="fragment_district_select"
+        tools:layout="@layout/fragment_district_select" >
+        <action
+            android:id="@+id/action_districtSelectFragment_to_registration"
+            app:destination="@id/registration" />
+        <action
+            android:id="@+id/action_districtSelectFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmFragment"
+        android:name="com.hectik.androidpeoples.ConfirmFragment"
+        android:label="fragment_confirm"
+        tools:layout="@layout/fragment_confirm">
+        <action
+            android:id="@+id/action_confirmFragment_to_mainMenuFragment"
+            app:destination="@id/mainMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/applicationMenuFragment"
+        android:name="com.hectik.androidpeoples.ApplicationMenuFragment"
+        android:label="fragment_application"
+        tools:layout="@layout/fragment_application_menu">
+        <action
+            android:id="@+id/action_applicationMenuFragment_to_applicationFormFragment"
+            app:destination="@id/applicationFormFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/applicationFormFragment"
+        android:name="com.hectik.androidpeoples.ApplicationFormFragment"
+        android:label="fragment_application_form"
+        tools:layout="@layout/fragment_application_form" />
+
+</navigation>

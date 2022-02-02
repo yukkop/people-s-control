@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/constraint_main_menu"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainMenuFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/mainMenuLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonCreate"
+            android:text="@string/application_menu_create_button_str"
+            app:icon="@drawable/application_menu_create_icon"
+            style="@style/Widget.MaterialComponents.Button.MainMenuButton" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonFind"
+            android:text="@string/application_menu_find_button_str"
+            app:icon="@drawable/application_menu_find_icon"
+            style="@style/Widget.MaterialComponents.Button.MainMenuButton" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonMyApplication"
+            android:text="@string/application_menu_my_app_button_str"
+            app:icon="@drawable/application_menu_my_application_icon"
+            style="@style/Widget.MaterialComponents.Button.MainMenuButton" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonArchive"
+            android:text="@string/application_menu_archive_button_str"
+            app:icon="@drawable/application_menu_archive_icon"
+            style="@style/Widget.MaterialComponents.Button.MainMenuButton" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonDrafts"
+            android:text="@string/application_menu_drafts_button_str"
+            app:icon="@drawable/application_menu_draft_icon"
+            style="@style/Widget.MaterialComponents.Button.MainMenuButton" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
