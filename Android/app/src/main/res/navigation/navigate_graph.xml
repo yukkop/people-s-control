@@ -8,7 +8,7 @@
         android:id="@+id/mainMenuFragment"
         android:name="com.hectik.androidpeoples.MainMenuFragment"
         android:label="fragment_main_menu"
-        tools:layout="@layout/fragment_main_menu" >
+        tools:layout="@layout/fragment_main_menu">
         <action
             android:id="@+id/action_mainMenuFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
