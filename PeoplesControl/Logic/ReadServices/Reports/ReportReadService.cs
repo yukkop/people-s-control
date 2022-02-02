@@ -53,6 +53,20 @@ namespace Logic.ReadServices
 
             return new RequestStatus<List<ShortShowReportDTO>>(entities);
         }
+        public RequestStatus<GetReportDTO> GetByCategory(long categotyId)
+        {
+            ReportDTO entities;
+            try
+            {
+                entities = _reportQuery.GetByCategoty(categotyId);
+            }
+            catch (Exception e)
+            {
+                return RequestStatus<GetReportDTO>.Exception(e);
+            }
+
+            return new RequestStatus<GetReportDTO>(_mapper.Map<GetReportDTO>(entities));
+        }
     }
 }
 

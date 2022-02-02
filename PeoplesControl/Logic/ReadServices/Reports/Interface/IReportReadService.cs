@@ -11,5 +11,6 @@ namespace Logic.ReadServices
         public RequestStatus<GetReportDTO> Get(long id);
         public RequestStatus<List<ShortShowReportDTO>> GetPage(RequestReportsPageDTO pageSettings);
         public RequestStatus<List<ShortShowReportDTO>> GetPageNearbyReports(RequerstNearbyReportsPageDTO pageSettings);
+        public RequestStatus<GetReportDTO> GetByCategory(long categotyId);
     }
 }
