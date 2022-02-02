@@ -60,7 +60,6 @@ class AuthService
         {
             MessageListDTO(1, "Error", "Error 404", emptyList())
         }
-
     }
 
     suspend fun getUnsupportedRegion(): MessageListDTO<RegionDTO>

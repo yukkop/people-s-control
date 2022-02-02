@@ -58,7 +58,7 @@ class ApplicationFormFragment : Fragment()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View?
+    ): View
     {
         inflater.inflate(R.layout.fragment_application_form, container, false)
         binding = FragmentApplicationFormBinding.inflate(inflater, container, false)
@@ -103,7 +103,7 @@ class ApplicationFormFragment : Fragment()
                     )
                 }
         connectDataProfileCheckBox.layoutParams = param
-        connectDataProfileCheckBox.text = R.string.connect_data_application_form_page.toString()
+        connectDataProfileCheckBox.text = getString(R.string.connect_data_application_form_page)
         connectDataProfileCheckBox.id = R.id.connect_data_profile
         val set = ConstraintSet()
         binding.constraint.addView(connectDataProfileCheckBox)

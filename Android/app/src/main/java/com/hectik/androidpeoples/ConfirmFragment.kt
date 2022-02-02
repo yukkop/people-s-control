@@ -49,7 +49,7 @@ class ConfirmFragment : Fragment()
         confirmButton = view.findViewById(R.id.confirmButtonOnConfirmPage)
         resendButton = view.findViewById(R.id.resendButtonOnConfirmPage)
         confirmButton.setOnClickListener {
-            GlobalScope.launch(Dispatchers.IO) {
+            GlobalScope.launch(Dispatchers.Main) {
                 val confirmMessage =
                     registrationService.putConfirmCode(codeInputView.text.toString().toInt())
                 confirmMessage.statusCheckRun(

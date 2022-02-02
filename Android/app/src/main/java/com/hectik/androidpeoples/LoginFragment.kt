@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.google.android.material.button.MaterialButton
+import com.hectik.androidpeoples.models.DistrictDTO
 import com.hectik.androidpeoples.models.statusCheckRun
 import com.hectik.androidpeoples.services.AuthService
 import com.hectik.androidpeoples.viewModels.UserViewModel
@@ -110,9 +111,11 @@ class LoginFragment : Fragment()
                                 userModel.surname = authMessage.entity?.surname ?: ""
                                 userModel.patronymic = authMessage.entity?.patronymic ?: ""
                                 userModel.phone = authMessage.entity?.phoneNumber ?: ""
-                                userModel.district.id = authMessage.entity?.districtId ?: 0
-                                userModel.district.name = authMessage.entity?.districtName ?: ""
-                                userModel.district.cityName = authMessage.entity?.cityName ?: ""
+                                userModel.district = DistrictDTO(
+                                    authMessage.entity?.districtId ?: 0,
+                                    authMessage.entity?.districtName ?: "",
+                                    authMessage.entity?.cityName ?: ""
+                                )
                                 userModel.notifyByEmail = authMessage.entity?.notifyByEmail ?: false
                                 userModel.notifyBySMS = authMessage.entity?.notifyBySMS ?: false
                                 it.findNavController()
